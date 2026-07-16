@@ -11,7 +11,7 @@ export type Project = {
   stack: { label: string; items: string[] }[];
   highlights: { title: string; body: string }[];
   results: string[];
-  image?: string;
+  images: { src: string; caption: string }[];
   links?: { label: string; href: string }[];
 };
 
@@ -50,7 +50,11 @@ export const projects: Project[] = [
       "SSAFY 공통 프로젝트 우수 프로젝트 선정",
       "SSAFY 최우수 UCC 선정",
     ],
-    image: "/images/projects/voda-call.png",
+    images: [
+      { src: "/images/projects/voda-call.png", caption: "영상통화 화면 — 표정 인식(TTS·STT)과 통화 알림" },
+      { src: "/images/projects/voda-screenreader.png", caption: "TabIndex·Aria-Label을 적용한 스크린 리더기(NVDA) 사용 화면" },
+      { src: "/images/projects/voda-feedback.png", caption: "고객의 소리함 — 사용자 피드백 수렴 페이지" },
+    ],
   },
   {
     slug: "open-the-door",
@@ -82,7 +86,11 @@ export const projects: Project[] = [
       },
     ],
     results: ["SSAFY 자율 프로젝트 우수상 수상"],
-    image: "/images/projects/open-the-door-main.png",
+    images: [
+      { src: "/images/projects/open-the-door-main.png", caption: "메인 화면 — 테마 검색과 내 주변 지도" },
+      { src: "/images/projects/open-the-door-popular.png", caption: "인기 테마 목록 — FlatList·스켈레톤 UI 적용" },
+      { src: "/images/projects/open-the-door-booking.png", caption: "테마 예약 화면 — 날짜·시간 선택과 예약 확인 모달" },
+    ],
   },
   {
     slug: "haruman",
@@ -114,14 +122,18 @@ export const projects: Project[] = [
       },
     ],
     results: ["SSAFY 특화 프로젝트 베스트 멤버 선정"],
-    image: "/images/projects/haruman-main.png",
+    images: [
+      { src: "/images/projects/haruman-main.png", caption: "메인·로그인 화면 — lerp 애니메이션으로 표현한 남은 금액" },
+      { src: "/images/projects/haruman-chart.png", caption: "하루 소비 지출 현황 — Chart.js 도넛 차트" },
+      { src: "/images/projects/haruman-stats.png", caption: "통계 화면 — D3 버블 차트로 본 금액대별 잔액 현황" },
+    ],
   },
   {
     slug: "raim",
     no: "05",
     name: "RAIM Schedule Manager",
     tagline: "서울로봇인공지능과학관 직원 일정·교육·초과근무 통합 관리",
-    period: "2026.05 – 2026.06",
+    period: "2026.06 (약 2주)",
     role: "기획 · 1인 풀스택 (Claude 기반 바이브 코딩)",
     coreSkill: "AI-ASSISTED FULLSTACK",
     color: "#8EA7E8",
@@ -146,18 +158,21 @@ export const projects: Project[] = [
       },
     ],
     results: ["실제 근무 현장에 배포, 운영 중"],
-    image: "/images/projects/raim-calendar.png",
+    images: [
+      { src: "/images/projects/raim-calendar.png", caption: "캘린더 일정 관리 — 유형별 색상, 신청중/완료 상태 표시" },
+      { src: "/images/projects/raim-education.png", caption: "교육 목록 자동 수집 — Puppeteer 크롤러로 연간 일정 파싱" },
+    ],
   },
   {
-    slug: "reservation",
+    slug: "robotics-reservation",
     no: "06",
-    name: "Reservation",
+    name: "Robotics Reservation",
     tagline: "체험관 현장 대기열 관리 시스템",
-    period: "2026.06",
+    period: "2026.04 ~ 진행중",
     role: "기획 · 1인 풀스택 (Claude 기반 바이브 코딩)",
     coreSkill: "SYSTEM DESIGN & PRIVACY",
     color: "#C98BD8",
-    why: "수기 대기자 명단 운영으로 인한 호출 누락, 개인정보 노출 문제를 해결하기 위해 만들었습니다. 방문객 태블릿 등록부터 SMS 호출, 통계까지 운영 전 과정을 자동화했습니다.",
+    why: "수기 대기자 명단 운영으로 인한 호출 누락, 개인정보 노출 문제를 해결하기 위해 2026년 4월부터 만들기 시작해 지금까지 현장 요구에 맞춰 계속 개선하고 있습니다. 방문객 태블릿 등록부터 SMS 호출, 통계까지 운영 전 과정을 자동화했습니다.",
     stack: [
       { label: "Frontend", items: ["React", "Tailwind CSS"] },
       { label: "Backend", items: ["Django REST Framework", "APScheduler", "SQLite"] },
@@ -169,16 +184,23 @@ export const projects: Project[] = [
         body: "전화번호 수집 동의 절차를 두고, 운영 마감 후 APScheduler가 일일 통계만 이관한 뒤 개인정보 전체를 자동 파기하도록 설계했습니다. 통계는 성별·연령 8분류로만 집계해 개인 식별 없이 방문 데이터를 축적합니다.",
       },
       {
-        title: "실시간 입장 가능 여부 계산",
-        body: "상시 게시되는 태블릿 특성에 맞춰 Wake Lock API로 화면 꺼짐을 방지했습니다. 정원(10명)과 호출 중 인원을 함께 계산해 입장 가능 여부를 실시간으로 판단합니다.",
+        title: "슬롯 기반 대기열 · 선호출 알고리즘",
+        body: "정원(테이블 10석)은 '입장 인원 + 이미 문자를 보내 호출 중인 인원'의 합으로 관리합니다. 자리가 나면 대기열에서 등록 순서(FIFO)대로 다음 팀을 바로 호출해, 실제로 자리가 빌 때까지 기다리지 않고 미리 문자를 보내 이동 시간을 벌어줍니다. 호출 문자에는 11분 입장 기한을 명시하고, 신규 등록·입장 처리·대기자 삭제 세 이벤트 모두에서 같은 재호출 로직이 실행되도록 설계해 빈 자리가 방치되지 않게 했습니다. 단순히 '9번째니까 대기'가 아니라, 언제·누구를·몇 명이나 동시에 호출할지까지 계산하는 구조입니다.",
       },
       {
-        title: "SMS 호출 & 통계 자동화",
-        body: "Solapi API로 호출 문자를 발송하고 중복 발송 방지 플래그와 테이블(T1~T10) 배정을 함께 관리합니다. 일일 방문 통계는 openpyxl로 서식이 적용된 엑셀로 바로 내려받을 수 있습니다.",
+        title: "배포 없는 내부망 아키텍처",
+        body: "관람객 전화번호 등 개인정보를 다루는 공공기관 서비스이기 때문에, 클라우드에 공개 배포하는 대신 처음부터 외부 인터넷과 분리된 내부망(관내 IP)에서만 접근 가능하도록 설계했습니다. 공인 URL이 없어 외부에서는 서비스 자체에 접근할 수 없고, 방문객 등록 태블릿과 직원 대시보드 모두 같은 내부망 안에서만 통신합니다.",
+      },
+      {
+        title: "테이블 배정 & 통계 자동화",
+        body: "Solapi API로 호출 문자를 발송하고, 중복 발송 방지 플래그로 같은 팀에게 문자가 두 번 가지 않도록 관리합니다. 배정된 테이블(T1~T10)과 일일 방문 통계는 서식이 적용된 엑셀로 바로 내려받을 수 있습니다.",
       },
     ],
-    results: ["실제 체험관 현장 운영 중"],
-    image: "/images/projects/reservation-dashboard.png",
+    results: ["2026년 4월부터 현재(7월)까지 실제 체험관 현장에서 운영 중"],
+    images: [
+      { src: "/images/projects/reservation-checkin.png", caption: "방문객 대기 등록 — 태블릿에서 전화번호·일행 인원 등록" },
+      { src: "/images/projects/reservation-dashboard.png", caption: "직원 대시보드 — 대기열 관리와 SMS 호출" },
+    ],
   },
 ];
 

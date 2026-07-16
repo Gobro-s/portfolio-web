@@ -36,10 +36,10 @@ function Loop() {
   return (
     <group ref={group} position={[1.7, -0.1, 0]}>
       <lineSegments geometry={ringA}>
-        <lineBasicMaterial color="#d8ff5f" transparent opacity={0.9} />
+        <lineBasicMaterial color="#e14f2a" transparent opacity={0.75} />
       </lineSegments>
       <lineSegments geometry={ringB} rotation={[0.6, 0.9, 0]}>
-        <lineBasicMaterial color="#f2f0eb" transparent opacity={0.35} />
+        <lineBasicMaterial color="#221d16" transparent opacity={0.22} />
       </lineSegments>
     </group>
   );

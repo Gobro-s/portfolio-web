@@ -15,7 +15,7 @@ export default function Footer() {
           </a>
         </div>
         <p className="font-mono text-xs text-foreground-dim">
-          © {new Date().getFullYear()} Go Sehoon — Built with Next.js &amp; Three.js
+          © {new Date().getFullYear()} Ko Sehoon — Built with Next.js &amp; Three.js
         </p>
       </div>
     </footer>

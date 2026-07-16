@@ -14,12 +14,12 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-4xl">
         <p className="font-mono text-[10px] tracking-[0.15em] text-foreground-dim uppercase sm:text-xs sm:tracking-[0.3em]">
-          Frontend Developer / RAIM · Reservation
+          Frontend Developer / RAIM · Robotics Reservation
         </p>
-        <h1 className="font-display mt-6 text-[13vw] leading-[0.9] font-bold tracking-tight md:text-[7.5rem]">
-          GO
+        <h1 className="font-display mt-6 text-[13vw] leading-[0.9] font-semibold tracking-tight md:text-[7.5rem]">
+          KO
           <br />
-          SEHOON
+          <span className="italic text-accent">SEHOON</span>
         </h1>
       </div>
 

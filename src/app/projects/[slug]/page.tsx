@@ -62,19 +62,30 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </dl>
       </section>
 
-      {project.image && (
-        <section className="border-b border-line px-6 py-14 md:px-12">
-          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-xl border border-line">
-            <Image
-              src={project.image}
-              alt={`${project.name} 스크린샷`}
-              width={1400}
-              height={900}
-              className="w-full"
-            />
-          </div>
-        </section>
-      )}
+      <section className="border-b border-line px-6 py-14 md:px-12">
+        <div className="grid gap-6 md:grid-cols-3">
+          {project.images.map((img, i) => (
+            <figure
+              key={img.src}
+              className={`overflow-hidden rounded-2xl shadow-lg ${
+                i === 0 ? "md:col-span-2 md:row-span-2" : ""
+              } ${i % 2 === 0 ? "-rotate-1" : "rotate-1"} transition-transform duration-500 hover:rotate-0`}
+              style={{ background: `${project.color}33` }}
+            >
+              <Image
+                src={img.src}
+                alt={img.caption}
+                width={1400}
+                height={1000}
+                className="w-full object-cover object-top"
+              />
+              <figcaption className="px-4 py-3 font-mono text-xs text-foreground-dim">
+                {img.caption}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
 
       <section className="border-b border-line px-6 py-20 md:px-12">
         <div className="grid gap-10 md:grid-cols-12">
