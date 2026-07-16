@@ -50,7 +50,7 @@ export const projects: Project[] = [
       "SSAFY 공통 프로젝트 우수 프로젝트 선정",
       "SSAFY 최우수 UCC 선정",
     ],
-    image: undefined,
+    image: "/images/projects/voda-call.png",
   },
   {
     slug: "open-the-door",
@@ -82,7 +82,7 @@ export const projects: Project[] = [
       },
     ],
     results: ["SSAFY 자율 프로젝트 우수상 수상"],
-    image: undefined,
+    image: "/images/projects/open-the-door-main.png",
   },
   {
     slug: "haruman",
@@ -114,12 +114,12 @@ export const projects: Project[] = [
       },
     ],
     results: ["SSAFY 특화 프로젝트 베스트 멤버 선정"],
-    image: undefined,
+    image: "/images/projects/haruman-main.png",
   },
   {
     slug: "raim",
     no: "05",
-    name: "RAIM Schedule",
+    name: "RAIM Schedule Manager",
     tagline: "서울로봇인공지능과학관 직원 일정·교육·초과근무 통합 관리",
     period: "2026.05 – 2026.06",
     role: "기획 · 1인 풀스택 (Claude 기반 바이브 코딩)",

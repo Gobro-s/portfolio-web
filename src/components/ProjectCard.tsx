@@ -22,7 +22,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
         <div className="flex flex-col gap-4 px-1 md:flex-row md:items-center md:justify-between">
           <div className="flex items-baseline gap-6">
             <span className="font-mono text-sm text-foreground-dim">{project.no}</span>
-            <h3 className="font-display text-4xl font-bold tracking-tight transition-transform duration-500 group-hover:translate-x-2 md:text-6xl">
+            <h3 className="font-display text-3xl font-bold tracking-tight break-keep transition-transform duration-500 group-hover:translate-x-2 sm:text-4xl md:text-6xl">
               {project.name}
             </h3>
           </div>

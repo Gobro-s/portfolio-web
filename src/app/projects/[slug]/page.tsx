@@ -36,7 +36,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <span className="font-mono text-sm text-foreground-dim">{project.no}</span>
-            <h1 className="font-display mt-2 text-6xl font-bold tracking-tight md:text-8xl">
+            <h1 className="font-display mt-2 text-4xl font-bold tracking-tight break-keep sm:text-6xl md:text-8xl">
               {project.name}
             </h1>
           </div>
@@ -152,7 +152,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
             Next project
           </p>
-          <h2 className="font-display link-underline mt-4 inline-block text-5xl font-bold transition-transform duration-500 group-hover:translate-x-3 md:text-7xl">
+          <h2 className="font-display link-underline mt-4 inline-block text-3xl font-bold break-keep transition-transform duration-500 group-hover:translate-x-3 sm:text-5xl md:text-7xl">
             {next.name}
           </h2>
         </Link>
