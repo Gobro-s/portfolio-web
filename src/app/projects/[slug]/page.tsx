@@ -62,31 +62,6 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </dl>
       </section>
 
-      <section className="border-b border-line px-6 py-14 md:px-12">
-        <div className="grid gap-6 md:grid-cols-3">
-          {project.images.map((img, i) => (
-            <figure
-              key={img.src}
-              className={`overflow-hidden rounded-2xl shadow-lg ${
-                i === 0 ? "md:col-span-2 md:row-span-2" : ""
-              } ${i % 2 === 0 ? "-rotate-1" : "rotate-1"} transition-transform duration-500 hover:rotate-0`}
-              style={{ background: `${project.color}33` }}
-            >
-              <Image
-                src={img.src}
-                alt={img.caption}
-                width={1400}
-                height={1000}
-                className="w-full object-cover object-top"
-              />
-              <figcaption className="px-4 py-3 font-mono text-xs text-foreground-dim">
-                {img.caption}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
       <section className="border-b border-line px-6 py-20 md:px-12">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
@@ -94,6 +69,19 @@ export default async function ProjectPage({ params }: { params: Params }) {
           </div>
           <p className="font-display max-w-2xl text-2xl leading-relaxed md:col-span-8 md:text-3xl">
             {project.why}
+          </p>
+        </div>
+      </section>
+
+      <section className="border-b border-line px-6 py-20 md:px-12">
+        <div className="grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
+              My Role in the Architecture
+            </p>
+          </div>
+          <p className="max-w-2xl text-lg leading-relaxed text-foreground-dim md:col-span-8">
+            {project.architecture}
           </p>
         </div>
       </section>
@@ -131,11 +119,34 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </p>
         <RevealGroup>
           {project.highlights.map((h) => (
-            <div key={h.title} className="border-t border-line py-8">
-              <h3 className="font-display text-xl font-bold md:text-2xl" style={{ color: project.color }}>
-                {h.title}
-              </h3>
-              <p className="mt-3 max-w-2xl text-foreground-dim leading-relaxed">{h.body}</p>
+            <div key={h.title} className="flex flex-col gap-6 border-t border-line py-8 sm:flex-row">
+              <div className="flex-1">
+                <h3 className="font-display text-xl font-bold md:text-2xl" style={{ color: project.color }}>
+                  {h.title}
+                </h3>
+                <p className="mt-3 max-w-2xl text-foreground-dim leading-relaxed">{h.body}</p>
+              </div>
+              {h.images && h.images.length > 0 && (
+                <div className="flex shrink-0 gap-3 sm:w-56 sm:flex-col">
+                  {h.images.map((img) => (
+                    <figure
+                      key={img.src}
+                      className="overflow-hidden rounded-lg border border-line shadow-sm"
+                    >
+                      <Image
+                        src={img.src}
+                        alt={img.caption}
+                        width={480}
+                        height={360}
+                        className="w-full object-cover object-top"
+                      />
+                      <figcaption className="px-2 py-1.5 font-mono text-[10px] leading-snug text-foreground-dim">
+                        {img.caption}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </RevealGroup>

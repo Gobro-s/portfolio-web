@@ -8,8 +8,9 @@ export type Project = {
   coreSkill: string; // 이 프로젝트에서 돋보이는 핵심 역량 (한 줄 배지)
   color: string; // 프로젝트 시그니처 컬러 (hex)
   why: string;
+  architecture: string; // 전체 시스템 구조 중 내가 맡은 부분
   stack: { label: string; items: string[] }[];
-  highlights: { title: string; body: string }[];
+  highlights: { title: string; body: string; images?: { src: string; caption: string }[] }[];
   results: string[];
   images: { src: string; caption: string }[];
   links?: { label: string; href: string }[];
@@ -26,6 +27,8 @@ export const projects: Project[] = [
     coreSkill: "ACCESSIBILITY-FIRST UX",
     color: "#F2C879",
     why: "빠른 디지털 전환 속에서 소외되는 계층이 분명히 있을 거라 생각했습니다. 설리반+의 사진 분석과 Be My Eyes의 봉사자 매칭을 결합해, 시각장애인이 실시간 영상통화로 도움을 받을 수 있는 서비스를 혼자 프론트엔드로 설계·구현했습니다.",
+    architecture:
+      "팀은 프론트엔드(본인) · 백엔드(Java/MySQL) · AI-RTC(OpenVidu 연동, 표정·안면 인식) 세 파트로 나뉘어 있었습니다. 저는 비장애인용·시각장애인용 두 화면 체계와 접근성 레이어를 포함한 프론트엔드 전체를 단독 설계·구현했고, 백엔드가 제공하는 통화 세션 API와 AI 파트의 표정 인식 결과를 실시간 화면에 반영하는 클라이언트 연동 로직까지 담당했습니다.",
     stack: [
       { label: "Frontend", items: ["React 16", "Redux", "TypeScript 5.3"] },
       { label: "Backend / DB", items: ["Java 11", "MySQL"] },
@@ -35,6 +38,9 @@ export const projects: Project[] = [
       {
         title: "두 화면, 하나의 코드베이스",
         body: "비장애인용 화면과 시각장애인용 화면을 각각 설계하되, 키보드 스크린 리더기(NVDA)로만 조작하는 사용자를 기준으로 컴포넌트의 Depth를 다시 설계했습니다.",
+        images: [
+          { src: "/images/projects/voda-call.png", caption: "표정 인식 기반 영상통화 화면 — 두 화면 체계 중 하나" },
+        ],
       },
       {
         title: "WCAG AA를 웃도는 명도 대비",
@@ -43,6 +49,12 @@ export const projects: Project[] = [
       {
         title: "실사용자 테스트로 검증",
         body: "복지관을 직접 방문해 프로토타입 피드백을 반영했고, TabIndex·Aria-Label로 NVDA가 각 항목을 정확히 읽도록 구현한 뒤 실제 안대를 착용하고 스크린 리더기만으로 사용하며 개선점을 찾았습니다.",
+        images: [
+          {
+            src: "/images/projects/voda-screenreader.png",
+            caption: "NVDA로 탐색 가능하도록 TabIndex·Aria-Label을 적용한 화면",
+          },
+        ],
       },
     ],
     results: [
@@ -66,6 +78,8 @@ export const projects: Project[] = [
     coreSkill: "FRONTEND ARCHITECTURE",
     color: "#7FD8C6",
     why: "팀원 모두가 방탈출을 즐겼지만, 정보 제공과 예약이 한 번에 되는 서비스가 없었습니다. 그래서 직접 만들었습니다.",
+    architecture:
+      "백엔드(Java/MySQL/MongoDB)가 테마·예약·리뷰 데이터를 API로 제공하고, 프론트엔드가 이를 소비해 화면을 구성하는 구조였습니다. 저는 React Native 클라이언트 전체 — Atomic Design 컴포넌트 시스템, Recoil 상태 관리, 목록·지도·예약 플로우 — 를 설계했고, PM이 없는 팀 특성상 기획-와이어프레임-기능명세서 단계도 함께 리드했습니다.",
     stack: [
       { label: "Frontend", items: ["React-Native 0.72", "Recoil", "TypeScript 5.3", "Styled-Component"] },
       { label: "Backend / DB", items: ["Java 11", "MySQL", "MongoDB"] },
@@ -75,14 +89,29 @@ export const projects: Project[] = [
       {
         title: "Atomic Design + CDD로 50% 시간 단축",
         body: "Atomic Design과 컴포넌트 주도 개발(CDD)을 채택해 병렬적으로 컴포넌트를 제작, 개발 시간을 약 50% 단축했습니다. MVVM 패턴으로 컴포넌트 확장성도 함께 확보했습니다.",
+        images: [
+          { src: "/images/projects/open-the-door-main.png", caption: "Atomic Design 컴포넌트로 구성한 메인 화면" },
+        ],
       },
       {
         title: "리스트 성능 최적화",
         body: "인기 테마 목록에 FlatList를 적용해 화면에 보이는 콘텐츠만 렌더링했고, 이미지 로딩 전 스켈레톤 UI로 레이아웃이 임의로 바뀌는 문제를 방지했습니다. 페이지네이션과 무한스크롤로 메모리·리소스 효율도 함께 챙겼습니다.",
+        images: [
+          {
+            src: "/images/projects/open-the-door-popular.png",
+            caption: "FlatList·스켈레톤 UI를 적용한 인기 테마 목록",
+          },
+        ],
       },
       {
         title: "부족한 RN 패키지, 직접 컴포넌트화",
         body: "React-Native 생태계에 지원 패키지가 많지 않아, 자주 쓰이는 기능을 직접 컴포넌트 패키지처럼 만들어 재사용했습니다. 기획-와이어프레임-기능명세서-프로토타입 단계로 화면을 설계해 PM 없는 팀의 리스크를 줄였습니다.",
+        images: [
+          {
+            src: "/images/projects/open-the-door-booking.png",
+            caption: "직접 컴포넌트화한 날짜·시간 선택 예약 모달",
+          },
+        ],
       },
     ],
     results: ["SSAFY 자율 프로젝트 우수상 수상"],
@@ -102,6 +131,8 @@ export const projects: Project[] = [
     coreSkill: "PRODUCT × DATA VIZ",
     color: "#E38B6C",
     why: "핀테크 도메인에서, 타국 대비 부족한 경제 교육 문제를 풀고 싶었습니다. '만원의 행복'을 모티브로, 가계부 형태로 올바른 소비 습관을 길러주는 서비스를 기획했습니다.",
+    architecture:
+      "백엔드(Java/MySQL/Redis)가 소비 데이터와 OpenAI 응답을 API로 제공했고, 저는 이를 소비해 화면을 만드는 프론트엔드 전체 — PWA 클라이언트, 상태 관리, 데이터 시각화 레이어 — 를 담당했습니다. D3·Chart.js 시각화 로직과 lerp 기반 애니메이션은 백엔드 응답 값을 클라이언트에서 어떻게 해석·표현할지에 대한 제 설계입니다.",
     stack: [
       { label: "Frontend", items: ["React 18.2", "Redux", "PWA", "TypeScript 5.3", "SCSS"] },
       { label: "Backend / DB", items: ["Java 11", "MySQL", "Redis"] },
@@ -115,10 +146,17 @@ export const projects: Project[] = [
       {
         title: "선형 보간(lerp)으로 만든 직관적 잔액 시각화",
         body: "물결 애니메이션으로 남은 금액의 비율을 표현하고, 지출을 입력할 때 물결이 줄어드는 움직임을 lerp 함수로 구현해 사용 금액을 직관적으로 체감하게 했습니다.",
+        images: [
+          { src: "/images/projects/haruman-main.png", caption: "lerp 애니메이션으로 표현한 남은 금액 — 메인 화면" },
+        ],
       },
       {
         title: "D3 · Chart.js로 소비 패턴 분석",
         body: "카테고리별 소비 패턴은 Chart.js 도넛 차트로, 금액대별 잔액 현황은 D3 버블 차트로 시각화해 경쟁 심리를 자극하는 절약 유도 페이지를 만들었습니다. 각 버블의 사용자는 무한스크롤로 불러와 메모리를 관리했습니다.",
+        images: [
+          { src: "/images/projects/haruman-chart.png", caption: "카테고리별 소비 패턴 — Chart.js 도넛 차트" },
+          { src: "/images/projects/haruman-stats.png", caption: "금액대별 잔액 현황 — D3 버블 차트" },
+        ],
       },
     ],
     results: ["SSAFY 특화 프로젝트 베스트 멤버 선정"],
@@ -138,6 +176,8 @@ export const projects: Project[] = [
     coreSkill: "AI-ASSISTED FULLSTACK",
     color: "#8EA7E8",
     why: "엑셀과 수기로 흩어져 있던 직원 일정·교육 신청 관리가 불편해 직접 만들었습니다. 현장에서 필요한 기능만 담아 실제 운영에 바로 투입했습니다.",
+    architecture:
+      "백엔드 서버 없이 혼자 기획부터 배포까지 진행했습니다. Firebase Firestore/Auth를 백엔드 대신 사용해 인증·권한·데이터 계층을 설계했고, Vue 클라이언트와 외부 일정을 긁어오는 Puppeteer 자동화 스크립트까지 시스템 전체를 직접 구현했습니다.",
     stack: [
       { label: "Frontend", items: ["Vue 3", "TypeScript", "Tailwind CSS", "v-calendar"] },
       { label: "Infra", items: ["Firebase Firestore", "Firebase Hosting", "Serverless"] },
@@ -151,10 +191,16 @@ export const projects: Project[] = [
       {
         title: "불규칙한 외부 표 구조를 자동 수집",
         body: "Puppeteer 크롤러로 외부 교육 사이트의 연간 일정을 수집해 Firestore에 저장합니다. 숨겨진 셀·날짜 뭉침 등 불규칙한 표 구조를 파싱 로직으로 보정해 데이터 정확도를 확보했습니다.",
+        images: [
+          { src: "/images/projects/raim-education.png", caption: "Puppeteer 크롤러로 자동 수집한 연간 교육 일정" },
+        ],
       },
       {
         title: "동시 신청에도 안전한 정원 관리",
         body: "교육 신청 인원은 Firestore 트랜잭션으로 처리해 동시 신청 시 정원 초과를 방지했습니다. AI가 생성한 코드를 그대로 쓰지 않고, 구조와 보안(권한 가드, 키 관리)을 직접 검증하는 과정을 거쳤습니다.",
+        images: [
+          { src: "/images/projects/raim-calendar.png", caption: "트랜잭션으로 정원을 관리하는 신청중/완료 상태 캘린더" },
+        ],
       },
     ],
     results: ["실제 근무 현장에 배포, 운영 중"],
@@ -173,6 +219,8 @@ export const projects: Project[] = [
     coreSkill: "SYSTEM DESIGN & PRIVACY",
     color: "#C98BD8",
     why: "수기 대기자 명단 운영으로 인한 호출 누락, 개인정보 노출 문제를 해결하기 위해 2026년 4월부터 만들기 시작해 지금까지 현장 요구에 맞춰 계속 개선하고 있습니다. 방문객 태블릿 등록부터 SMS 호출, 통계까지 운영 전 과정을 자동화했습니다.",
+    architecture:
+      "React 프론트엔드부터 Django REST 백엔드, APScheduler 스케줄러, SMS 연동, 내부망 배포 구성까지 시스템 전체를 혼자 설계·구현했습니다. 특히 대기열 상태(FIFO 계산)와 SMS 발송 트리거를 프론트엔드 대시보드에서 어떻게 실시간으로 동기화해 보여줄지가 프론트엔드 쪽에서 가장 신경 쓴 부분입니다.",
     stack: [
       { label: "Frontend", items: ["React", "Tailwind CSS"] },
       { label: "Backend", items: ["Django REST Framework", "APScheduler", "SQLite"] },
@@ -186,6 +234,9 @@ export const projects: Project[] = [
       {
         title: "슬롯 기반 대기열 · 선호출 알고리즘",
         body: "정원(테이블 10석)은 '입장 인원 + 이미 문자를 보내 호출 중인 인원'의 합으로 관리합니다. 자리가 나면 대기열에서 등록 순서(FIFO)대로 다음 팀을 바로 호출해, 실제로 자리가 빌 때까지 기다리지 않고 미리 문자를 보내 이동 시간을 벌어줍니다. 호출 문자에는 11분 입장 기한을 명시하고, 신규 등록·입장 처리·대기자 삭제 세 이벤트 모두에서 같은 재호출 로직이 실행되도록 설계해 빈 자리가 방치되지 않게 했습니다. 단순히 '9번째니까 대기'가 아니라, 언제·누구를·몇 명이나 동시에 호출할지까지 계산하는 구조입니다.",
+        images: [
+          { src: "/images/projects/reservation-checkin.png", caption: "태블릿 등록 — 대기열이 시작되는 지점" },
+        ],
       },
       {
         title: "배포 없는 내부망 아키텍처",
@@ -194,6 +245,9 @@ export const projects: Project[] = [
       {
         title: "테이블 배정 & 통계 자동화",
         body: "Solapi API로 호출 문자를 발송하고, 중복 발송 방지 플래그로 같은 팀에게 문자가 두 번 가지 않도록 관리합니다. 배정된 테이블(T1~T10)과 일일 방문 통계는 서식이 적용된 엑셀로 바로 내려받을 수 있습니다.",
+        images: [
+          { src: "/images/projects/reservation-dashboard.png", caption: "직원 대시보드 — 테이블 배정과 SMS 호출 현황" },
+        ],
       },
     ],
     results: ["2026년 4월부터 현재(7월)까지 실제 체험관 현장에서 운영 중"],
