@@ -94,7 +94,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           <div className="md:col-span-4">
             <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">Why</p>
           </div>
-          <p className="font-display max-w-2xl text-2xl leading-relaxed md:col-span-8 md:text-3xl">
+          <p className="font-display max-w-2xl text-2xl leading-relaxed text-pretty md:col-span-8 md:text-3xl">
             {project.why}
           </p>
         </div>
@@ -107,7 +107,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
               My Role in the Architecture
             </p>
           </div>
-          <p className="max-w-2xl text-lg leading-relaxed text-foreground-dim md:col-span-8">
+          <p className="max-w-2xl text-lg leading-relaxed text-pretty text-foreground-dim md:col-span-8">
             {project.architecture}
           </p>
         </div>
@@ -151,7 +151,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
                 <h3 className="font-display text-xl font-bold md:text-2xl" style={{ color: project.color }}>
                   {h.title}
                 </h3>
-                <p className="mt-3 max-w-2xl text-foreground-dim leading-relaxed">{h.body}</p>
+                <p className="mt-3 max-w-2xl text-pretty text-foreground-dim leading-relaxed">{h.body}</p>
               </div>
               {h.images && h.images.length > 0 && (
                 <div className="flex shrink-0 gap-3 sm:w-56 sm:flex-col">

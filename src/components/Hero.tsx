@@ -55,9 +55,13 @@ export default function Hero() {
           고세훈 · Ko Sehoon
         </motion.p>
         <h1 className="font-display mt-10 text-[clamp(2.4rem,8.5vw,6.5rem)] leading-[1.13] font-semibold tracking-[-0.03em] break-keep md:mt-14">
-          <RevealLine delay={0.15}>현장의 요구에서</RevealLine>
-          <RevealLine delay={0.27}>설계하고, 만들고,</RevealLine>
-          <RevealLine delay={0.39} className="pl-[6vw] md:pl-[9vw]">
+          <RevealLine delay={0.15}>
+            <span className="text-accent">요구</span>를 읽고,
+          </RevealLine>
+          <RevealLine delay={0.27}>
+            <span className="text-accent">설계</span>하고, 만들고,
+          </RevealLine>
+          <RevealLine delay={0.39}>
             <span className="text-accent">적용</span>합니다.
           </RevealLine>
         </h1>
@@ -65,8 +69,10 @@ export default function Hero() {
           {...fadeUp(0.6)}
           className="mt-8 max-w-md text-base leading-relaxed text-foreground-dim md:mt-10 md:text-lg"
         >
-          {profile.tagline}
-          <span className="font-mono mt-1 block text-sm opacity-60">{profile.taglineEn}</span>
+          모든 작업은 현장의 문제에서 시작합니다.
+          <span className="font-mono mt-1 block text-sm opacity-60">
+            {profile.tagline} — {profile.taglineEn}
+          </span>
         </motion.p>
       </div>
 

@@ -23,7 +23,7 @@ export default function AIPractice() {
             className="mt-10 border-l-2 border-accent pl-5"
           >
             {aiPractice.assessment.lines.map((line) => (
-              <p key={line} className="mt-4 leading-relaxed text-foreground-dim first:mt-0">
+              <p key={line} className="mt-4 leading-relaxed text-pretty text-foreground-dim first:mt-0">
                 {line}
               </p>
             ))}
@@ -47,7 +47,7 @@ export default function AIPractice() {
               className="border-t border-line py-6"
             >
               <h3 className="font-display text-lg font-bold md:text-xl">{e.title}</h3>
-              <p className="mt-2 max-w-xl leading-relaxed text-foreground-dim">{e.body}</p>
+              <p className="mt-2 max-w-xl leading-relaxed text-pretty text-foreground-dim">{e.body}</p>
             </motion.div>
           ))}
         </div>
