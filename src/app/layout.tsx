@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Fraunces } from "next/font/google";
+import { Geist_Mono, Fraunces, Noto_Serif_KR } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// 한글 본문: Pretendard Variable (시스템 폰트 폴백 방지, 셀프호스팅)
+const pretendard = localFont({
+  src: "../fonts/PretendardVariable.woff2",
+  variable: "--font-pretendard",
+  weight: "45 920",
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -20,6 +24,13 @@ const fraunces = Fraunces({
   weight: "variable",
   style: ["normal", "italic"],
   axes: ["opsz", "SOFT", "WONK"],
+});
+
+// 한글 디스플레이: Fraunces(라틴) 뒤 폴백으로 세리프 무드를 한글 제목까지 유지
+const notoSerifKR = Noto_Serif_KR({
+  variable: "--font-noto-serif-kr",
+  subsets: ["latin"],
+  weight: "variable",
 });
 
 const siteDescription =
@@ -56,7 +67,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${pretendard.variable} ${geistMono.variable} ${fraunces.variable} ${notoSerifKR.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Cursor />

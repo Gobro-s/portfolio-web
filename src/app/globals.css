@@ -16,9 +16,9 @@
   --color-foreground-dim: var(--foreground-dim);
   --color-accent: var(--accent);
   --color-line: var(--line);
-  --font-display: var(--font-fraunces);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces), var(--font-noto-serif-kr), serif;
+  --font-sans: var(--font-pretendard), sans-serif;
+  --font-mono: var(--font-geist-mono), var(--font-pretendard), monospace;
 }
 
 * {
@@ -35,6 +35,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   cursor: none;
+  /* 한글 조판: 단어 중간에서 줄이 끊기지 않게 하고(keep-all),
+     넘칠 때만 안전하게 꺾는다. 한글은 살짝 좁힌 자간이 정석. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  letter-spacing: -0.01em;
+  line-height: 1.65;
 }
 
 @media (pointer: coarse) {
@@ -74,6 +80,14 @@ button:focus-visible,
 .font-display {
   font-family: var(--font-display);
   font-optical-sizing: auto;
+}
+
+/* 디스플레이 타입 기본 자간: 큰 글자는 더 좁혀야 단단해 보인다.
+   base 레이어라 tracking-* 유틸리티가 있으면 그쪽이 우선한다. */
+@layer base {
+  .font-display {
+    letter-spacing: -0.02em;
+  }
 }
 
 .font-mono {
