@@ -36,10 +36,11 @@ export default function ProjectCard({ project, index }: { project: Project; inde
         <div className={`flex-1 ${reversed ? "md:order-first" : ""}`}>
           <div className="flex flex-wrap items-center gap-4">
             <span className="font-mono text-sm text-foreground-dim">{project.no}</span>
-            <span
-              className="font-mono w-fit rounded-full border px-3 py-1 text-[11px] tracking-[0.15em] uppercase"
-              style={{ borderColor: project.color, color: project.color }}
-            >
+            <span className="font-mono flex w-fit items-center gap-2 rounded-full border border-line px-3 py-1 text-[11px] tracking-[0.15em] text-foreground-dim uppercase">
+              <span
+                className="inline-block h-2 w-2 rounded-full"
+                style={{ background: project.color }}
+              />
               {project.coreSkill}
             </span>
           </div>

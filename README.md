@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# portfolio-web
 
-## Getting Started
+고세훈 포트폴리오 — 현장의 요구에 맞춰 설계하고, 만들고, 적용합니다.
 
-First, run the development server:
+## 배포 주소
+
+**https://gobro-s.github.io/portfolio-web/**
+
+`main` 브랜치에 push하면 GitHub Actions(`.github/workflows/deploy.yml`)가 자동으로
+static export를 빌드해 GitHub Pages에 배포합니다. 배포 상태는 리포지토리의
+[Actions 탭](https://github.com/Gobro-s/portfolio-web/actions)에서 확인할 수 있습니다.
+
+> 첫 배포 시 Actions가 Pages를 자동 활성화하지 못하면:
+> Settings → Pages → Source를 **GitHub Actions**로 한 번만 설정해 주세요.
+
+## 로컬 개발
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev    # http://localhost:3000
+npm run build  # static export → out/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 스택
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js 16 (App Router, static export) + React 19
+- Tailwind CSS 4, framer-motion, Lenis
+- Three.js / @react-three/fiber — 히어로 사이클 씬
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 구조 메모
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 프로젝트·프로필 데이터는 전부 `src/data/projects.ts` 한 파일에서 관리
+- `phases`(발견→기획→개발→적용·운영)가 각 프로젝트가 커버한 사이클 단계를 표시
+- 서브 경로 배포용 basePath는 빌드 시 `NEXT_PUBLIC_BASE_PATH` 환경변수로 주입
+  (이미지 prefix는 `src/lib/image-loader.ts`)
