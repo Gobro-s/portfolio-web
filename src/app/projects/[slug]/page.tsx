@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,6 +11,28 @@ export function generateStaticParams() {
 }
 
 type Params = Promise<{ slug: string }>;
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) return {};
+
+  const description = `${project.tagline} · ${project.period} · ${project.role}`;
+  return {
+    title: project.name,
+    description,
+    openGraph: {
+      title: `${project.name} — 고세훈`,
+      description,
+      images: project.images.map((img) => ({ url: img.src, alt: img.caption })),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.name} — 고세훈`,
+      description,
+    },
+  };
+}
 
 export default async function ProjectPage({ params }: { params: Params }) {
   const { slug } = await params;

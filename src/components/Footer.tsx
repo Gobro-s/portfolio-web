@@ -13,6 +13,15 @@ export default function Footer() {
           >
             govelopper@gmail.com
           </a>
+          <a
+            href="https://github.com/Gobro-s"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cursor-hover
+            className="link-underline font-mono mt-4 inline-block text-sm tracking-widest uppercase text-foreground-dim"
+          >
+            github.com/Gobro-s ↗
+          </a>
         </div>
         <p className="font-mono text-xs text-foreground-dim">
           © {new Date().getFullYear()} Ko Sehoon — Built with Next.js &amp; Three.js
