@@ -64,16 +64,16 @@ function Cycle() {
   return (
     <group ref={group} position={[1.7, -0.1, 0]}>
       <lineSegments geometry={track}>
-        <lineBasicMaterial color="#e14f2a" transparent opacity={0.75} />
+        <lineBasicMaterial color="#e14f2a" transparent opacity={0.5} />
       </lineSegments>
       <lineSegments geometry={ringB} rotation={[0.6, 0.9, 0]}>
-        <lineBasicMaterial color="#221d16" transparent opacity={0.22} />
+        <lineBasicMaterial color="#221d16" transparent opacity={0.16} />
       </lineSegments>
 
       {nodes.map((p, i) => (
         <mesh key={i} position={[p[0], p[1], p[2]]}>
           <sphereGeometry args={[0.045, 16, 16]} />
-          <meshBasicMaterial color="#221d16" transparent opacity={0.55} />
+          <meshBasicMaterial color="#221d16" transparent opacity={0.4} />
         </mesh>
       ))}
 
