@@ -47,8 +47,10 @@ export default function ProjectCard({ project, index }: { project: Project; inde
             {project.name}
           </h3>
           <p className="mt-4 max-w-lg text-foreground-dim">{project.tagline}</p>
-          <div className="mt-6 flex items-center gap-4 font-mono text-xs text-foreground-dim">
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-foreground-dim">
             <span>{project.period}</span>
+            <span aria-hidden>·</span>
+            <span>{project.phases.join(" → ")}</span>
             <span className="link-underline text-foreground">케이스 스터디 열기 →</span>
           </div>
         </div>

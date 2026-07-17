@@ -14,7 +14,7 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-4xl">
         <p className="font-mono text-[10px] tracking-[0.15em] text-foreground-dim uppercase sm:text-xs sm:tracking-[0.3em]">
-          Frontend Developer / RAIM · Robotics Reservation
+          Plan · Build · Apply — 현장의 요구에서 시작합니다
         </p>
         <h1 className="font-display mt-6 text-[13vw] leading-[0.9] font-semibold tracking-tight md:text-[7.5rem]">
           KO
@@ -25,9 +25,9 @@ export default function Hero() {
 
       <div className="relative z-10 mt-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <p className="max-w-md text-lg leading-relaxed text-foreground-dim">
-          {profile.tagline}
+          {profile.positioning}
           <span className="font-mono block text-sm mt-1 opacity-60">
-            {profile.taglineEn}
+            {profile.tagline} — {profile.taglineEn}
           </span>
         </p>
         <a

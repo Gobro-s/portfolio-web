@@ -5,6 +5,7 @@ export type Project = {
   tagline: string;
   period: string;
   role: string;
+  phases: Phase[]; // 이 프로젝트에서 내가 커버한 사이클 단계
   coreSkill: string; // 이 프로젝트에서 돋보이는 핵심 역량 (한 줄 배지)
   color: string; // 프로젝트 시그니처 컬러 (hex)
   why: string;
@@ -16,6 +17,11 @@ export type Project = {
   links?: { label: string; href: string }[];
 };
 
+// 일하는 방식: 현장의 요구에서 시작해 설계·제작을 거쳐 현장에 적용하고,
+// 거기서 검증된 구조를 다음 현장에 재활용하는 순환.
+export const cycle = ["발견", "기획", "개발", "적용·운영"] as const;
+export type Phase = (typeof cycle)[number];
+
 export const projects: Project[] = [
   {
     slug: "voda",
@@ -24,6 +30,7 @@ export const projects: Project[] = [
     tagline: "시각장애인을 위한 영상통화 서비스 — VODA로 세상을 보다",
     period: "2023.07 – 2023.08",
     role: "기획 · 1인 Front-End",
+    phases: ["기획", "개발"],
     coreSkill: "ACCESSIBILITY-FIRST UX",
     color: "#F2C879",
     why: "빠른 디지털 전환 속에서 소외되는 계층이 분명히 있을 거라 생각했습니다. 설리반+의 사진 분석과 Be My Eyes의 봉사자 매칭을 결합해, 시각장애인이 실시간 영상통화로 도움을 받을 수 있는 서비스를 혼자 프론트엔드로 설계·구현했습니다.",
@@ -75,6 +82,7 @@ export const projects: Project[] = [
     tagline: "방탈출 카페 정보 제공 및 예약 플랫폼",
     period: "2023.10 – 2023.11",
     role: "기획 · Front-End",
+    phases: ["기획", "개발"],
     coreSkill: "FRONTEND ARCHITECTURE",
     color: "#7FD8C6",
     why: "팀원 모두가 방탈출을 즐겼지만, 정보 제공과 예약이 한 번에 되는 서비스가 없었습니다. 그래서 직접 만들었습니다.",
@@ -128,6 +136,7 @@ export const projects: Project[] = [
     tagline: "하루 만 원으로 시작하는 올바른 소비 습관",
     period: "2023.08 – 2023.10",
     role: "기획 · Front-End",
+    phases: ["기획", "개발"],
     coreSkill: "PRODUCT × DATA VIZ",
     color: "#E38B6C",
     why: "핀테크 도메인에서, 타국 대비 부족한 경제 교육 문제를 풀고 싶었습니다. '만원의 행복'을 모티브로, 가계부 형태로 올바른 소비 습관을 길러주는 서비스를 기획했습니다.",
@@ -173,6 +182,7 @@ export const projects: Project[] = [
     tagline: "서울로봇인공지능과학관 직원 일정·교육·초과근무 통합 관리",
     period: "2026.06 (약 2주)",
     role: "기획 · 1인 풀스택 (Claude 기반 바이브 코딩)",
+    phases: ["발견", "기획", "개발", "적용·운영"],
     coreSkill: "AI-ASSISTED FULLSTACK",
     color: "#8EA7E8",
     why: "엑셀과 수기로 흩어져 있던 직원 일정·교육 신청 관리가 불편해 직접 만들었습니다. 현장에서 필요한 기능만 담아 실제 운영에 바로 투입했습니다.",
@@ -216,6 +226,7 @@ export const projects: Project[] = [
     tagline: "체험관 현장 대기열 관리 시스템",
     period: "2026.04 ~ 진행중",
     role: "기획 · 1인 풀스택 (Claude 기반 바이브 코딩)",
+    phases: ["발견", "기획", "개발", "적용·운영"],
     coreSkill: "SYSTEM DESIGN & PRIVACY",
     color: "#C98BD8",
     why: "수기 대기자 명단 운영으로 인한 호출 누락, 개인정보 노출 문제를 해결하기 위해 2026년 4월부터 만들기 시작해 지금까지 현장 요구에 맞춰 계속 개선하고 있습니다. 방문객 태블릿 등록부터 SMS 호출, 통계까지 운영 전 과정을 자동화했습니다.",
@@ -262,10 +273,12 @@ export const profile = {
   name: "고세훈",
   tagline: "재활용하는 개발자",
   taglineEn: "The developer who recycles.",
+  positioning: "현장의 요구에 맞춰 설계하고, 만들고, 적용합니다.",
+  positioningEn: "Plan, build, and put it to work — on site.",
   bio: [
-    "커뮤니케이션을 기본으로 하고, 재사용성과 확장성에 집중하는 개발자입니다.",
-    "컴포넌트 구조화를 통해 반복 작업을 줄이는 걸 좋아하고,",
-    "협업 과정을 통해 최선의 목표점을 찾는 것을 좋아합니다.",
+    "현장의 요구에서 시작해 기획, 개발, 적용·운영까지 직접 다룹니다.",
+    "한 현장에서 검증한 구조는 다음 현장에 재활용해 더 빠르게 완성하고,",
+    "커뮤니케이션으로 최선의 목표점을 찾는 것을 좋아합니다.",
   ],
   skills: [
     { name: "React", level: 4 },

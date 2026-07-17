@@ -82,6 +82,10 @@ export default async function ProjectPage({ params }: { params: Params }) {
             <dt className="uppercase tracking-widest">Role</dt>
             <dd className="mt-1 text-foreground">{project.role}</dd>
           </div>
+          <div className="col-span-2">
+            <dt className="uppercase tracking-widest">Cycle</dt>
+            <dd className="mt-1 text-foreground">{project.phases.join(" → ")}</dd>
+          </div>
         </dl>
       </section>
 

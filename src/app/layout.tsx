@@ -23,7 +23,7 @@ const fraunces = Fraunces({
 });
 
 const siteDescription =
-  "Open The Door, HARUMAN, VODA, RAIM Schedule Manager, Robotics Reservation — 재사용성과 확장성에 집중하는 프론트엔드 개발자 고세훈의 포트폴리오.";
+  "Open The Door, HARUMAN, VODA, RAIM Schedule Manager, Robotics Reservation — 현장의 요구에 맞춰 기획하고, 개발하고, 적용·운영까지 다루는 고세훈의 포트폴리오.";
 
 export const metadata: Metadata = {
   metadataBase: process.env.NEXT_PUBLIC_SITE_URL
