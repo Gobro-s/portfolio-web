@@ -17,7 +17,8 @@ export default function Cursor() {
       pos.x = e.clientX;
       pos.y = e.clientY;
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
+        // 인라인 transform은 클래스의 -translate-1/2를 덮어쓰므로 중심 보정을 함께 넣는다
+        dotRef.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%)`;
       }
       const target = e.target as HTMLElement;
       setHovering(!!target.closest("a, button, [data-cursor-hover]"));
@@ -28,7 +29,7 @@ export default function Cursor() {
       ring.x += (pos.x - ring.x) * 0.18;
       ring.y += (pos.y - ring.y) * 0.18;
       if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0)`;
+        ringRef.current.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0) translate(-50%, -50%)`;
       }
       rafId = requestAnimationFrame(raf);
     }
