@@ -45,7 +45,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
   return (
     <main>
       <section
-        className="grain relative border-b border-line px-6 pt-32 pb-20 md:px-12"
+        className="grain relative border-b border-line px-6 pt-24 pb-14 md:px-12 md:pt-32 md:pb-20"
         style={{ background: `linear-gradient(180deg, ${project.color}14, transparent 60%)` }}
       >
         <Link
@@ -89,7 +89,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </dl>
       </section>
 
-      <section className="border-b border-line px-6 py-20 md:px-12">
+      <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">Why</p>
@@ -100,7 +100,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </div>
       </section>
 
-      <section className="border-b border-line px-6 py-20 md:px-12">
+      <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
@@ -113,7 +113,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </div>
       </section>
 
-      <section className="border-b border-line px-6 py-20 md:px-12">
+      <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">Stack</p>
@@ -140,7 +140,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </div>
       </section>
 
-      <section className="border-b border-line px-6 py-20 md:px-12">
+      <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
         <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
           Highlights
         </p>
@@ -158,7 +158,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
                   {h.images.map((img) => (
                     <figure
                       key={img.src}
-                      className="overflow-hidden rounded-lg border border-line shadow-sm"
+                      className="flex-1 overflow-hidden rounded-lg border border-line shadow-sm sm:flex-none"
                     >
                       <Image
                         src={img.src}
@@ -179,7 +179,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </RevealGroup>
       </section>
 
-      <section className="border-b border-line px-6 py-20 md:px-12">
+      <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
@@ -196,7 +196,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </div>
       </section>
 
-      <section className="px-6 py-20 md:px-12">
+      <section className="px-6 py-14 md:px-12 md:py-20">
         <Link href={`/projects/${next.slug}`} data-cursor-hover className="group block">
           <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
             Next project

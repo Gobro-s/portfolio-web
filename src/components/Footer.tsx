@@ -9,7 +9,7 @@ export default function Footer() {
           <a
             href="mailto:govelopper@gmail.com"
             data-cursor-hover
-            className="link-underline font-display mt-4 block text-3xl font-bold md:text-5xl"
+            className="link-underline font-display mt-4 block text-2xl font-bold break-all sm:text-3xl md:text-5xl"
           >
             govelopper@gmail.com
           </a>

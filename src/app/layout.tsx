@@ -22,7 +22,6 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   weight: "variable",
-  style: ["normal", "italic"],
   axes: ["opsz", "SOFT", "WONK"],
 });
 

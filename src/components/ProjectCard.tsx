@@ -22,7 +22,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
         className="flex flex-col gap-6 md:flex-row md:items-center md:gap-10"
       >
         <div
-          className={`order-first mx-auto aspect-4/3 w-full max-w-56 shrink-0 overflow-hidden rounded-xl shadow-sm transition-transform duration-500 ease-out group-hover:scale-[1.03] md:order-none md:mx-0 md:w-48`}
+          className={`order-first aspect-video w-full shrink-0 overflow-hidden rounded-xl shadow-sm transition-transform duration-500 ease-out group-hover:scale-[1.03] md:order-none md:aspect-4/3 md:w-48`}
         >
           <Image
             src={project.images[0].src}

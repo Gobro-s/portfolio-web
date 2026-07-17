@@ -5,13 +5,13 @@ import { profile } from "@/data/projects";
 
 export default function SkillsSection() {
   return (
-    <section className="border-b border-line px-6 py-24 md:px-12" id="about">
+    <section className="border-b border-line px-6 py-16 md:px-12 md:py-24" id="about">
       <div className="grid gap-16 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
             01 / Profile
           </p>
-          <h2 className="font-display mt-6 text-3xl leading-snug font-bold md:text-4xl">
+          <h2 className="font-display mt-6 text-2xl leading-relaxed font-bold break-keep md:text-3xl md:leading-snug">
             {profile.bio.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -21,9 +21,12 @@ export default function SkillsSection() {
 
           <div className="mt-10 space-y-3 font-mono text-sm text-foreground-dim">
             {profile.experience.map((e) => (
-              <div key={e.label} className="flex justify-between gap-4 border-t border-line pt-3">
+              <div
+                key={e.label}
+                className="flex flex-wrap justify-between gap-x-4 gap-y-1 border-t border-line pt-3"
+              >
                 <span>{e.label}</span>
-                <span>{e.period}</span>
+                <span className="whitespace-nowrap">{e.period}</span>
               </div>
             ))}
             <div className="flex justify-between gap-4 border-t border-line pt-3">

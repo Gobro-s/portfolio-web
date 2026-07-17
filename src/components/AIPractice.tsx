@@ -5,7 +5,7 @@ import { aiPractice } from "@/data/projects";
 
 export default function AIPractice() {
   return (
-    <section className="border-b border-line px-6 py-24 md:px-12" id="ai">
+    <section className="border-b border-line px-6 py-16 md:px-12 md:py-24" id="ai">
       <div className="grid gap-16 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">

@@ -3,7 +3,7 @@ import ProjectCard from "./ProjectCard";
 
 export default function ProjectsGrid() {
   return (
-    <section id="projects" className="px-6 py-24 md:px-12">
+    <section id="projects" className="scroll-mt-8 px-6 py-16 md:px-12 md:py-24">
       <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
         03 / Projects
       </p>
