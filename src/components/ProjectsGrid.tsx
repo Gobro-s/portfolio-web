@@ -5,7 +5,7 @@ export default function ProjectsGrid() {
   return (
     <section id="projects" className="px-6 py-24 md:px-12">
       <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
-        02 / Projects
+        03 / Projects
       </p>
       <h2 className="font-display mt-6 text-3xl font-bold md:text-4xl">
         프로젝트마다, 다른 근육을 썼습니다.
