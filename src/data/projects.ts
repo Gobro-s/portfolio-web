@@ -28,13 +28,14 @@ export const projects: Project[] = [
     slug: "voda",
     no: "04",
     name: "VODA",
-    tagline: "시각장애인을 위한 영상통화 서비스 — VODA로 세상을 보다",
+    tagline: "Voice-Over Diverse Assistance — 시각장애인을 위한 영상통화, VODA로 세상을 보다",
     period: "2023.07 – 2023.08",
     role: "기획 · 1인 Front-End",
     phases: ["기획", "개발"],
     coreSkill: "ACCESSIBILITY-FIRST UX",
     color: "#F2C879",
     why: [
+      "Web-RTC 기술을 활용한 서비스라는 주제에서 출발했습니다.",
       "빠른 디지털 전환 속에서도 소외되는 계층은 분명히 있다고 생각했습니다.",
       "설리반+의 사진 분석과 Be My Eyes의 봉사자 매칭을 결합하고 싶었습니다.",
       "시각장애인이 실시간 영상통화로 도움을 받는 서비스를 혼자 프론트엔드로 설계·구현했습니다.",
@@ -49,7 +50,7 @@ export const projects: Project[] = [
     stack: [
       { label: "Frontend", items: ["React 16", "Redux", "TypeScript 5.3"] },
       { label: "Backend / DB", items: ["Java 11", "MySQL"] },
-      { label: "AI / RTC", items: ["OpenVidu (WebRTC)", "Face-api.js", "OpenCV", "YOLOv5"] },
+      { label: "AI / RTC", items: ["OpenVidu (WebRTC)", "TensorFlow", "Face-api.js", "OpenCV", "YOLOv5"] },
     ],
     highlights: [
       {
@@ -57,22 +58,28 @@ export const projects: Project[] = [
         body: [
           "서비스의 핵심은 시각장애인과 상대방을 실시간으로 잇는 영상통화입니다.",
           "OpenVidu 클라이언트 SDK로 세션 연결과 영상·음성 스트림의 발행(Publish)·구독(Subscribe)을 구현했습니다.",
-          "SSE로 통화 요청 알림을 받고, 수락하면 같은 세션에 연결되는 통화 플로우를 만들었습니다.",
-          "AI 파트가 인식한 상대방의 표정은 TTS 음성으로 안내해, 화면이 보이지 않아도 감정을 들을 수 있게 했습니다.",
+          "SSE 이벤트가 오면 통화 알림을 띄워 바로 통화를 연결할 수 있게 했습니다.",
+          "'표정 듣기' 버튼을 누르면 AI가 상대방의 표정을 인식해 TTS·STT로 안내합니다.",
         ],
         images: [
           {
             src: "/images/projects/voda-call.png",
-            caption: "영상통화 요청 알림(위)과 표정 인식 영상통화 화면(아래) — '표정 듣기'로 상대 감정을 TTS 안내",
+            caption: "영상통화 요청 알림(위)과 표정 인식 영상통화 화면(아래) — '표정 듣기'로 상대 표정을 TTS 안내",
           },
         ],
       },
       {
-        title: "두 화면, 하나의 코드베이스",
+        title: "두 가지 화면 설계",
         body: [
-          "비장애인용 화면과 시각장애인용 화면을 각각 설계했습니다.",
+          "비장애인용 화면과 시각장애인용 화면의 UI/UX를 각각 설계했습니다.",
           "키보드와 스크린 리더기(NVDA)만으로 조작하는 사용자 기준으로 컴포넌트 Depth를 다시 짰습니다.",
-          "토글 버튼 하나로 시각장애인·비장애인 모드를 손쉽게 전환하도록 구현했습니다.",
+          "토글 버튼 하나로 두 모드를 손쉽게 전환하도록 구현했습니다.",
+        ],
+        images: [
+          {
+            src: "/images/projects/voda-two-modes.png",
+            caption: "위: 비장애인용 상세 모드, 아래: 시각장애인용 심플 모드 — 우하단 토글 버튼으로 전환",
+          },
         ],
       },
       {
@@ -83,21 +90,26 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: "실사용자 테스트로 검증",
+        title: "실사용자 테스트와 스크린 리더기 대응",
         body: [
           "복지관을 직접 방문해 프로토타입 피드백을 받고 설계에 반영했습니다.",
-          "TabIndex·Aria-Label로 NVDA가 각 항목을 정확히 읽도록 구현했습니다.",
+          "TabIndex로 Tab 키 접근 순서를, Aria-Label로 각 항목의 안내 문구를 설계해 NVDA가 정확히 읽도록 구현했습니다.",
           "실제 안대를 쓰고 스크린 리더기만으로 사용하며 개선점을 찾았습니다.",
-          "서비스 안에도 '고객의 소리함' 게시판을 두어 배포 후 피드백을 계속 수렴했습니다.",
         ],
         images: [
           {
             src: "/images/projects/voda-screenreader.png",
-            caption: "실제 구현 코드 — 홈 화면 각 요소에 적용한 tabIndex·aria-label",
+            caption: "홈 화면 실제 코드 — tabIndex 접근 순서와 aria-label 안내 문구",
           },
+        ],
+      },
+      {
+        title: "고객의 소리함",
+        body: ["사용자 피드백을 수렴하기 위한 '고객의 소리함' 게시판 페이지를 제작했습니다."],
+        images: [
           {
             src: "/images/projects/voda-feedback.png",
-            caption: "고객의 소리함 — 사용자 피드백을 계속 수렴한 게시판",
+            caption: "고객의 소리함 — 피드백 수렴 게시판",
           },
         ],
       },
@@ -113,7 +125,8 @@ export const projects: Project[] = [
     ],
     images: [
       { src: "/images/projects/voda-call.png", caption: "영상통화 화면 — 표정 인식(TTS·STT)과 통화 알림" },
-      { src: "/images/projects/voda-screenreader.png", caption: "실제 구현 코드 — tabIndex·aria-label 적용" },
+      { src: "/images/projects/voda-two-modes.png", caption: "두 가지 화면 설계 — 상세 모드와 심플 모드" },
+      { src: "/images/projects/voda-screenreader.png", caption: "홈 화면 실제 코드 — tabIndex·aria-label 적용" },
       { src: "/images/projects/voda-feedback.png", caption: "고객의 소리함 — 사용자 피드백 수렴 페이지" },
     ],
   },
@@ -158,6 +171,7 @@ export const projects: Project[] = [
         body: [
           "인기 테마 목록에 FlatList를 적용해 화면에 보이는 콘텐츠만 렌더링했습니다.",
           "이미지 로딩 전 스켈레톤 UI로 레이아웃이 임의로 바뀌는 문제를 막았습니다.",
+          "GIF가 다수 렌더링되는 화면이라 공통 컴포넌트로 반복 작업을 줄이며 로딩 부담을 관리했습니다.",
           "페이지네이션과 무한스크롤로 메모리·리소스 효율도 함께 챙겼습니다.",
         ],
         images: [
@@ -197,14 +211,17 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: "FCM 알림, 그리고 없는 스웨거 대신 만든 테스트 페이지",
+        title: "회원 기능과 알림, 그리고 없는 스웨거 대신 만든 테스트 페이지",
         body: [
+          "카카오 OAuth 2.0으로 회원가입·로그인을 구현했습니다.",
           "FCM(Firebase Cloud Messaging)으로 알림을 구현하고, 기기 변경·로그인마다 토큰을 백엔드에 갱신했습니다.",
           "백엔드 스웨거 도입이 늦어지자, 각 버튼에 API 요청을 직접 연결한 테스트 페이지를 만들어 개발 속도를 지켰습니다.",
         ],
       },
     ],
     challenges: [
+      "직전 프로젝트 팀이 그대로 이어진 팀이라, 서로의 단점을 아는 상태에서 Atomic Design 같은 보완책을 함께 정할 수 있었습니다.",
+      "각자 맡아 학습한 내용은 노션으로 공유해 의문점을 빠르게 풀었습니다.",
       "주니어 단계에서 Atomic Design·MVVM을 제대로 적용했는지 스스로도 확신이 없었습니다.",
       "부족한 부분은 추가 학습하고, 프로토타입 단계에서 개선점을 찾아 보완했습니다.",
     ],
@@ -241,6 +258,7 @@ export const projects: Project[] = [
       { label: "Frontend", items: ["React 18.2", "Redux", "PWA", "TypeScript 5.3", "SCSS"] },
       { label: "Backend / DB", items: ["Java 11", "MySQL", "Redis"] },
       { label: "Data / API", items: ["D3.js", "Chart.js", "OpenAI API"] },
+      { label: "DevOps", items: ["Jenkins", "GitLab"] },
     ],
     highlights: [
       {
@@ -286,7 +304,8 @@ export const projects: Project[] = [
       "데일리 컨벤션과 주간 진행 공유를 추가로 만들어 팀 전체가 같은 그림을 보게 했습니다.",
       "모바일·PWA·OAuth 등 낯선 기술은 팀원과 학습 내용을 공유하며 막힌 부분을 빠르게 풀었습니다.",
       "카카오 OAuth 인가코드 중복 전송, 랭킹 페이지 버블차트 데이터 누적 — 두 버그를 직접 추적해 고쳤습니다.",
-      "적금 추천은 금액대·카테고리로 나눠도 중복값이 많아, 완벽한 매칭까지는 풀지 못했습니다.",
+      "적금 추천은 금액대·카테고리로 나눠도 중복값이 많고, 이율·선호 은행까지 넣은 가중치 계산이 어려워 완벽한 매칭까지는 풀지 못했습니다.",
+      "프론트 경험이 있는 리더에게 기술 결정 과정을 배우며, 이전 프로젝트에서 혼자 진행하던 비체계성을 개선했습니다.",
     ],
     results: ["SSAFY 특화 프로젝트 베스트 멤버 선정"],
     images: [
@@ -513,7 +532,12 @@ export const profile = {
   taglineEn: "The developer who recycles.",
   positioning: "현장의 요구에 맞춰 설계하고, 만들고, 적용합니다.",
   positioningEn: "Plan, build, and put it to work — on site.",
-  bio: ["현장의 요구에서 시작해, 설계하고 만듭니다.", "협업 속에서 최선의 답을 찾는 걸 좋아합니다."],
+  bio: [
+    "현장의 요구에서 시작해, 설계하고 만듭니다.",
+    "재사용성과 확장성에 집중해, 컴포넌트 구조화로 반복 작업을 줄입니다.",
+    "빠른 디지털 전환에서 소외되는 계층의 입장을 놓치지 않으려 합니다.",
+    "협업 속에서 최선의 답을 찾는 걸 좋아합니다.",
+  ],
   skills: [
     { name: "React", level: 4 },
     { name: "React Native", level: 4 },
