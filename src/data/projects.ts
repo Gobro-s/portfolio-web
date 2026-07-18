@@ -42,6 +42,7 @@ export const projects: Project[] = [
     architecture: [
       "팀은 프론트엔드(본인) · 백엔드(Java/MySQL) · AI-RTC(OpenVidu, 표정·안면 인식) 세 파트로 나뉘어 있었습니다.",
       "비장애인용·시각장애인용 두 화면 체계를 포함한 프론트엔드 전체를 혼자 설계·구현했습니다.",
+      "OpenVidu 클라이언트 SDK로 세션 연결과 영상·음성 스트림 처리 등 WebRTC 통화 화면을 직접 구현했습니다.",
       "NVDA 스크린 리더기 사용자 기준으로 포커스 이동 순서(컴포넌트 Depth)를 다시 설계했습니다.",
       "AI 파트가 인식한 표정 결과를 TTS·STT로 안내하는 화면 연동 로직까지 직접 붙였습니다.",
     ],
@@ -52,13 +53,26 @@ export const projects: Project[] = [
     ],
     highlights: [
       {
+        title: "OpenVidu(WebRTC)로 만든 실시간 영상통화",
+        body: [
+          "서비스의 핵심은 시각장애인과 상대방을 실시간으로 잇는 영상통화입니다.",
+          "OpenVidu 클라이언트 SDK로 세션 연결과 영상·음성 스트림의 발행(Publish)·구독(Subscribe)을 구현했습니다.",
+          "SSE로 통화 요청 알림을 받고, 수락하면 같은 세션에 연결되는 통화 플로우를 만들었습니다.",
+          "AI 파트가 인식한 상대방의 표정은 TTS 음성으로 안내해, 화면이 보이지 않아도 감정을 들을 수 있게 했습니다.",
+        ],
+        images: [
+          {
+            src: "/images/projects/voda-call.png",
+            caption: "영상통화 요청 알림(위)과 표정 인식 영상통화 화면(아래) — '표정 듣기'로 상대 감정을 TTS 안내",
+          },
+        ],
+      },
+      {
         title: "두 화면, 하나의 코드베이스",
         body: [
           "비장애인용 화면과 시각장애인용 화면을 각각 설계했습니다.",
           "키보드와 스크린 리더기(NVDA)만으로 조작하는 사용자 기준으로 컴포넌트 Depth를 다시 짰습니다.",
-        ],
-        images: [
-          { src: "/images/projects/voda-call.png", caption: "표정 인식 기반 영상통화 화면 — 두 화면 체계 중 하나" },
+          "토글 버튼 하나로 시각장애인·비장애인 모드를 손쉽게 전환하도록 구현했습니다.",
         ],
       },
       {
@@ -74,19 +88,17 @@ export const projects: Project[] = [
           "복지관을 직접 방문해 프로토타입 피드백을 받고 설계에 반영했습니다.",
           "TabIndex·Aria-Label로 NVDA가 각 항목을 정확히 읽도록 구현했습니다.",
           "실제 안대를 쓰고 스크린 리더기만으로 사용하며 개선점을 찾았습니다.",
+          "서비스 안에도 '고객의 소리함' 게시판을 두어 배포 후 피드백을 계속 수렴했습니다.",
         ],
         images: [
           {
             src: "/images/projects/voda-screenreader.png",
-            caption: "실제 구현 코드 — 로그인 화면 각 요소에 적용한 tabIndex·aria-label",
+            caption: "실제 구현 코드 — 홈 화면 각 요소에 적용한 tabIndex·aria-label",
           },
-        ],
-      },
-      {
-        title: "영상통화 알림과 원터치 모드 전환",
-        body: [
-          "SSE 이벤트가 오면 통화 알림을 띄워 바로 연결할 수 있게 했습니다.",
-          "토글 버튼 하나로 시각장애인·비장애인 모드를 손쉽게 전환하도록 구현했습니다.",
+          {
+            src: "/images/projects/voda-feedback.png",
+            caption: "고객의 소리함 — 사용자 피드백을 계속 수렴한 게시판",
+          },
         ],
       },
     ],
@@ -422,7 +434,6 @@ export const projects: Project[] = [
     challenges: [
       "실제 운영 중 CORS 에러가 발견돼 바로 조치했습니다.",
       "직원 요청으로 엑셀 통계 양식도 현장에 맞게 다시 만들었습니다.",
-      "현장 대기에 집중하다 보니 사전 예약 수요는 담지 못했습니다.",
       "SQLite 단일 파일 DB로 충분했지만, 다기관으로 확장한다면 DB·인증 구조 개선이 필요합니다.",
     ],
     results: ["2026년 4월부터 현재(7월)까지 실제 체험관 현장에서 운영 중"],
