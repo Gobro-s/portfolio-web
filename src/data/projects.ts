@@ -163,7 +163,27 @@ export const projects: Project[] = [
           "MVVM 패턴을 함께 채택해 컴포넌트 확장성도 확보했습니다.",
         ],
         images: [
-          { src: "/images/projects/open-the-door-main.png", caption: "Atomic Design 컴포넌트로 구성한 메인 화면" },
+          {
+            src: "/images/projects/open-the-door-components.png",
+            caption: "디자인 시스템 — 버전을 나눠 관리한 카드 컴포넌트",
+          },
+          {
+            src: "/images/projects/open-the-door-buttons.png",
+            caption: "디자인 시스템 — 크기·상태별 버튼 컴포넌트",
+          },
+        ],
+      },
+      {
+        title: "기획부터 프로토타입까지, 체계적인 화면 설계",
+        body: [
+          "기획 → 와이어프레임 → 기능명세서 → 프로토타입 → 개발 단계로 나눠, UI/UX 디자이너와 PM이 없는 팀의 공백을 메웠습니다.",
+          "같은 화면을 백엔드와 함께 보며 개발해, 기획과 다르게 나오는 완성본의 가능성을 미리 막았습니다.",
+        ],
+        images: [
+          {
+            src: "/images/projects/open-the-door-flow.png",
+            caption: "같은 화면의 와이어프레임·기능명세 → 프로토타입 → 완성된 앱",
+          },
         ],
       },
       {
@@ -176,8 +196,12 @@ export const projects: Project[] = [
         ],
         images: [
           {
+            src: "/images/projects/open-the-door-main.png",
+            caption: "메인 화면 — FlatList·스켈레톤 UI를 적용한 인기 테마와 내 주변 지도",
+          },
+          {
             src: "/images/projects/open-the-door-popular.png",
-            caption: "FlatList·스켈레톤 UI를 적용한 인기 테마 목록",
+            caption: "주간 인기 테마 차트 — 페이지네이션·무한스크롤",
           },
         ],
       },
@@ -190,8 +214,12 @@ export const projects: Project[] = [
         ],
         images: [
           {
-            src: "/images/projects/open-the-door-booking.png",
-            caption: "직접 컴포넌트화한 날짜·시간 선택 예약 모달",
+            src: "/images/projects/open-the-door-detail.png",
+            caption: "직접 만든 컴포넌트로 구성한 테마 상세 페이지",
+          },
+          {
+            src: "/images/projects/open-the-door-convention.png",
+            caption: "노션으로 정리한 코드 컨벤션 문서",
           },
         ],
       },
@@ -202,12 +230,24 @@ export const projects: Project[] = [
           "비회원은 전화번호 인증 절차를 추가해 예약 남용을 막았습니다.",
           "예약 도중 해당 시간이 매진되면 자동으로 예약 실패 처리되도록 구현했습니다.",
         ],
+        images: [
+          {
+            src: "/images/projects/open-the-door-booking.png",
+            caption: "테마 예약 — 날짜·시간 선택과 예약 확인 모달",
+          },
+        ],
       },
       {
         title: "검색 UX — 화면 이동 없는 상세 필터",
         body: [
           "상세 검색·필터링을 별도 화면 이동 없이 상단 패널 크기 조절로 띄웠습니다.",
           "불필요한 페이지 스택을 줄여 검색 편의성을 높였습니다.",
+        ],
+        images: [
+          {
+            src: "/images/projects/open-the-door-search.png",
+            caption: "지도 검색과 인원·지역 상세 필터 패널",
+          },
         ],
       },
       {
@@ -216,6 +256,16 @@ export const projects: Project[] = [
           "카카오 OAuth 2.0으로 회원가입·로그인을 구현했습니다.",
           "FCM(Firebase Cloud Messaging)으로 알림을 구현하고, 기기 변경·로그인마다 토큰을 백엔드에 갱신했습니다.",
           "백엔드 스웨거 도입이 늦어지자, 각 버튼에 API 요청을 직접 연결한 테스트 페이지를 만들어 개발 속도를 지켰습니다.",
+        ],
+        images: [
+          {
+            src: "/images/projects/open-the-door-member.png",
+            caption: "카카오 로그인·회원가입·마이페이지·알림 목록",
+          },
+          {
+            src: "/images/projects/open-the-door-apitest.png",
+            caption: "스웨거 대신 만든 API 테스트 페이지",
+          },
         ],
       },
     ],
@@ -267,6 +317,9 @@ export const projects: Project[] = [
           "Flutter와 PWA 사이에서 고민했습니다.",
           "새 언어(Dart)를 배우기보다 익숙한 TS·JS로 완성도를 높이는 쪽이 낫다고 판단해 React 기반 PWA로 웹뷰 배포했습니다.",
         ],
+        images: [
+          { src: "/images/projects/haruman-pwa.png", caption: "PWA로 웹뷰 배포한 모바일 화면" },
+        ],
       },
       {
         title: "선형 보간(lerp)으로 만든 직관적 잔액 시각화",
@@ -279,23 +332,33 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: "D3 · Chart.js로 소비 패턴 분석",
+        title: "Chart.js 도넛 차트로 소비 패턴 분석",
         body: [
           "카테고리별 소비 패턴은 Chart.js 도넛 차트로 보여줬습니다.",
           "결제 API를 쓸 수 없어, 지출 금액과 카테고리는 사용자가 직접 입력하도록 구현했습니다.",
+        ],
+        images: [
+          { src: "/images/projects/haruman-chart.png", caption: "하루 소비 지출 현황 도넛 차트와 지출 입력 화면" },
+        ],
+      },
+      {
+        title: "월별 기록과 D3 버블 차트 통계",
+        body: [
+          "월별 페이지에서 이전 도전·성공·실패 기록과 소비 이력을 조회할 수 있게 만들었습니다.",
           "금액대별 잔액 현황은 D3 버블 차트로 시각화해 경쟁 심리를 자극하는 절약 유도 페이지를 만들었습니다.",
           "각 버블의 사용자는 무한스크롤로 불러와 메모리를 관리했습니다.",
         ],
         images: [
-          { src: "/images/projects/haruman-chart.png", caption: "카테고리별 소비 패턴 — Chart.js 도넛 차트" },
-          { src: "/images/projects/haruman-stats.png", caption: "금액대별 잔액 현황 — D3 버블 차트" },
+          { src: "/images/projects/haruman-stats.png", caption: "월별 도전 기록과 금액대별 잔액 버블 차트" },
         ],
       },
       {
         title: "OpenAI로 만든 개인화 적금 추천",
         body: [
           "사용자의 누적 절약 금액을 OpenAI API에 넘겨, 소비 패턴에 맞는 적금 상품을 추천했습니다.",
-          "월별 페이지에서 이전 도전·성공·실패 기록과 소비 이력도 함께 조회할 수 있게 만들었습니다.",
+        ],
+        images: [
+          { src: "/images/projects/haruman-savings.gif", caption: "OpenAI 기반 개인화 적금 추천 페이지" },
         ],
       },
     ],
