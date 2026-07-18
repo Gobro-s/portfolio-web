@@ -300,7 +300,7 @@ export const projects: Project[] = [
       "백엔드(Java/MySQL/Redis)가 소비 데이터와 OpenAI 응답을 API로 제공했습니다.",
       "Kakao·Google OAuth 2.0 로그인을 붙여 진입 장벽을 낮췄습니다.",
       "이를 소비해 화면을 만드는 프론트엔드 — PWA 클라이언트, 상태 관리, 데이터 시각화 레이어 — 를 담당했습니다.",
-      "D3·Chart.js 시각화 로직과 lerp 기반 애니메이션은 응답 값을 어떻게 표현할지에 대한 제 설계입니다.",
+      "D3·Chart.js 시각화 로직은 응답 값을 어떻게 표현할지에 대한 제 설계입니다.",
       "Flutter와 PWA 사이에서 기술을 직접 검토해, 7주 기한에 맞는 PWA 채택을 제안했습니다.",
       "GitLab Convention을 정하고 MR로 merge 전 리뷰하며 버전 관리를 진행했습니다.",
     ],
@@ -322,13 +322,13 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: "선형 보간(lerp)으로 만든 직관적 잔액 시각화",
+        title: "물결로 잔액을 보여주는 메인 화면",
         body: [
-          "물결 애니메이션으로 남은 금액의 비율을 표현했습니다.",
-          "지출을 입력하면 물결이 줄어드는 움직임을 lerp 함수로 구현해 사용 금액을 직관적으로 체감하게 했습니다.",
+          "남은 금액의 비율을 물결 높이로 표현해, 지출을 입력하면 물결이 줄어들며 사용 금액을 직관적으로 체감하게 한 화면입니다.",
+          "물결 애니메이션(선형 보간, lerp)은 팀원이 주도해 구현했습니다.",
         ],
         images: [
-          { src: "/images/projects/haruman-main.png", caption: "lerp 애니메이션으로 표현한 남은 금액 — 메인 화면" },
+          { src: "/images/projects/haruman-main.png", caption: "물결 애니메이션으로 표현한 남은 금액 — 메인 화면" },
         ],
       },
       {
@@ -372,7 +372,7 @@ export const projects: Project[] = [
     ],
     results: ["SSAFY 특화 프로젝트 베스트 멤버 선정"],
     images: [
-      { src: "/images/projects/haruman-main.png", caption: "메인·로그인 화면 — lerp 애니메이션으로 표현한 남은 금액" },
+      { src: "/images/projects/haruman-main.png", caption: "메인·로그인 화면 — 물결 애니메이션으로 표현한 남은 금액" },
       { src: "/images/projects/haruman-chart.png", caption: "하루 소비 지출 현황 — Chart.js 도넛 차트" },
       { src: "/images/projects/haruman-stats.png", caption: "통계 화면 — D3 버블 차트로 본 금액대별 잔액 현황" },
     ],
