@@ -28,6 +28,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       duration: 1.1,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      // 페이지 내 앵커(#projects 등)를 Lenis가 직접 처리해 내부 위치가 어긋나지 않게 한다.
+      anchors: true,
     });
     lenisRef.current = lenis;
 
@@ -46,11 +48,29 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     if (isPopState.current) {
-      // 뒤로/앞으로가기 — 브라우저가 이미 복원한 스크롤 위치에 Lenis 내부 상태만 맞춘다.
+      // 뒤로/앞으로가기 — 브라우저의 스크롤 복원은 이미지·폰트 로딩에 따라 몇 프레임 늦게
+      // 일어날 수 있다. 잠시 동안 매 프레임 Lenis 내부 상태를 네이티브 위치에 맞춰,
+      // 복원 직후 휠이 옛 위치로 되감는 일을 막는다.
       isPopState.current = false;
-      requestAnimationFrame(() => {
+      let frames = 0;
+      let aborted = false;
+      const abort = () => {
+        aborted = true;
+      };
+      // 사용자가 휠·터치를 시작하면 즉시 동기화를 멈춰 입력을 방해하지 않는다.
+      window.addEventListener("wheel", abort, { once: true, passive: true });
+      window.addEventListener("touchstart", abort, { once: true, passive: true });
+      const sync = () => {
+        if (aborted) return;
         lenisRef.current?.scrollTo(window.scrollY, { immediate: true });
-      });
+        if (++frames < 20) {
+          requestAnimationFrame(sync);
+        } else {
+          window.removeEventListener("wheel", abort);
+          window.removeEventListener("touchstart", abort);
+        }
+      };
+      requestAnimationFrame(sync);
       return;
     }
     // 새 페이지로 이동할 때만 맨 위로 강제한다 — 위에서 아래로 읽는 구조이기 때문.

@@ -31,6 +31,9 @@
 html {
   background: var(--background);
   scroll-behavior: auto;
+  /* Chrome scroll anchoring이 Lenis 스크롤 중 위치를 보정하면
+     휠 스크롤이 특정 지점에서 멈춘 것처럼 되감긴다 — 앵커링을 끈다. */
+  overflow-anchor: none;
 }
 
 body {
