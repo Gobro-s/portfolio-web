@@ -451,17 +451,19 @@ export const projects: Project[] = [
   {
     slug: "robotics-reservation",
     no: "06",
-    name: "Robotics Reservation",
-    tagline: "체험관 현장 대기열 관리 시스템",
+    name: "Robotics Room Reservation",
+    tagline: "기다림을 관람 시간으로 바꾼 체험실 현장 대기열 시스템",
     period: "2026.04 ~ 진행중",
     role: "기획 · 1인 풀스택 (Claude 기반 바이브 코딩)",
     phases: ["발견", "기획", "개발", "적용·운영"],
     coreSkill: "SYSTEM DESIGN & PRIVACY",
     color: "#C98BD8",
     why: [
-      "수기 대기자 명단 운영으로 호출 누락, 개인정보 노출 문제가 있었습니다.",
-      "2026년 4월부터 만들기 시작해 지금도 현장 요구에 맞춰 계속 개선하고 있습니다.",
-      "방문객 태블릿 등록부터 SMS 호출, 통계까지 운영 전 과정을 자동화했습니다.",
+      "수기 대기 명단은 호출 누락, 개인정보 노출 문제도 있었습니다.",
+      "하지만 진짜 문제는 자리가 났을 때 현장에 없으면 차례가 다음 사람에게 넘어가는 구조였습니다.",
+      "관람객은 과학관을 둘러보지 못한 채, 언제 올지 모르는 차례를 체험실 앞에 앉아 기다려야만 했습니다.",
+      "대기 중엔 자유롭게 전시를 관람하다가, 차례가 오면 SMS로 호출받아 돌아오는 구조로 바꾸기 위해 만들었습니다.",
+      "2026년 4월부터 운영하며 현장 요구에 맞춰 계속 개선하고 있습니다.",
     ],
     architecture: [
       "React 프론트엔드부터 Django REST 백엔드, APScheduler 스케줄러, SMS 연동, 내부망 배포까지 시스템 전체를 혼자 설계·구현했습니다.",
@@ -547,7 +549,7 @@ export const aiPractice = {
     {
       title: "실운영 시스템 2개",
       body: [
-        "RAIM Schedule Manager(2주 기획→배포), Robotics Reservation(2026.04~ 운영 중).",
+        "RAIM Schedule Manager(2주 기획→배포), Robotics Room Reservation(2026.04~ 운영 중).",
         "두 실운영 시스템을 Claude와 페어로 혼자 구축했습니다.",
         "AI가 생성한 코드의 권한 가드·키 관리·개인정보 파기 설계는 직접 검증했습니다.",
       ],
