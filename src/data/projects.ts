@@ -8,10 +8,11 @@ export type Project = {
   phases: Phase[]; // 이 프로젝트에서 내가 커버한 사이클 단계
   coreSkill: string; // 이 프로젝트에서 돋보이는 핵심 역량 (한 줄 배지)
   color: string; // 프로젝트 시그니처 컬러 (hex)
-  why: string;
-  architecture: string; // 전체 시스템 구조 중 내가 맡은 부분
+  why: string[]; // 짧고 균형 잡힌 줄 단위 — 문장마다 끊어서 강제 줄바꿈
+  architecture: string[]; // 전체 시스템 구조 중 내가 맡은 부분, 문장 단위
   stack: { label: string; items: string[] }[];
-  highlights: { title: string; body: string; images?: { src: string; caption: string }[] }[];
+  highlights: { title: string; body: string[]; images?: { src: string; caption: string }[] }[];
+  challenges: string[]; // 협업 마찰 또는 실제 장애 — 부딪히고 어떻게 풀었는지, 문장 단위
   results: string[];
   images: { src: string; caption: string }[];
   links?: { label: string; href: string }[];
@@ -33,9 +34,17 @@ export const projects: Project[] = [
     phases: ["기획", "개발"],
     coreSkill: "ACCESSIBILITY-FIRST UX",
     color: "#F2C879",
-    why: "빠른 디지털 전환 속에서 소외되는 계층이 분명히 있을 거라 생각했습니다. 설리반+의 사진 분석과 Be My Eyes의 봉사자 매칭을 결합해, 시각장애인이 실시간 영상통화로 도움을 받을 수 있는 서비스를 혼자 프론트엔드로 설계·구현했습니다.",
-    architecture:
-      "팀은 프론트엔드(본인) · 백엔드(Java/MySQL) · AI-RTC(OpenVidu 연동, 표정·안면 인식) 세 파트로 나뉘어 있었습니다. 저는 비장애인용·시각장애인용 두 화면 체계와 접근성 레이어를 포함한 프론트엔드 전체를 단독 설계·구현했고, 백엔드가 제공하는 통화 세션 API와 AI 파트의 표정 인식 결과를 실시간 화면에 반영하는 클라이언트 연동 로직까지 담당했습니다.",
+    why: [
+      "빠른 디지털 전환 속에서도 소외되는 계층은 분명히 있다고 생각했습니다.",
+      "설리반+의 사진 분석과 Be My Eyes의 봉사자 매칭을 결합하고 싶었습니다.",
+      "시각장애인이 실시간 영상통화로 도움을 받는 서비스를 혼자 프론트엔드로 설계·구현했습니다.",
+    ],
+    architecture: [
+      "팀은 프론트엔드(본인) · 백엔드(Java/MySQL) · AI-RTC(OpenVidu, 표정·안면 인식) 세 파트로 나뉘어 있었습니다.",
+      "비장애인용·시각장애인용 두 화면 체계를 포함한 프론트엔드 전체를 혼자 설계·구현했습니다.",
+      "NVDA 스크린 리더기 사용자 기준으로 포커스 이동 순서(컴포넌트 Depth)를 다시 설계했습니다.",
+      "AI 파트가 인식한 표정 결과를 TTS·STT로 안내하는 화면 연동 로직까지 직접 붙였습니다.",
+    ],
     stack: [
       { label: "Frontend", items: ["React 16", "Redux", "TypeScript 5.3"] },
       { label: "Backend / DB", items: ["Java 11", "MySQL"] },
@@ -44,25 +53,46 @@ export const projects: Project[] = [
     highlights: [
       {
         title: "두 화면, 하나의 코드베이스",
-        body: "비장애인용 화면과 시각장애인용 화면을 각각 설계하되, 키보드 스크린 리더기(NVDA)로만 조작하는 사용자를 기준으로 컴포넌트의 Depth를 다시 설계했습니다.",
+        body: [
+          "비장애인용 화면과 시각장애인용 화면을 각각 설계했습니다.",
+          "키보드와 스크린 리더기(NVDA)만으로 조작하는 사용자 기준으로 컴포넌트 Depth를 다시 짰습니다.",
+        ],
         images: [
           { src: "/images/projects/voda-call.png", caption: "표정 인식 기반 영상통화 화면 — 두 화면 체계 중 하나" },
         ],
       },
       {
         title: "WCAG AA를 웃도는 명도 대비",
-        body: "저시력자를 위한 KoddiUD 온고딕 서체를 적용하고, Dark-Navy·Dark-Yellow 조합으로 명도 대비율 7.86(WCAG AA 기준 4.5 상회)을 설계했습니다.",
+        body: [
+          "저시력자를 위한 KoddiUD 온고딕 서체를 적용했습니다.",
+          "Dark-Navy·Dark-Yellow 조합으로 명도 대비율 7.86을 설계했습니다 — WCAG AA 기준(4.5)의 약 1.7배입니다.",
+        ],
       },
       {
         title: "실사용자 테스트로 검증",
-        body: "복지관을 직접 방문해 프로토타입 피드백을 반영했고, TabIndex·Aria-Label로 NVDA가 각 항목을 정확히 읽도록 구현한 뒤 실제 안대를 착용하고 스크린 리더기만으로 사용하며 개선점을 찾았습니다.",
+        body: [
+          "복지관을 직접 방문해 프로토타입 피드백을 받고 설계에 반영했습니다.",
+          "TabIndex·Aria-Label로 NVDA가 각 항목을 정확히 읽도록 구현했습니다.",
+          "실제 안대를 쓰고 스크린 리더기만으로 사용하며 개선점을 찾았습니다.",
+        ],
         images: [
           {
             src: "/images/projects/voda-screenreader.png",
-            caption: "NVDA로 탐색 가능하도록 TabIndex·Aria-Label을 적용한 화면",
+            caption: "실제 구현 코드 — 로그인 화면 각 요소에 적용한 tabIndex·aria-label",
           },
         ],
       },
+      {
+        title: "영상통화 알림과 원터치 모드 전환",
+        body: [
+          "SSE 이벤트가 오면 통화 알림을 띄워 바로 연결할 수 있게 했습니다.",
+          "토글 버튼 하나로 시각장애인·비장애인 모드를 손쉽게 전환하도록 구현했습니다.",
+        ],
+      },
+    ],
+    challenges: [
+      "1인 프론트라 업무량이 많아, 디자인 완성도까지는 다 챙기지 못했습니다.",
+      "모바일 대응도 메인·영상통화 등 핵심 화면에만 적용하는 데 그쳤습니다.",
     ],
     results: [
       "SSAFY 특화 프로젝트 베스트 멤버 선정",
@@ -71,7 +101,7 @@ export const projects: Project[] = [
     ],
     images: [
       { src: "/images/projects/voda-call.png", caption: "영상통화 화면 — 표정 인식(TTS·STT)과 통화 알림" },
-      { src: "/images/projects/voda-screenreader.png", caption: "TabIndex·Aria-Label을 적용한 스크린 리더기(NVDA) 사용 화면" },
+      { src: "/images/projects/voda-screenreader.png", caption: "실제 구현 코드 — tabIndex·aria-label 적용" },
       { src: "/images/projects/voda-feedback.png", caption: "고객의 소리함 — 사용자 피드백 수렴 페이지" },
     ],
   },
@@ -85,9 +115,16 @@ export const projects: Project[] = [
     phases: ["기획", "개발"],
     coreSkill: "FRONTEND ARCHITECTURE",
     color: "#7FD8C6",
-    why: "팀원 모두가 방탈출을 즐겼지만, 정보 제공과 예약이 한 번에 되는 서비스가 없었습니다. 그래서 직접 만들었습니다.",
-    architecture:
-      "백엔드(Java/MySQL/MongoDB)가 테마·예약·리뷰 데이터를 API로 제공하고, 프론트엔드가 이를 소비해 화면을 구성하는 구조였습니다. 저는 React Native 클라이언트 전체 — Atomic Design 컴포넌트 시스템, Recoil 상태 관리, 목록·지도·예약 플로우 — 를 설계했고, PM이 없는 팀 특성상 기획-와이어프레임-기능명세서 단계도 함께 리드했습니다.",
+    why: [
+      "팀원 모두가 방탈출을 즐겼지만, 정보 제공과 예약이 한 번에 되는 서비스는 없었습니다.",
+      "그래서 직접 만들었습니다.",
+    ],
+    architecture: [
+      "백엔드(Java/MySQL/MongoDB)가 테마·예약·리뷰 데이터를 API로 제공하는 구조였습니다.",
+      "React Native 클라이언트 전체 — Atomic Design 컴포넌트, Recoil 상태 관리, 목록·지도·예약 플로우 — 를 설계했습니다.",
+      "UI/UX 디자이너와 PM이 없는 팀이라 기획-와이어프레임-기능명세서-프로토타입 단계도 함께 리드했습니다.",
+      "백엔드와 같은 화면을 보며 개발해, 기획과 다르게 나오는 완성본의 가능성을 미리 막았습니다.",
+    ],
     stack: [
       { label: "Frontend", items: ["React-Native 0.72", "Recoil", "TypeScript 5.3", "Styled-Component"] },
       { label: "Backend / DB", items: ["Java 11", "MySQL", "MongoDB"] },
@@ -96,14 +133,21 @@ export const projects: Project[] = [
     highlights: [
       {
         title: "Atomic Design + CDD로 50% 시간 단축",
-        body: "Atomic Design과 컴포넌트 주도 개발(CDD)을 채택해 병렬적으로 컴포넌트를 제작, 개발 시간을 약 50% 단축했습니다. MVVM 패턴으로 컴포넌트 확장성도 함께 확보했습니다.",
+        body: [
+          "Atomic Design과 컴포넌트 주도 개발(CDD)로 병렬 제작해 개발 시간을 약 50% 단축했습니다.",
+          "MVVM 패턴을 함께 채택해 컴포넌트 확장성도 확보했습니다.",
+        ],
         images: [
           { src: "/images/projects/open-the-door-main.png", caption: "Atomic Design 컴포넌트로 구성한 메인 화면" },
         ],
       },
       {
         title: "리스트 성능 최적화",
-        body: "인기 테마 목록에 FlatList를 적용해 화면에 보이는 콘텐츠만 렌더링했고, 이미지 로딩 전 스켈레톤 UI로 레이아웃이 임의로 바뀌는 문제를 방지했습니다. 페이지네이션과 무한스크롤로 메모리·리소스 효율도 함께 챙겼습니다.",
+        body: [
+          "인기 테마 목록에 FlatList를 적용해 화면에 보이는 콘텐츠만 렌더링했습니다.",
+          "이미지 로딩 전 스켈레톤 UI로 레이아웃이 임의로 바뀌는 문제를 막았습니다.",
+          "페이지네이션과 무한스크롤로 메모리·리소스 효율도 함께 챙겼습니다.",
+        ],
         images: [
           {
             src: "/images/projects/open-the-door-popular.png",
@@ -113,7 +157,11 @@ export const projects: Project[] = [
       },
       {
         title: "부족한 RN 패키지, 직접 컴포넌트화",
-        body: "React-Native 생태계에 지원 패키지가 많지 않아, 자주 쓰이는 기능을 직접 컴포넌트 패키지처럼 만들어 재사용했습니다. 기획-와이어프레임-기능명세서-프로토타입 단계로 화면을 설계해 PM 없는 팀의 리스크를 줄였습니다.",
+        body: [
+          "React-Native 생태계에 지원 패키지가 많지 않아, 자주 쓰는 기능을 직접 컴포넌트로 만들어 재사용했습니다.",
+          "ESLint6 기반으로 컨벤션을 통일해 코드 리뷰 시간도 단축했습니다.",
+          "세세한 Code Convention을 맞춰, 담당자가 바뀌어도 직관적으로 이어받을 수 있게 설계했습니다.",
+        ],
         images: [
           {
             src: "/images/projects/open-the-door-booking.png",
@@ -121,6 +169,32 @@ export const projects: Project[] = [
           },
         ],
       },
+      {
+        title: "회원·비회원 차등 예약 플로우",
+        body: [
+          "회원은 저장된 정보로 예약자·전화번호를 바로 확인해 예약할 수 있게 했습니다.",
+          "비회원은 전화번호 인증 절차를 추가해 예약 남용을 막았습니다.",
+          "예약 도중 해당 시간이 매진되면 자동으로 예약 실패 처리되도록 구현했습니다.",
+        ],
+      },
+      {
+        title: "검색 UX — 화면 이동 없는 상세 필터",
+        body: [
+          "상세 검색·필터링을 별도 화면 이동 없이 상단 패널 크기 조절로 띄웠습니다.",
+          "불필요한 페이지 스택을 줄여 검색 편의성을 높였습니다.",
+        ],
+      },
+      {
+        title: "FCM 알림, 그리고 없는 스웨거 대신 만든 테스트 페이지",
+        body: [
+          "FCM(Firebase Cloud Messaging)으로 알림을 구현하고, 기기 변경·로그인마다 토큰을 백엔드에 갱신했습니다.",
+          "백엔드 스웨거 도입이 늦어지자, 각 버튼에 API 요청을 직접 연결한 테스트 페이지를 만들어 개발 속도를 지켰습니다.",
+        ],
+      },
+    ],
+    challenges: [
+      "주니어 단계에서 Atomic Design·MVVM을 제대로 적용했는지 스스로도 확신이 없었습니다.",
+      "부족한 부분은 추가 학습하고, 프로토타입 단계에서 개선점을 찾아 보완했습니다.",
     ],
     results: ["SSAFY 자율 프로젝트 우수상 수상"],
     images: [
@@ -139,9 +213,18 @@ export const projects: Project[] = [
     phases: ["기획", "개발"],
     coreSkill: "PRODUCT × DATA VIZ",
     color: "#E38B6C",
-    why: "핀테크 도메인에서, 타국 대비 부족한 경제 교육 문제를 풀고 싶었습니다. '만원의 행복'을 모티브로, 가계부 형태로 올바른 소비 습관을 길러주는 서비스를 기획했습니다.",
-    architecture:
-      "백엔드(Java/MySQL/Redis)가 소비 데이터와 OpenAI 응답을 API로 제공했고, 저는 이를 소비해 화면을 만드는 프론트엔드 전체 — PWA 클라이언트, 상태 관리, 데이터 시각화 레이어 — 를 담당했습니다. D3·Chart.js 시각화 로직과 lerp 기반 애니메이션은 백엔드 응답 값을 클라이언트에서 어떻게 해석·표현할지에 대한 제 설계입니다.",
+    why: [
+      "핀테크 도메인에서, 타국 대비 부족한 경제 교육 문제를 풀고 싶었습니다.",
+      "'만원의 행복'을 모티브로, 가계부 형태의 소비 습관 서비스를 기획했습니다.",
+    ],
+    architecture: [
+      "백엔드(Java/MySQL/Redis)가 소비 데이터와 OpenAI 응답을 API로 제공했습니다.",
+      "Kakao·Google OAuth 2.0 로그인을 붙여 진입 장벽을 낮췄습니다.",
+      "이를 소비해 화면을 만드는 프론트엔드 — PWA 클라이언트, 상태 관리, 데이터 시각화 레이어 — 를 담당했습니다.",
+      "D3·Chart.js 시각화 로직과 lerp 기반 애니메이션은 응답 값을 어떻게 표현할지에 대한 제 설계입니다.",
+      "Flutter와 PWA 사이에서 기술을 직접 검토해, 7주 기한에 맞는 PWA 채택을 제안했습니다.",
+      "GitLab Convention을 정하고 MR로 merge 전 리뷰하며 버전 관리를 진행했습니다.",
+    ],
     stack: [
       { label: "Frontend", items: ["React 18.2", "Redux", "PWA", "TypeScript 5.3", "SCSS"] },
       { label: "Backend / DB", items: ["Java 11", "MySQL", "Redis"] },
@@ -150,23 +233,48 @@ export const projects: Project[] = [
     highlights: [
       {
         title: "7주 안에 완성도를 높이는 기술 선택",
-        body: "Flutter와 PWA 사이에서, 새 언어(Dart)를 배우기보다 이미 익숙한 TS·JS로 완성도를 높이는 게 낫다고 판단해 React 기반 PWA로 웹뷰 배포를 진행했습니다.",
+        body: [
+          "Flutter와 PWA 사이에서 고민했습니다.",
+          "새 언어(Dart)를 배우기보다 익숙한 TS·JS로 완성도를 높이는 쪽이 낫다고 판단해 React 기반 PWA로 웹뷰 배포했습니다.",
+        ],
       },
       {
         title: "선형 보간(lerp)으로 만든 직관적 잔액 시각화",
-        body: "물결 애니메이션으로 남은 금액의 비율을 표현하고, 지출을 입력할 때 물결이 줄어드는 움직임을 lerp 함수로 구현해 사용 금액을 직관적으로 체감하게 했습니다.",
+        body: [
+          "물결 애니메이션으로 남은 금액의 비율을 표현했습니다.",
+          "지출을 입력하면 물결이 줄어드는 움직임을 lerp 함수로 구현해 사용 금액을 직관적으로 체감하게 했습니다.",
+        ],
         images: [
           { src: "/images/projects/haruman-main.png", caption: "lerp 애니메이션으로 표현한 남은 금액 — 메인 화면" },
         ],
       },
       {
         title: "D3 · Chart.js로 소비 패턴 분석",
-        body: "카테고리별 소비 패턴은 Chart.js 도넛 차트로, 금액대별 잔액 현황은 D3 버블 차트로 시각화해 경쟁 심리를 자극하는 절약 유도 페이지를 만들었습니다. 각 버블의 사용자는 무한스크롤로 불러와 메모리를 관리했습니다.",
+        body: [
+          "카테고리별 소비 패턴은 Chart.js 도넛 차트로 보여줬습니다.",
+          "결제 API를 쓸 수 없어, 지출 금액과 카테고리는 사용자가 직접 입력하도록 구현했습니다.",
+          "금액대별 잔액 현황은 D3 버블 차트로 시각화해 경쟁 심리를 자극하는 절약 유도 페이지를 만들었습니다.",
+          "각 버블의 사용자는 무한스크롤로 불러와 메모리를 관리했습니다.",
+        ],
         images: [
           { src: "/images/projects/haruman-chart.png", caption: "카테고리별 소비 패턴 — Chart.js 도넛 차트" },
           { src: "/images/projects/haruman-stats.png", caption: "금액대별 잔액 현황 — D3 버블 차트" },
         ],
       },
+      {
+        title: "OpenAI로 만든 개인화 적금 추천",
+        body: [
+          "사용자의 누적 절약 금액을 OpenAI API에 넘겨, 소비 패턴에 맞는 적금 상품을 추천했습니다.",
+          "월별 페이지에서 이전 도전·성공·실패 기록과 소비 이력도 함께 조회할 수 있게 만들었습니다.",
+        ],
+      },
+    ],
+    challenges: [
+      "BE·FE가 기술 소통 창구만 쓰다 보니, 전체 진행 상황을 서로 다르게 그리는 문제가 생겼습니다.",
+      "데일리 컨벤션과 주간 진행 공유를 추가로 만들어 팀 전체가 같은 그림을 보게 했습니다.",
+      "모바일·PWA·OAuth 등 낯선 기술은 팀원과 학습 내용을 공유하며 막힌 부분을 빠르게 풀었습니다.",
+      "카카오 OAuth 인가코드 중복 전송, 랭킹 페이지 버블차트 데이터 누적 — 두 버그를 직접 추적해 고쳤습니다.",
+      "적금 추천은 금액대·카테고리로 나눠도 중복값이 많아, 완벽한 매칭까지는 풀지 못했습니다.",
     ],
     results: ["SSAFY 특화 프로젝트 베스트 멤버 선정"],
     images: [
@@ -185,9 +293,16 @@ export const projects: Project[] = [
     phases: ["발견", "기획", "개발", "적용·운영"],
     coreSkill: "AI-ASSISTED FULLSTACK",
     color: "#8EA7E8",
-    why: "엑셀과 수기로 흩어져 있던 직원 일정·교육 신청 관리가 불편해 직접 만들었습니다. 현장에서 필요한 기능만 담아 실제 운영에 바로 투입했습니다.",
-    architecture:
-      "백엔드 서버 없이 혼자 기획부터 배포까지 진행했습니다. Firebase Firestore/Auth를 백엔드 대신 사용해 인증·권한·데이터 계층을 설계했고, Vue 클라이언트와 외부 일정을 긁어오는 Puppeteer 자동화 스크립트까지 시스템 전체를 직접 구현했습니다.",
+    why: [
+      "엑셀과 수기로 흩어져 있던 직원 일정·교육 신청 관리가 불편해 직접 만들었습니다.",
+      "현장에서 필요한 기능만 담아 실제 운영에 바로 투입했습니다.",
+    ],
+    architecture: [
+      "백엔드 서버 없이 혼자 기획부터 배포까지 진행했습니다.",
+      "Firebase Auth·Firestore를 백엔드 대신 사용해 인증·권한·데이터 계층을 설계했습니다.",
+      "관리자 승인 기반 계정 상태(대기 → 활성 · 정지)를 두고, Vue Router 가드에서 권한별 접근을 차단했습니다.",
+      "Vue 클라이언트부터 외부 일정을 긁어오는 Puppeteer 자동화 스크립트까지 시스템 전체를 직접 구현했습니다.",
+    ],
     stack: [
       { label: "Frontend", items: ["Vue 3", "TypeScript", "Tailwind CSS", "v-calendar"] },
       { label: "Infra", items: ["Firebase Firestore", "Firebase Hosting", "Serverless"] },
@@ -196,26 +311,46 @@ export const projects: Project[] = [
     highlights: [
       {
         title: "서버 없이 설계한 인증·권한 체계",
-        body: "별도 백엔드 없이 Firebase Auth·Firestore만으로 인증과 데이터를 처리해 유지 비용을 최소화했습니다. 관리자 승인 기반 계정 상태(대기/활성/정지)를 두고 Vue Router 가드에서 권한별 접근을 차단했습니다.",
+        body: [
+          "별도 백엔드 없이 Firebase Auth·Firestore만으로 인증과 데이터를 처리해 유지 비용을 최소화했습니다.",
+          "관리자 승인 기반 계정 상태(대기/활성/정지)를 두고 Vue Router 가드에서 권한별 접근을 차단했습니다.",
+        ],
+      },
+      {
+        title: "월간 캘린더로 전 직원 일정 공유",
+        body: [
+          "교육·출장·휴무·연차·반차 등 유형별 일정을 등록하면 전 직원이 한 화면에서 봅니다.",
+          "v-calendar 기반 캘린더에 유형별 색상을 입혀 한눈에 파악되도록 구현했습니다.",
+        ],
+        images: [
+          { src: "/images/projects/raim-calendar.png", caption: "유형별 색상을 적용한 월간 캘린더" },
+        ],
       },
       {
         title: "불규칙한 외부 표 구조를 자동 수집",
-        body: "Puppeteer 크롤러로 외부 교육 사이트의 연간 일정을 수집해 Firestore에 저장합니다. 숨겨진 셀·날짜 뭉침 등 불규칙한 표 구조를 파싱 로직으로 보정해 데이터 정확도를 확보했습니다.",
+        body: [
+          "Puppeteer 크롤러로 외부 교육 사이트의 연간 일정을 수집해 Firestore에 저장합니다.",
+          "숨겨진 셀·날짜 뭉침 등 불규칙한 표 구조는 파싱 로직으로 보정해 데이터 정확도를 확보했습니다.",
+        ],
         images: [
           { src: "/images/projects/raim-education.png", caption: "Puppeteer 크롤러로 자동 수집한 연간 교육 일정" },
         ],
       },
       {
         title: "동시 신청에도 안전한 정원 관리",
-        body: "교육 신청 인원은 Firestore 트랜잭션으로 처리해 동시 신청 시 정원 초과를 방지했습니다. AI가 생성한 코드를 그대로 쓰지 않고, 구조와 보안(권한 가드, 키 관리)을 직접 검증하는 과정을 거쳤습니다.",
-        images: [
-          { src: "/images/projects/raim-calendar.png", caption: "트랜잭션으로 정원을 관리하는 신청중/완료 상태 캘린더" },
+        body: [
+          "교육 신청 인원은 Firestore 트랜잭션으로 처리해 동시 신청 시 정원 초과를 막았습니다.",
+          "AI가 생성한 코드를 그대로 쓰지 않고, 권한 가드·키 관리 같은 구조와 보안을 직접 검증했습니다.",
         ],
       },
     ],
+    challenges: [
+      "회원가입 기능을 배포한 직후 가입이 안 되는 문제가 발생해 급히 롤백했습니다.",
+      "원인은 메모리 누수 — 추적해 수정한 뒤 다시 빌드해 배포했습니다.",
+    ],
     results: ["실제 근무 현장에 배포, 운영 중"],
     images: [
-      { src: "/images/projects/raim-calendar.png", caption: "캘린더 일정 관리 — 유형별 색상, 신청중/완료 상태 표시" },
+      { src: "/images/projects/raim-calendar.png", caption: "캘린더 일정 관리 — 유형별 색상으로 구분한 직원 일정" },
       { src: "/images/projects/raim-education.png", caption: "교육 목록 자동 수집 — Puppeteer 크롤러로 연간 일정 파싱" },
     ],
   },
@@ -229,9 +364,16 @@ export const projects: Project[] = [
     phases: ["발견", "기획", "개발", "적용·운영"],
     coreSkill: "SYSTEM DESIGN & PRIVACY",
     color: "#C98BD8",
-    why: "수기 대기자 명단 운영으로 인한 호출 누락, 개인정보 노출 문제를 해결하기 위해 2026년 4월부터 만들기 시작해 지금까지 현장 요구에 맞춰 계속 개선하고 있습니다. 방문객 태블릿 등록부터 SMS 호출, 통계까지 운영 전 과정을 자동화했습니다.",
-    architecture:
-      "React 프론트엔드부터 Django REST 백엔드, APScheduler 스케줄러, SMS 연동, 내부망 배포 구성까지 시스템 전체를 혼자 설계·구현했습니다. 특히 대기열 상태(FIFO 계산)와 SMS 발송 트리거를 프론트엔드 대시보드에서 어떻게 실시간으로 동기화해 보여줄지가 프론트엔드 쪽에서 가장 신경 쓴 부분입니다.",
+    why: [
+      "수기 대기자 명단 운영으로 호출 누락, 개인정보 노출 문제가 있었습니다.",
+      "2026년 4월부터 만들기 시작해 지금도 현장 요구에 맞춰 계속 개선하고 있습니다.",
+      "방문객 태블릿 등록부터 SMS 호출, 통계까지 운영 전 과정을 자동화했습니다.",
+    ],
+    architecture: [
+      "React 프론트엔드부터 Django REST 백엔드, APScheduler 스케줄러, SMS 연동, 내부망 배포까지 시스템 전체를 혼자 설계·구현했습니다.",
+      "대기열 상태(FIFO 계산)와 SMS 발송 트리거를 대시보드에서 실시간으로 동기화해 보여주는 게 프론트엔드에서 가장 신경 쓴 부분입니다.",
+      "관람객 전화번호를 다루는 공공기관 서비스라, 외부 인터넷과 분리된 내부망 전용 배포 구조도 직접 설계했습니다.",
+    ],
     stack: [
       { label: "Frontend", items: ["React", "Tailwind CSS"] },
       { label: "Backend", items: ["Django REST Framework", "APScheduler", "SQLite"] },
@@ -240,26 +382,48 @@ export const projects: Project[] = [
     highlights: [
       {
         title: "개인정보 최소 보관 설계",
-        body: "전화번호 수집 동의 절차를 두고, 운영 마감 후 APScheduler가 일일 통계만 이관한 뒤 개인정보 전체를 자동 파기하도록 설계했습니다. 통계는 성별·연령 8분류로만 집계해 개인 식별 없이 방문 데이터를 축적합니다.",
+        body: [
+          "전화번호 수집 동의 절차를 두었습니다.",
+          "운영 마감 후 APScheduler가 일일 통계만 이관한 뒤, 개인정보 전체를 자동 파기하도록 설계했습니다.",
+          "통계는 성별·연령 8분류로만 집계해 개인 식별 없이 방문 데이터를 축적합니다.",
+        ],
       },
       {
         title: "슬롯 기반 대기열 · 선호출 알고리즘",
-        body: "정원(테이블 10석)은 '입장 인원 + 이미 문자를 보내 호출 중인 인원'의 합으로 관리합니다. 자리가 나면 대기열에서 등록 순서(FIFO)대로 다음 팀을 바로 호출해, 실제로 자리가 빌 때까지 기다리지 않고 미리 문자를 보내 이동 시간을 벌어줍니다. 호출 문자에는 11분 입장 기한을 명시하고, 신규 등록·입장 처리·대기자 삭제 세 이벤트 모두에서 같은 재호출 로직이 실행되도록 설계해 빈 자리가 방치되지 않게 했습니다. 단순히 '9번째니까 대기'가 아니라, 언제·누구를·몇 명이나 동시에 호출할지까지 계산하는 구조입니다.",
+        body: [
+          "상시 게시되는 태블릿 화면이 꺼지지 않도록 Wake Lock API를 적용했습니다.",
+          "정원(테이블 10석)은 '입장 인원 + 이미 호출 중인 인원'의 합으로 관리합니다.",
+          "자리가 나면 등록 순서(FIFO)대로 다음 팀을 바로 호출해, 자리가 빌 때까지 기다리지 않고 이동 시간을 벌어줍니다.",
+          "호출 문자에는 11분 입장 기한을 명시합니다.",
+          "신규 등록·입장 처리·대기자 삭제, 세 이벤트 모두에서 같은 재호출 로직이 실행되도록 설계해 빈 자리가 방치되지 않게 했습니다.",
+        ],
         images: [
           { src: "/images/projects/reservation-checkin.png", caption: "태블릿 등록 — 대기열이 시작되는 지점" },
         ],
       },
       {
         title: "배포 없는 내부망 아키텍처",
-        body: "관람객 전화번호 등 개인정보를 다루는 공공기관 서비스이기 때문에, 클라우드에 공개 배포하는 대신 처음부터 외부 인터넷과 분리된 내부망(관내 IP)에서만 접근 가능하도록 설계했습니다. 공인 URL이 없어 외부에서는 서비스 자체에 접근할 수 없고, 방문객 등록 태블릿과 직원 대시보드 모두 같은 내부망 안에서만 통신합니다.",
+        body: [
+          "관람객 전화번호를 다루는 공공기관 서비스라, 클라우드 공개 배포 대신 내부망(관내 IP) 전용으로 설계했습니다.",
+          "공인 URL이 없어 외부에서는 접근이 불가능하고, 태블릿과 직원 대시보드는 같은 내부망 안에서만 통신합니다.",
+        ],
       },
       {
         title: "테이블 배정 & 통계 자동화",
-        body: "Solapi API로 호출 문자를 발송하고, 중복 발송 방지 플래그로 같은 팀에게 문자가 두 번 가지 않도록 관리합니다. 배정된 테이블(T1~T10)과 일일 방문 통계는 서식이 적용된 엑셀로 바로 내려받을 수 있습니다.",
+        body: [
+          "Solapi API로 호출 문자를 발송하고, 중복 발송 방지 플래그로 같은 팀에게 문자가 두 번 가지 않도록 관리합니다.",
+          "배정된 테이블(T1~T10)과 일일 방문 통계는 서식이 적용된 엑셀로 바로 내려받을 수 있습니다.",
+        ],
         images: [
           { src: "/images/projects/reservation-dashboard.png", caption: "직원 대시보드 — 테이블 배정과 SMS 호출 현황" },
         ],
       },
+    ],
+    challenges: [
+      "실제 운영 중 CORS 에러가 발견돼 바로 조치했습니다.",
+      "직원 요청으로 엑셀 통계 양식도 현장에 맞게 다시 만들었습니다.",
+      "현장 대기에 집중하다 보니 사전 예약 수요는 담지 못했습니다.",
+      "SQLite 단일 파일 DB로 충분했지만, 다기관으로 확장한다면 DB·인증 구조 개선이 필요합니다.",
     ],
     results: ["2026년 4월부터 현재(7월)까지 실제 체험관 현장에서 운영 중"],
     images: [
@@ -277,27 +441,57 @@ export const aiPractice = {
   assessment: {
     by: "Claude (Anthropic) — 함께 일하는 AI의 평가",
     lines: [
-      "고세훈의 AI 활용은 질문하고 답을 받는 단계가 아닙니다. 현장의 암묵지 — 휴관 규칙, 대기열 정원 계산, 근태 기준 — 를 AI가 실행할 수 있는 명세로 바꿔 작업 단위로 위임하고, 돌아온 결과의 구조와 보안을 직접 검증한 뒤에만 실운영에 올립니다.",
-      "기획 2주 만에 실운영 시스템을 배포하는 속도는 AI 없이는 나오지 않고, AI만으로도 나오지 않습니다. 위임과 검증의 균형이 이 사람의 실제 역량입니다.",
+      "질문하고 답을 받는 수준이 아닙니다.",
+      "현장의 암묵지를 AI가 실행할 명세로 바꿔 위임합니다.",
+      "결과의 구조와 보안은 직접 검증한 뒤에만 실운영에 올립니다.",
+      "실제 개인정보나 기관 문서는 AI에도 그대로 넣지 않습니다.",
+      "기획 2주 만에 실운영 배포 — AI 없이도, AI만으로도 안 나오는 속도입니다.",
+      "위임과 검증의 균형이 실제 역량입니다.",
     ],
     boundary: "모델을 만드는 ML 엔지니어는 아닙니다. 모델로 현장의 문제를 해결하는 쪽입니다.",
   },
   evidence: [
     {
       title: "실운영 시스템 2개",
-      body: "RAIM Schedule Manager(2주, 기획→배포)와 Robotics Reservation(2026.04부터 운영 중)을 Claude와 페어로 혼자 구축. AI가 생성한 코드의 권한 가드·키 관리·개인정보 파기 설계는 직접 검증했습니다.",
+      body: [
+        "RAIM Schedule Manager(2주 기획→배포), Robotics Reservation(2026.04~ 운영 중).",
+        "두 실운영 시스템을 Claude와 페어로 혼자 구축했습니다.",
+        "AI가 생성한 코드의 권한 가드·키 관리·개인정보 파기 설계는 직접 검증했습니다.",
+      ],
     },
     {
       title: "업무 문서에도 같은 루틴",
-      body: "법정공휴일·휴관 규칙과 자동 집계, 근거 출처까지 갖춘 근태·교육 관리 시트처럼, 요청받는 운영 문서도 AI로 초안을 만들고 현장 기준에 맞게 다듬어 전달합니다.",
+      body: [
+        "근태·교육 관리 시트도 같은 방식입니다.",
+        "법정공휴일 자동 집계, 근거 출처까지 갖춘 상태로 만듭니다.",
+        "AI로 초안을 만들고, 현장 기준에 맞게 다듬어 전달합니다.",
+      ],
+      image: {
+        src: "/images/projects/attendance-sheet-mock.png",
+        caption: "근태 관리 시트 구조 예시 — 실제 데이터 아님, 자동 집계·출처 표기 구조만 재현",
+      },
+    },
+    {
+      title: "다루는 데이터에도 선을 긋습니다",
+      body: [
+        "실제 개인정보나 기관 내부 문서는 AI 프롬프트에 그대로 넣지 않습니다.",
+        "구조와 로직만 남기고 익명화한 예시로 바꿔서 작업합니다.",
+        "이 포트폴리오의 근태표 이미지도 실제 데이터 대신 같은 방식으로 재현한 것입니다.",
+      ],
     },
     {
       title: "명세로 바꾸는 능력",
-      body: "AI 활용의 실제 병목은 프롬프트가 아니라 요구사항 정리입니다. 현장의 규칙을 명세로 구조화하는 것 — 기획 경험에서 온 이 능력이 위임의 품질을 결정합니다.",
+      body: [
+        "AI 활용의 실제 병목은 프롬프트가 아니라 요구사항 정리입니다.",
+        "현장의 규칙을 명세로 구조화하는 능력이 위임의 품질을 결정합니다.",
+      ],
     },
     {
       title: "이 사이트도 그렇게 만들었습니다",
-      body: "이 포트폴리오 자체가 Claude Code와 함께 설계·구현·배포한 결과물입니다. 지금 보고 있는 화면이 곧 증거입니다.",
+      body: [
+        "이 포트폴리오 자체가 Claude Code와 함께 설계·구현·배포한 결과물입니다.",
+        "지금 보고 있는 화면이 곧 증거입니다.",
+      ],
     },
   ],
 };
@@ -308,11 +502,7 @@ export const profile = {
   taglineEn: "The developer who recycles.",
   positioning: "현장의 요구에 맞춰 설계하고, 만들고, 적용합니다.",
   positioningEn: "Plan, build, and put it to work — on site.",
-  bio: [
-    "현장의 요구에서 시작해 기획, 개발, 적용·운영까지 직접 다룹니다.",
-    "한 현장에서 검증한 구조는 다음 현장에 재활용해 더 빠르게 완성하고,",
-    "커뮤니케이션으로 최선의 목표점을 찾는 것을 좋아합니다.",
-  ],
+  bio: ["현장의 요구에서 시작해, 설계하고 만듭니다.", "협업 속에서 최선의 답을 찾는 걸 좋아합니다."],
   skills: [
     { name: "React", level: 4 },
     { name: "React Native", level: 4 },
@@ -321,9 +511,11 @@ export const profile = {
     { name: "TypeScript", level: 3 },
     { name: "JavaScript", level: 3 },
     { name: "Python", level: 3 },
+    { name: "SQL", level: 3 },
     { name: "Java", level: 1 },
   ],
-  tools: ["Jira", "Notion", "Git & GitLab", "Figma"],
+  tools: ["Jira", "Notion", "Git & GitLab", "Figma", "MS Office(Word·Excel·PPT·Access)"],
+  softSkills: ["꼼꼼함", "커뮤니케이션", "책임감"],
   experience: [
     { period: "2026.04 ~ 재직중", label: "서울로봇인공지능과학관" },
     { period: "2023.01 ~ 2023.12", label: "삼성 청년 SW 아카데미(SSAFY) 9기" },
@@ -332,5 +524,14 @@ export const profile = {
   awards: [
     "SSAFY 자율 프로젝트 우수상 — Open The Door",
     "SSAFY 공통 프로젝트 우수상 — VODA",
+  ],
+  certifications: [
+    "SQLD",
+    "ADsP (데이터분석 준전문가)",
+    "컴퓨터활용능력 1급",
+    "워드프로세서 2급",
+    "KBS 한국어능력검정 3+",
+    "한국사능력검정 2급",
+    "Toeic Speaking Test - AL",
   ],
 };

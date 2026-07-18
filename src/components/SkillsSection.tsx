@@ -34,14 +34,33 @@ export default function SkillsSection() {
             </div>
           </div>
 
-          <ul className="mt-8 space-y-1 text-sm text-foreground-dim">
-            {profile.awards.map((a) => (
-              <li key={a} className="flex gap-2">
-                <span className="text-accent">＋</span>
-                {a}
-              </li>
-            ))}
-          </ul>
+          <div className="mt-8">
+            <p className="font-mono text-[10px] tracking-[0.2em] text-foreground-dim uppercase">
+              Awards
+            </p>
+            <ul className="mt-2 space-y-1 text-sm text-foreground-dim">
+              {profile.awards.map((a) => (
+                <li key={a} className="flex gap-2">
+                  <span className="text-accent">＋</span>
+                  {a}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-6">
+            <p className="font-mono text-[10px] tracking-[0.2em] text-foreground-dim uppercase">
+              Certifications
+            </p>
+            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-foreground-dim">
+              {profile.certifications.map((c) => (
+                <li key={c} className="flex gap-2">
+                  <span className="text-accent">·</span>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="md:col-span-7">
@@ -75,6 +94,17 @@ export default function SkillsSection() {
                 className="font-mono rounded-full border border-line px-3 py-1 text-xs text-foreground-dim"
               >
                 {t}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-2">
+            {profile.softSkills.map((s) => (
+              <span
+                key={s}
+                className="font-mono rounded-full border border-accent/40 px-3 py-1 text-xs text-accent"
+              >
+                {s}
               </span>
             ))}
           </div>

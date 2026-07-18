@@ -1,14 +1,8 @@
-"use client";
-
-import dynamic from "next/dynamic";
-import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/projects";
+import CodeMotif from "./CodeMotif";
 
-const Scene = dynamic(() => import("./Scene"), { ssr: false });
-
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-/** 행 단위 마스크 리빌: 줄이 아래에서 떠오르며 한 번만 재생된다 */
+/** 행 단위 마스크 리빌: 줄이 아래에서 떠오르며 한 번만 재생된다. CSS 애니메이션이라
+ * 마운트 시 항상 재생을 보장한다 (JS 애니메이션 라이브러리의 rAF 경합에 영향받지 않음). */
 function RevealLine({
   children,
   delay,
@@ -18,43 +12,33 @@ function RevealLine({
   delay: number;
   className?: string;
 }) {
-  const reduced = useReducedMotion();
   return (
     <span className="block overflow-hidden">
-      <motion.span
-        className={`block ${className ?? ""}`}
-        initial={reduced ? false : { y: "115%" }}
-        animate={{ y: 0 }}
-        transition={{ duration: 1, delay, ease: EASE }}
+      <span
+        className={`block animate-reveal-up ${className ?? ""}`}
+        style={{ animationDelay: `${delay}s` }}
       >
         {children}
-      </motion.span>
+      </span>
     </span>
   );
 }
 
 export default function Hero() {
-  const reduced = useReducedMotion();
-  const fadeUp = (delay: number) => ({
-    initial: reduced ? false : { opacity: 0, y: 16 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, delay, ease: EASE },
-  });
-
   return (
     <section className="grain relative flex min-h-svh flex-col justify-between overflow-hidden border-b border-line px-6 pt-24 pb-8 md:px-12 md:pt-32 md:pb-10">
-      <div className="pointer-events-none absolute inset-0 z-0 hidden md:block">
-        <Scene />
+      <div className="pointer-events-none absolute inset-0 z-0 hidden items-center justify-end pr-8 md:flex lg:pr-24">
+        <CodeMotif />
       </div>
 
       <div className="relative z-10">
-        <motion.p
-          {...fadeUp(0.05)}
-          className="font-mono text-[11px] tracking-[0.2em] text-foreground-dim uppercase sm:text-xs sm:tracking-[0.3em]"
+        <p
+          className="animate-fade-up font-mono text-[11px] tracking-[0.2em] text-foreground-dim uppercase sm:text-xs sm:tracking-[0.3em]"
+          style={{ animationDelay: "0.05s" }}
         >
           고세훈 · Ko Sehoon
-        </motion.p>
-        <h1 className="font-display mt-10 text-[clamp(2.4rem,8.5vw,6.5rem)] leading-[1.13] font-semibold tracking-[-0.03em] break-keep md:mt-14">
+        </p>
+        <h1 className="font-display mt-10 text-[clamp(2.1rem,6.5vw,4.8rem)] leading-[1.15] font-semibold tracking-[-0.03em] break-keep md:mt-14">
           <RevealLine delay={0.15}>
             <span className="text-accent">요구</span>를 읽고,
           </RevealLine>
@@ -65,20 +49,20 @@ export default function Hero() {
             <span className="text-accent">적용</span>합니다.
           </RevealLine>
         </h1>
-        <motion.p
-          {...fadeUp(0.6)}
-          className="mt-8 max-w-md text-base leading-relaxed text-foreground-dim md:mt-10 md:text-lg"
+        <p
+          className="animate-fade-up mt-8 max-w-md text-base leading-relaxed text-foreground-dim md:mt-10 md:text-lg"
+          style={{ animationDelay: "0.6s" }}
         >
           모든 작업은 현장의 문제에서 시작합니다.
           <span className="font-mono mt-1 block text-sm opacity-60">
             {profile.tagline} — {profile.taglineEn}
           </span>
-        </motion.p>
+        </p>
       </div>
 
-      <motion.div
-        {...fadeUp(0.75)}
-        className="relative z-10 mt-14 grid grid-cols-2 items-end gap-x-6 gap-y-4 border-t border-line pt-5 font-mono text-[11px] tracking-[0.12em] text-foreground-dim uppercase sm:text-xs md:grid-cols-4"
+      <div
+        className="animate-fade-up relative z-10 mt-14 grid grid-cols-2 items-end gap-x-6 gap-y-4 border-t border-line pt-5 font-mono text-[11px] tracking-[0.12em] text-foreground-dim uppercase sm:text-xs md:grid-cols-4"
+        style={{ animationDelay: "0.75s" }}
       >
         <div>
           <p className="opacity-60">Now</p>
@@ -99,7 +83,7 @@ export default function Hero() {
         >
           Scroll ↓
         </a>
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -6,25 +6,37 @@ export default function Footer() {
           <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
             Contact
           </p>
-          <a
-            href="mailto:govelopper@gmail.com"
-            data-cursor-hover
-            className="link-underline font-display mt-4 block text-2xl font-bold break-all sm:text-3xl md:text-5xl"
-          >
-            govelopper@gmail.com
-          </a>
-          <a
-            href="https://github.com/Gobro-s"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-cursor-hover
-            className="link-underline font-mono mt-4 inline-block text-sm tracking-widest uppercase text-foreground-dim"
-          >
-            github.com/Gobro-s ↗
-          </a>
+          <div className="mt-4 flex flex-col gap-4">
+            <div>
+              <p className="font-mono text-[10px] tracking-[0.2em] text-foreground-dim uppercase">
+                Email
+              </p>
+              <a
+                href="mailto:govelopper@gmail.com"
+                data-cursor-hover
+                className="link-underline font-display mt-1 block text-lg font-bold break-all sm:text-xl md:text-2xl"
+              >
+                govelopper@gmail.com
+              </a>
+            </div>
+            <div>
+              <p className="font-mono text-[10px] tracking-[0.2em] text-foreground-dim uppercase">
+                GitHub
+              </p>
+              <a
+                href="https://github.com/Gobro-s"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor-hover
+                className="link-underline font-mono mt-1 inline-block text-sm tracking-widest text-foreground"
+              >
+                github.com/Gobro-s ↗
+              </a>
+            </div>
+          </div>
         </div>
         <p className="font-mono text-xs text-foreground-dim">
-          © {new Date().getFullYear()} Ko Sehoon — Built with Next.js &amp; Three.js
+          © {new Date().getFullYear()} Ko Sehoon — Built with Next.js
         </p>
       </div>
     </footer>

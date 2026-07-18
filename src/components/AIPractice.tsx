@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { aiPractice } from "@/data/projects";
 
 export default function AIPractice() {
@@ -47,7 +48,27 @@ export default function AIPractice() {
               className="border-t border-line py-6"
             >
               <h3 className="font-display text-lg font-bold md:text-xl">{e.title}</h3>
-              <p className="mt-2 max-w-xl leading-relaxed text-pretty text-foreground-dim">{e.body}</p>
+              <div className="mt-2 max-w-xl text-foreground-dim">
+                {e.body.map((line) => (
+                  <p key={line} className="leading-relaxed text-pretty">
+                    {line}
+                  </p>
+                ))}
+              </div>
+              {e.image && (
+                <figure className="mt-4 max-w-xl overflow-hidden rounded-lg border border-line shadow-sm">
+                  <Image
+                    src={e.image.src}
+                    alt={e.image.caption}
+                    width={640}
+                    height={420}
+                    className="w-full object-cover object-top"
+                  />
+                  <figcaption className="px-2 py-1.5 font-mono text-[10px] leading-snug text-foreground-dim">
+                    {e.image.caption}
+                  </figcaption>
+                </figure>
+              )}
             </motion.div>
           ))}
         </div>

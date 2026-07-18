@@ -94,9 +94,13 @@ export default async function ProjectPage({ params }: { params: Params }) {
           <div className="md:col-span-4">
             <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">Why</p>
           </div>
-          <p className="font-display max-w-2xl text-2xl leading-relaxed text-pretty md:col-span-8 md:text-3xl">
-            {project.why}
-          </p>
+          <div className="font-display text-2xl leading-snug font-medium md:col-span-8 md:text-3xl">
+            {project.why.map((line) => (
+              <p key={line} className="text-pretty">
+                {line}
+              </p>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -107,9 +111,13 @@ export default async function ProjectPage({ params }: { params: Params }) {
               My Role in the Architecture
             </p>
           </div>
-          <p className="max-w-2xl text-lg leading-relaxed text-pretty text-foreground-dim md:col-span-8">
-            {project.architecture}
-          </p>
+          <div className="space-y-2 text-lg text-foreground-dim md:col-span-8">
+            {project.architecture.map((line) => (
+              <p key={line} className="text-pretty leading-relaxed">
+                {line}
+              </p>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -151,7 +159,13 @@ export default async function ProjectPage({ params }: { params: Params }) {
                 <h3 className="font-display text-xl font-bold md:text-2xl" style={{ color: project.color }}>
                   {h.title}
                 </h3>
-                <p className="mt-3 max-w-2xl text-pretty text-foreground-dim leading-relaxed">{h.body}</p>
+                <div className="mt-3 space-y-1.5 text-foreground-dim">
+                  {h.body.map((line) => (
+                    <p key={line} className="text-pretty leading-relaxed">
+                      {line}
+                    </p>
+                  ))}
+                </div>
               </div>
               {h.images && h.images.length > 0 && (
                 <div className="flex shrink-0 gap-3 sm:w-56 sm:flex-col">
@@ -177,6 +191,23 @@ export default async function ProjectPage({ params }: { params: Params }) {
             </div>
           ))}
         </RevealGroup>
+      </section>
+
+      <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
+        <div className="grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
+              Friction &amp; Resolution
+            </p>
+          </div>
+          <div className="space-y-2 text-lg text-foreground-dim md:col-span-8">
+            {project.challenges.map((line) => (
+              <p key={line} className="text-pretty leading-relaxed">
+                {line}
+              </p>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
