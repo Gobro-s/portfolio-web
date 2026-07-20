@@ -1,6 +1,11 @@
 @import "tailwindcss";
+/* 셀프호스팅 + 유니코드 range별 서브셋 분할 — 실제 쓰는 4개 weight(400/500/600/700)의
+   본문에 등장하는 글자 청크만 병렬로 받는다. 기존 가변 폰트 단일 파일(2MB)은
+   어떤 weight를 쓰든 전체를 한 번에 받아야 해 초기 텍스트 렌더를 막고 있었다. */
+@import "../fonts/pretendard-dynamic-subset.css";
 
 :root {
+  --font-pretendard: "Pretendard";
   /* 크림+오렌지는 Claude(Anthropic)의 브랜드 컬러와 겹친다 — 이 포트폴리오는
      로봇·AI 과학관에서 시스템을 설계·운영하는 사람의 톤: 차갑고 정밀한 그레이 베이스에
      RAIM(#8EA7E8)·Reservation(#C98BD8) 프로젝트 컬러를 잇는 코발트 블루 액센트. */

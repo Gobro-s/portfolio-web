@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Fraunces, Noto_Serif_KR } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
 
-// 한글 본문: Pretendard Variable (시스템 폰트 폴백 방지, 셀프호스팅)
-const pretendard = localFont({
-  src: "../fonts/PretendardVariable.woff2",
-  variable: "--font-pretendard",
-  weight: "45 920",
-  display: "swap",
-});
+// 한글 본문: Pretendard — globals.css에서 유니코드 서브셋 분할본을 셀프호스팅으로 import.
+// 실제 쓰는 weight(400/500/600/700)의 등장 글자 청크만 병렬로 받아 2MB 단일 파일을 대체한다.
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -66,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${pretendard.variable} ${geistMono.variable} ${fraunces.variable} ${notoSerifKR.variable} h-full antialiased`}
+      className={`${geistMono.variable} ${fraunces.variable} ${notoSerifKR.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Cursor />
