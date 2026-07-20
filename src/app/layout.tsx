@@ -16,7 +16,9 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   weight: "variable",
-  axes: ["opsz", "SOFT", "WONK"],
+  // opsz만 실제로 쓴다(font-optical-sizing: auto) — SOFT/WONK는 CSS에서 건드리지 않는데
+  // 요청만 하면 변수 폰트 디자인 공간이 넓어져 파일이 그만큼 커진다.
+  axes: ["opsz"],
 });
 
 // 한글 디스플레이: Fraunces(라틴) 뒤 폴백으로 세리프 무드를 한글 제목까지 유지
