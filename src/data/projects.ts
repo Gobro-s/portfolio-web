@@ -28,7 +28,7 @@ export const projects: Project[] = [
     slug: "voda",
     no: "04",
     name: "VODA",
-    tagline: "Voice-Over Diverse Assistance — 시각장애인을 위한 영상통화, VODA로 세상을 보다",
+    tagline: "VODA로 세상을 보다",
     period: "2023.07 – 2023.08",
     role: "기획 · 1인 Front-End",
     phases: ["기획", "개발"],
