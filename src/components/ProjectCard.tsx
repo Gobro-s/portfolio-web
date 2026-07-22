@@ -9,15 +9,19 @@ import type { Project } from "@/data/projects";
 export default function ProjectCard({
   project,
   variant,
+  onOpen,
 }: {
   project: Project;
   variant: "list" | "panel";
+  /** 스택 모드에서 카드 접힘 전환을 재생할 기회를 준다. 넘기지 않으면 평범한 링크. */
+  onOpen?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }) {
   const panel = variant === "panel";
 
   return (
     <Link
       href={`/projects/${project.slug}`}
+      onClick={onOpen}
       data-cursor-hover
       className={
         panel
