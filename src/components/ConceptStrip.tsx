@@ -1,4 +1,5 @@
 import { cycle } from "@/data/projects";
+import StatsBand from "./StatsBand";
 
 export default function ConceptStrip() {
   return (
@@ -20,6 +21,8 @@ export default function ConceptStrip() {
           컴포넌트도, 배운 것도 — 다음 현장에서 더 빠르게 완성됩니다.
         </span>
       </p>
+
+      <StatsBand />
     </section>
   );
 }

@@ -1,39 +1,48 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
 
-export default function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const reversed = index % 2 === 1;
+/**
+ * 프로젝트 카드의 내용만 담당한다. 등장 애니메이션과 스택 레이아웃은
+ * ProjectStack이 감싸면서 붙인다 — 리스트 모드와 스택 모드가 같은 마크업을 쓴다.
+ */
+export default function ProjectCard({
+  project,
+  variant,
+}: {
+  project: Project;
+  variant: "list" | "panel";
+}) {
+  const panel = variant === "panel";
 
   return (
     <Link
       href={`/projects/${project.slug}`}
       data-cursor-hover
-      className="group block border-t border-line py-8 md:py-10"
+      className={
+        panel
+          ? // Cult UI의 texture-card에서 가져온 발상: 겹친 인셋 보더로 판을 띄운다.
+            // 원본은 중첩 div 5겹에 neutral 팔레트가 하드코딩돼 있어, 같은 효과를
+            // 이 사이트의 --line 토큰과 ring/shadow 한 겹으로 다시 만들었다.
+            "group block overflow-hidden rounded-2xl border border-line bg-background-elevated p-6 shadow-[0_1px_0_rgba(255,255,255,0.7)_inset,0_18px_40px_-24px_rgba(20,24,33,0.45)] ring-1 ring-white/50 md:p-9"
+          : "group block border-t border-line py-8 md:py-10"
+      }
     >
-      <motion.article
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col gap-6 md:flex-row md:items-center md:gap-10"
-      >
-        <div
-          className={`order-first aspect-video w-full shrink-0 overflow-hidden rounded-xl shadow-sm transition-transform duration-500 ease-out group-hover:scale-[1.03] md:order-none md:aspect-4/3 md:w-48`}
-        >
+      <article className="flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
+        <div className="order-first aspect-video w-full shrink-0 overflow-hidden rounded-xl shadow-sm transition-transform duration-500 ease-out group-hover:scale-[1.03] md:order-none md:aspect-4/3 md:w-48">
           <Image
             src={project.images[0].src}
             alt={project.images[0].caption}
             width={480}
             height={360}
+            // 데스크톱에선 192px 슬롯, 모바일에선 좌우 패딩을 뺀 전체 폭.
+            // 이게 없으면 브라우저가 100vw로 가정해 필요 이상 큰 변형본을 받는다.
+            sizes="(min-width: 768px) 192px, calc(100vw - 3rem)"
             className="h-full w-full object-cover object-top"
           />
         </div>
 
-        <div className={`flex-1 ${reversed ? "md:order-first" : ""}`}>
+        <div className="flex-1">
           <div className="flex flex-wrap items-center gap-4">
             <span className="font-mono text-sm text-foreground-dim">{project.no}</span>
             <span className="font-mono flex w-fit items-center gap-2 rounded-full border border-line px-3 py-1 text-[11px] tracking-[0.15em] text-foreground-dim uppercase">
@@ -55,7 +64,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
             <span className="link-underline text-foreground">케이스 스터디 열기 →</span>
           </div>
         </div>
-      </motion.article>
+      </article>
     </Link>
   );
 }

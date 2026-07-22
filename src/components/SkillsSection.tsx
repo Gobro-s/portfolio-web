@@ -6,8 +6,11 @@ import { profile } from "@/data/projects";
 export default function SkillsSection() {
   return (
     <section className="border-b border-line px-6 py-16 md:px-12 md:py-24" id="about">
-      <div className="grid gap-16 md:grid-cols-12">
-        <div className="md:col-span-5">
+      {/* 12칼럼 그리드에서 gap은 11번 들어간다 — gap-16(64px)이면 간격만 704px이라
+          768px(콘텐츠 폭 672px)에서는 트랙이 전부 0px로 붕괴하고 내용이 삐져나온다.
+          여유가 생기는 lg부터 넓은 간격을 준다. */}
+      <div className="grid gap-8 md:grid-cols-12 lg:gap-16">
+        <div className="min-w-0 md:col-span-5">
           <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
             01 / Profile
           </p>
@@ -63,8 +66,10 @@ export default function SkillsSection() {
           </div>
         </div>
 
-        <div className="md:col-span-7">
-          <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        {/* min-w-0: grid 자식의 기본 min-width는 auto라 안쪽 내용이 트랙보다 넓어지면
+            트랙을 밀어낸다 — 768px에서 스킬 바가 4px 삐져나오던 원인. */}
+        <div className="min-w-0 md:col-span-7">
+          <div className="grid min-w-0 gap-x-8 gap-y-6 sm:grid-cols-2">
             {profile.skills.map((s, i) => (
               <motion.div
                 key={s.name}
@@ -72,6 +77,7 @@ export default function SkillsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.04 }}
+                className="min-w-0"
               >
                 <div className="mb-2 flex items-baseline justify-between">
                   <span className="font-display font-medium">{s.name}</span>

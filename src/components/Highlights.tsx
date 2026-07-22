@@ -1,0 +1,87 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import type { Project } from "@/data/projects";
+
+const INITIAL = 4;
+const STEP = 4;
+
+/**
+ * 케이스 스터디의 Highlights는 프로젝트당 최대 11장의 이미지를 끌고 온다.
+ * 처음부터 전부 마크업에 넣으면 화면에 안 보이는 이미지까지 DOM에 올라가므로,
+ * 처음 4개만 렌더하고 나머지는 눌러서 이어붙인다 — 안 펼치면 아예 만들지 않는다.
+ */
+export default function Highlights({
+  highlights,
+  color,
+}: {
+  highlights: Project["highlights"];
+  color: string;
+}) {
+  const [shown, setShown] = useState(INITIAL);
+  const remaining = highlights.length - shown;
+
+  return (
+    <div className="mt-8">
+      {highlights.slice(0, shown).map((h, i) => (
+        <motion.div
+          key={h.title}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          // 펼쳐서 나온 항목은 이미 화면 근처라 순차 지연을 주면 오히려 굼떠 보인다.
+          transition={{ duration: 0.5, delay: i < INITIAL ? i * 0.08 : 0 }}
+          className="flex flex-col gap-6 border-t border-line py-8 sm:flex-row"
+        >
+          <div className="flex-1">
+            <h3 className="font-display text-xl font-bold md:text-2xl" style={{ color }}>
+              {h.title}
+            </h3>
+            <div className="mt-3 space-y-1.5 text-foreground-dim">
+              {h.body.map((line) => (
+                <p key={line} className="text-pretty leading-relaxed">
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
+          {h.images && h.images.length > 0 && (
+            <div className="flex shrink-0 gap-3 sm:w-56 sm:flex-col">
+              {h.images.map((img) => (
+                <figure
+                  key={img.src}
+                  className="flex-1 overflow-hidden rounded-lg border border-line shadow-sm sm:flex-none"
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.caption}
+                    width={480}
+                    height={360}
+                    sizes="(min-width: 640px) 224px, 45vw"
+                    className="w-full object-cover object-top"
+                  />
+                  <figcaption className="px-2 py-1.5 font-mono text-[10px] leading-snug text-foreground-dim">
+                    {img.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+        </motion.div>
+      ))}
+
+      {remaining > 0 && (
+        <button
+          type="button"
+          data-cursor-hover
+          onClick={() => setShown((n) => n + STEP)}
+          className="font-mono mt-6 w-full rounded-full border border-line py-3 text-xs tracking-[0.15em] text-foreground-dim uppercase transition-colors hover:border-accent hover:text-accent"
+        >
+          + {remaining}개 더 보기
+        </button>
+      )}
+    </div>
+  );
+}

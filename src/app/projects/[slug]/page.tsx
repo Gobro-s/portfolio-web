@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { projects } from "@/data/projects";
 import Footer from "@/components/Footer";
-import RevealGroup from "@/components/RevealGroup";
+import Highlights from "@/components/Highlights";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -152,45 +151,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
           Highlights
         </p>
-        <RevealGroup>
-          {project.highlights.map((h) => (
-            <div key={h.title} className="flex flex-col gap-6 border-t border-line py-8 sm:flex-row">
-              <div className="flex-1">
-                <h3 className="font-display text-xl font-bold md:text-2xl" style={{ color: project.color }}>
-                  {h.title}
-                </h3>
-                <div className="mt-3 space-y-1.5 text-foreground-dim">
-                  {h.body.map((line) => (
-                    <p key={line} className="text-pretty leading-relaxed">
-                      {line}
-                    </p>
-                  ))}
-                </div>
-              </div>
-              {h.images && h.images.length > 0 && (
-                <div className="flex shrink-0 gap-3 sm:w-56 sm:flex-col">
-                  {h.images.map((img) => (
-                    <figure
-                      key={img.src}
-                      className="flex-1 overflow-hidden rounded-lg border border-line shadow-sm sm:flex-none"
-                    >
-                      <Image
-                        src={img.src}
-                        alt={img.caption}
-                        width={480}
-                        height={360}
-                        className="w-full object-cover object-top"
-                      />
-                      <figcaption className="px-2 py-1.5 font-mono text-[10px] leading-snug text-foreground-dim">
-                        {img.caption}
-                      </figcaption>
-                    </figure>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </RevealGroup>
+        <Highlights highlights={project.highlights} color={project.color} />
       </section>
 
       <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">

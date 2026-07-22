@@ -1,5 +1,5 @@
 import { projects } from "@/data/projects";
-import ProjectCard from "./ProjectCard";
+import ProjectStack from "./ProjectStack";
 
 export default function ProjectsGrid() {
   return (
@@ -11,11 +11,7 @@ export default function ProjectsGrid() {
         프로젝트마다, 다른 근육을 썼습니다.
       </h2>
 
-      <div className="mt-12">
-        {projects.map((p, i) => (
-          <ProjectCard key={p.slug} project={p} index={i} />
-        ))}
-      </div>
+      <ProjectStack projects={projects} />
     </section>
   );
 }

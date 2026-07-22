@@ -16,6 +16,7 @@ export type Project = {
   results: string[];
   images: { src: string; caption: string }[];
   links?: { label: string; href: string }[];
+  inProduction?: boolean; // 근무지에서 실제로 운영 중인 시스템인지 (랜딩 숫자의 근거)
 };
 
 // 일하는 방식: 현장의 요구에서 시작해 설계·제작을 거쳐 현장에 적용하고,
@@ -380,6 +381,7 @@ export const projects: Project[] = [
   {
     slug: "raim",
     no: "05",
+    inProduction: true,
     name: "RAIM Schedule Manager",
     tagline: "서울로봇인공지능과학관 직원 일정·교육·초과근무 통합 관리",
     period: "2026.06 (약 2주)",
@@ -451,6 +453,7 @@ export const projects: Project[] = [
   {
     slug: "robotics-reservation",
     no: "06",
+    inProduction: true,
     name: "Robotics Room Reservation",
     tagline: "기다림을 관람 시간으로 바꾼 체험실 현장 대기열 시스템",
     period: "2026.04 ~ 진행중",

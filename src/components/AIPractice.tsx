@@ -7,7 +7,8 @@ import { aiPractice } from "@/data/projects";
 export default function AIPractice() {
   return (
     <section className="border-b border-line px-6 py-16 md:px-12 md:py-24" id="ai">
-      <div className="grid gap-16 md:grid-cols-12">
+      {/* SkillsSection과 같은 이유로 md에서는 간격을 좁힌다 (12칼럼 × gap-16 = 704px). */}
+      <div className="grid gap-8 md:grid-cols-12 lg:gap-16">
         <div className="md:col-span-5">
           <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
             02 / {aiPractice.label}
@@ -62,6 +63,7 @@ export default function AIPractice() {
                     alt={e.image.caption}
                     width={640}
                     height={420}
+                    sizes="(min-width: 640px) 576px, calc(100vw - 3rem)"
                     className="w-full object-cover object-top"
                   />
                   <figcaption className="px-2 py-1.5 font-mono text-[10px] leading-snug text-foreground-dim">
