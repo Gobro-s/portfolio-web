@@ -42,6 +42,10 @@ export default function ProjectCard({
             // 데스크톱에선 192px 슬롯, 모바일에선 좌우 패딩을 뺀 전체 폭.
             // 이게 없으면 브라우저가 100vw로 가정해 필요 이상 큰 변형본을 받는다.
             sizes="(min-width: 768px) 192px, calc(100vw - 3rem)"
+            // 카드 5장은 스택 모드에서 sticky로 겹쳐 있어, lazy면 Lenis 스무스 스크롤이
+            // IntersectionObserver 판정을 흔들어 하나씩 계단식으로 뜨거나 안 뜬다.
+            // eager로 처음부터 병렬로 받는다 — sizes+webp 변형본이라 5장 합쳐 ~150KB뿐.
+            loading="eager"
             className="h-full w-full object-cover object-top"
           />
         </div>
