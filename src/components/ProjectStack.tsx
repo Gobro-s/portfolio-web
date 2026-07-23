@@ -141,7 +141,7 @@ export default function ProjectStack({ projects }: { projects: Project[] }) {
   });
 
   return (
-    <div ref={container} className={stacked ? "mt-12 pb-[30vh]" : "mt-12"}>
+    <div ref={container} className={stacked ? "mt-12 pb-[14vh]" : "mt-12"}>
       {projects.map((p, i) =>
         stacked ? (
           <StickyProject

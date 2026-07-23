@@ -24,10 +24,12 @@ export type Project = {
 export const cycle = ["발견", "기획", "개발", "적용·운영"] as const;
 export type Phase = (typeof cycle)[number];
 
-export const projects: Project[] = [
+// 배열에 어떤 순서로 적어두든, 화면과 상세 페이지의 다음-프로젝트는 no(01→05) 순서를 따른다.
+// 정렬 기준을 바꾸고 싶으면(직무별 강조 등) 여기 sort만 손대면 된다 — 아래 객체는 그대로 둔다.
+const projectList: Project[] = [
   {
     slug: "voda",
-    no: "04",
+    no: "05",
     name: "VODA",
     tagline: "VODA로 세상을 보다",
     period: "2023.07 – 2023.08",
@@ -133,7 +135,7 @@ export const projects: Project[] = [
   },
   {
     slug: "open-the-door",
-    no: "02",
+    no: "03",
     name: "Open The Door",
     tagline: "방탈출 카페 정보 제공 및 예약 플랫폼",
     period: "2023.10 – 2023.11",
@@ -285,7 +287,7 @@ export const projects: Project[] = [
   },
   {
     slug: "haruman",
-    no: "03",
+    no: "04",
     name: "HARUMAN",
     tagline: "하루 만 원으로 시작하는 올바른 소비 습관",
     period: "2023.08 – 2023.10",
@@ -380,7 +382,7 @@ export const projects: Project[] = [
   },
   {
     slug: "raim",
-    no: "05",
+    no: "02",
     inProduction: true,
     name: "RAIM Schedule Manager",
     tagline: "서울로봇인공지능과학관 직원 일정·교육·초과근무 통합 관리",
@@ -452,7 +454,7 @@ export const projects: Project[] = [
   },
   {
     slug: "robotics-reservation",
-    no: "06",
+    no: "01",
     inProduction: true,
     name: "Robotics Room Reservation",
     tagline: "기다림을 관람 시간으로 바꾼 체험실 현장 대기열 시스템",
@@ -530,6 +532,8 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+export const projects: Project[] = [...projectList].sort((a, b) => a.no.localeCompare(b.no));
 
 // "AI 활용 능력"을 자기 주장 대신, 실제로 함께 일하는 AI(Claude)의 평가로 싣는다.
 // 아래 문안은 Claude가 이 사람과의 실제 작업 기록을 근거로 직접 작성한 것.
