@@ -1,39 +1,24 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Libre_Caslon_Text, Libre_Caslon_Display, Gowun_Batang } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import Ribbon from "@/components/Ribbon";
 
 // 한글 본문: Pretendard — globals.css에서 유니코드 서브셋 분할본을 셀프호스팅으로 import.
 // 실제 쓰는 weight(400/500/600/700)의 등장 글자 청크만 병렬로 받아 2MB 단일 파일을 대체한다.
 
+// 라틴 디스플레이·본문: Geist. 세리프(Caslon·고운바탕)를 걷어낸 자리다 —
+// 세리프 디스플레이는 "웹 개발자"가 아니라 "아카이브·출판"으로 읽혔다.
+// 한글은 Pretendard가 받는다(globals.css에서 서브셋 분할본 셀프호스팅).
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-// 라틴 디스플레이·라벨: Caslon은 원장·증서·목록 조판의 활자다.
-// 스몰캡(all-small-caps)으로 날짜 라벨을 세우는 게 이 세계의 핵심 조판이라 텍스트용 컷을 쓴다.
-const caslon = Libre_Caslon_Text({
-  variable: "--font-caslon",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-});
-
-// 큰 활자용 컷. Text 컷을 6rem까지 키우면 헤어라인과 접합부가 물러진다 —
-// 옵티컬 사이즈가 다른 활자라 크기만 키워서 대신할 수 없다.
-const caslonDisplay = Libre_Caslon_Display({
-  variable: "--font-caslon-display",
-  subsets: ["latin"],
-  weight: "400",
-});
-
-// 한글 디스플레이: Caslon 뒤 폴백. 획 대비가 완만해 버프지 위에서 잉크처럼 앉는다.
-const gowunBatang = Gowun_Batang({
-  variable: "--font-gowun-batang",
-  subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500"],
 });
 
 const siteDescription =
@@ -70,9 +55,8 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${geistMono.variable} ${caslon.variable} ${caslonDisplay.variable} ${gowunBatang.variable} h-full antialiased`}
+      className={`${geist.variable} ${geistMono.variable} h-full antialiased`}
     >
-      {/* relative: 리본이 문서 전체 높이를 덮는 absolute 레이어라 여기가 기준면이 된다. */}
       <body className="relative min-h-full flex flex-col bg-background text-foreground">
         {/* 방향 계약 — 프로덕션 빌드에도 남아야 감사가 가능하다(JSX 주석은 빌드에서 사라진다). */}
         <div
@@ -97,8 +81,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 -->`,
           }}
         />
-        <Ribbon />
-        {/* 리본은 배경이 아니라 같은 평면에 있다 — 본문이 그 위를 지나간다. */}
         <div className="relative z-10 flex min-h-full flex-1 flex-col">
           <SmoothScroll>{children}</SmoothScroll>
         </div>

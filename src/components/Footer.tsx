@@ -2,15 +2,15 @@ import ArrowLink from "./ui/arrow-link";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line px-6 py-16 md:px-12">
+    <footer className="border-t border-line wrap py-16">
       <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="font-label text-xs text-foreground-dim ">
+          <p className="label">
             Contact
           </p>
           <div className="mt-4 flex flex-col gap-4">
             <div>
-              <p className="font-label text-[10px] text-foreground-dim ">
+              <p className="label">
                 Email
               </p>
               <ArrowLink
@@ -21,20 +21,20 @@ export default function Footer() {
               </ArrowLink>
             </div>
             <div>
-              <p className="font-label text-[10px] text-foreground-dim ">
+              <p className="label">
                 GitHub
               </p>
               <ArrowLink
                 href="https://github.com/Gobro-s"
                 external
-                className="font-label mt-1 text-sm text-foreground"
+                className="label mt-1 text-sm text-foreground"
               >
                 github.com/Gobro-s
               </ArrowLink>
             </div>
           </div>
         </div>
-        <p className="font-label text-xs text-foreground-dim">
+        <p className="label">
           © {new Date().getFullYear()} Ko Sehoon — Built with Next.js
         </p>
       </div>

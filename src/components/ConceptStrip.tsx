@@ -2,8 +2,8 @@ import { cycle } from "@/data/projects";
 
 export default function ConceptStrip() {
   return (
-    <section className="border-b border-line px-6 py-16 md:px-12 md:py-20">
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-label text-[11px] text-foreground-dim  sm:text-xs">
+    <section className="border-b border-line wrap py-20 md:py-24">
+      <div className="label flex flex-wrap items-center gap-x-3 gap-y-2">
         {cycle.map((phase, i) => (
           <span key={phase} className="flex items-center gap-3">
             {i > 0 && <span aria-hidden>→</span>}

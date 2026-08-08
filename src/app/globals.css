@@ -6,18 +6,18 @@
 
 :root {
   --font-pretendard: "Pretendard";
-  /* 소장 이력 리본(provenance ribbon) 세계.
-     바탕은 아카이브 버프지, 글자는 문서 잉크, 커스터디 라인은 적색 실크 리본 하나.
-     결손·추정 구간은 미직(未織) 회색 실 — 장식이 아니라 "확정이 아님"을 뜻하는 문법이다.
-     대비 실측(vs --background): foreground 12.2:1 · foreground-dim 4.82:1 · accent 5.66:1 (전부 AA 통과).
-     --thread는 2.39:1이라 텍스트에 절대 쓰지 않는다 — 선·실 등 비텍스트 전용. */
-  --background: #ede7d9;
-  --background-elevated: #e3dccb;
-  --foreground: #2a2621;
-  --foreground-dim: #6b6459;
-  --accent: #b01b2e;
-  --thread: #9a968c;
-  --line: rgba(42, 38, 33, 0.16);
+
+  /* 따뜻한 중성 한 계열로만 간다. 회색을 웜/쿨 섞으면 화면이 탁해진다.
+     대비 실측(vs --background): ink 16.1:1 · ink-2 7.7:1 · ink-3 5.2:1 · accent 5.1:1 — 전부 AA 통과.
+     액센트는 하나뿐이다. 상태 표시(운영 중)도 초록을 새로 들이지 않고 이 색을 쓴다. */
+  --background: #f7f6f3;
+  --background-elevated: #efeee9;
+  --foreground: #17181c;
+  --foreground-dim: #4a4c54;
+  --foreground-mute: #63656e;
+  --accent: #b4412a;
+  --accent-soft: #f2e5e0;
+  --line: #dedcd5;
 }
 
 @theme inline {
@@ -25,42 +25,15 @@
   --color-background-elevated: var(--background-elevated);
   --color-foreground: var(--foreground);
   --color-foreground-dim: var(--foreground-dim);
+  --color-foreground-mute: var(--foreground-mute);
   --color-accent: var(--accent);
-  --color-thread: var(--thread);
+  --color-accent-soft: var(--accent-soft);
   --color-line: var(--line);
-  --font-display: var(--font-caslon), var(--font-gowun-batang), serif;
-  --font-display-lg: var(--font-caslon-display), var(--font-gowun-batang), serif;
-  --font-sans: var(--font-pretendard), sans-serif;
-  /* 원장(ledger) 조판이라 날짜·라벨은 모노가 아니라 자간을 연 스몰캡 세리프로 간다. */
-  --font-label: var(--font-caslon), var(--font-gowun-batang), serif;
-  --font-mono: var(--font-geist-mono), var(--font-pretendard), monospace;
-}
-
-/* 날짜·구간 라벨: 아카이브 원장의 스몰캡. 리본의 접힘마다 이 조판이 붙는다. */
-.font-label {
-  font-family: var(--font-label);
-  font-variant-caps: all-small-caps;
-  letter-spacing: 0.14em;
-  font-feature-settings: "smcp" 1, "c2sc" 1;
-}
-
-/* 커스터디 문법 — 확정은 실선, 추정은 헤어라인.
-   확정: 지금 현장에서 돌아가 직접 확인이 되는 것.
-   추정: 종료돼 저장소·산출물로만 남은 것.
-   3단(미해결)은 뺐다 — 콘텐츠에 해당하는 항목이 없는데 CSS만 두면 아무것도 구분 못 하는
-   문법이 되고, 진행 중인 일을 채워 넣는 건 사용자가 보류한 사안이다. */
-/* 반드시 border-left-color만 건드린다. border-color(4면)로 쓰면 이 클래스가
-   @layer 밖이라 Tailwind의 border-line 유틸리티를 이겨서, 원장 괘선까지 전부 붉어진다. */
-.thread-known {
-  border-left-color: var(--accent);
-  border-left-width: 2px;
-  border-left-style: solid;
-}
-
-.thread-inferred {
-  border-left-color: var(--foreground-dim);
-  border-left-width: 1px;
-  border-left-style: solid;
+  /* 라틴은 Geist, 한글은 Pretendard. 세리프를 걷어냈다 — 세리프 디스플레이는
+     "개발자"가 아니라 "아카이브·출판"으로 읽힌다. */
+  --font-display: var(--font-geist), var(--font-pretendard), sans-serif;
+  --font-sans: var(--font-pretendard), var(--font-geist), sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 * {
@@ -69,7 +42,7 @@
 
 html {
   background: var(--background);
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
   /* Chrome scroll anchoring이 Lenis 스크롤 중 위치를 보정하면
      휠 스크롤이 특정 지점에서 멈춘 것처럼 되감긴다 — 앵커링을 끈다. */
   overflow-anchor: none;
@@ -79,20 +52,38 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  /* 리본이 걸리는 제본 여백. 리본은 여기 매여 있다가 날짜 항목마다 접혀
-     본문 칼럼으로 건너간다 — 여백에 갇힌 선이 아니다. */
-  padding-left: 3.5rem;
-  /* 한글 조판: 단어 중간에서 줄이 끊기지 않게 하고(keep-all),
-     넘칠 때만 안전하게 꺾는다. 한글은 살짝 좁힌 자간이 정석. */
+  /* 한글 조판: 단어 중간에서 줄이 끊기지 않게 하고(keep-all), 넘칠 때만 안전하게 꺾는다. */
   word-break: keep-all;
   overflow-wrap: break-word;
-  letter-spacing: -0.01em;
-  line-height: 1.65;
+  font-size: 17px;
+  line-height: 1.7;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 종이 결. 완전한 플랫은 무균실처럼 보이고, 과하면 무늬가 된다 —
+   1440에서 띠로 읽히지 않는 간격과 세기로 맞춘 값이다. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.28;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.34'/%3E%3C/svg%3E");
+}
+
+/* 콘텐츠 폭. 없으면 와이드 모니터에서 한 줄이 120자까지 늘어난다. */
+.wrap {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
 }
 
 @media (min-width: 768px) {
-  body {
-    padding-left: 6.5rem;
+  .wrap {
+    padding-inline: 3rem;
   }
 }
 
@@ -110,71 +101,46 @@ button:focus-visible,
 
 .font-display {
   font-family: var(--font-display);
-  font-optical-sizing: auto;
-}
-
-/* 디스플레이 타입 기본 자간: 큰 글자는 더 좁혀야 단단해 보인다.
-   base 레이어라 tracking-* 유틸리티가 있으면 그쪽이 우선한다. */
-@layer base {
-  .font-display {
-    letter-spacing: -0.02em;
-  }
-}
-
-/* 큰 활자는 활자 자체를 바꾼다. 3rem 위로는 디스플레이 컷으로 넘긴다. */
-.font-display-lg {
-  font-family: var(--font-display-lg);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
 }
 
 .font-mono {
   font-family: var(--font-mono);
 }
 
-/* 버프지. 섹션 장식이 아니라 페이지의 바닥면이라 body에 깐다.
-   두 겹인 이유: 잔결(등방성 고주파)만 깔면 종이가 아니라 노이즈로 읽히고,
-   길게 누운 발(이방성 저주파)이 있어야 손으로 뜬 종이의 발자국이 생긴다.
-   0.05로는 어떤 캡처에도 안 나왔다 — 재질은 보여야 재질이다. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  mix-blend-mode: multiply;
-  /* 0.5 + baseFrequency 0.03은 1440에서 종이가 아니라 가로 띠로 읽혔다(빈 영역일수록 더 크게).
-     390에서는 맞았으므로 발 간격을 좁히고 전체를 낮춘다 — 재질은 보이되 무늬가 되면 안 된다. */
-  opacity: 0.34;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.14 0.62' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.2'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
+/* 라벨. 스몰캡을 폐기한 자리다 —
+   all-small-caps는 대문자 높이가 em의 약 72%라 11px 지정이 실제로는 7.9px로 그려졌고,
+   실측에서 텍스트 135개 중 52개가 실효 14px 미만이었다. 라벨은 13px 아래로 내려가지 않는다. */
+.label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--foreground-mute);
 }
 
-/* 스탬프 잉크. 확정된 것에만 찍힌다.
-   잉크는 절대 고르게 앉지 않으므로 난류 마스크로 가장자리를 갉아낸다 —
-   테두리가 매끈하면 도장이 아니라 배지가 된다. */
-/* 마스크는 테두리에만 건다. 글자까지 갉으면, 이 페이지에서 심사자가 가장 읽어야 할
-   한 줄("지금 운영 중")이 가장 안 읽히는 글자가 된다 — 잉크 효과가 주장을 이겨서는 안 된다. */
-.stamp {
-  position: relative;
-  display: inline-block;
-  padding: 0.25rem 0.7rem;
-  color: var(--accent);
+/* 운영 중 표시. 액센트 하나로 유지하려고 상태색을 따로 들이지 않는다. */
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8125rem;
   font-weight: 700;
-  transform: rotate(-3.5deg);
+  letter-spacing: 0.02em;
+  color: var(--accent);
 }
 
-.stamp::before {
+.live::before {
   content: "";
-  position: absolute;
-  inset: 0;
-  border: 2px solid var(--accent);
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='60'%3E%3Cfilter id='i'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.2' numOctaves='4' seed='3'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 -1.1 1.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23i)'/%3E%3C/svg%3E");
-  mask-size: 140px 60px;
-  mask-mode: alpha;
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
-/* 프로젝트 카드 hover 시 언더라인 리빌 - Dennis Snellenberg 스타일 마이크로 인터랙션 */
+/* 밑줄이 좌→우로 자라는 링크. 커서를 따라오는 느낌이 나야 죽은 텍스트로 안 읽힌다. */
 .link-underline {
   position: relative;
   display: inline-block;
@@ -198,6 +164,15 @@ body::before {
   transform-origin: left;
 }
 
+/* 그림자는 배경 색조를 띤다. 순수 검정 그림자는 종이 위에서 때처럼 보인다. */
+.plate {
+  box-shadow:
+    0 1px 2px rgba(36, 30, 24, 0.06),
+    0 18px 36px -22px rgba(36, 30, 24, 0.45);
+  transition: box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -207,8 +182,8 @@ body::before {
   scrollbar-width: none;
 }
 
-/* Hero 진입 리빌 — Framer Motion 대신 CSS 애니메이션을 써서
-   마운트 시 항상 재생되도록 보장한다 (JS 애니메이션 엔진의 rAF 경합에 영향받지 않음). */
+/* 진입 리빌 — CSS 애니메이션이라 마운트 시 항상 재생을 보장한다
+   (JS 애니메이션 엔진의 rAF 경합에 영향받지 않음). */
 @keyframes reveal-up {
   from {
     transform: translateY(115%);
@@ -230,16 +205,12 @@ body::before {
 }
 
 .animate-reveal-up {
-  animation: reveal-up 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: reveal-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-fade-up {
-  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fade-up 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-
-/* 무한 루프 4종(reveal-x·fade-line·blink-caret·float-y)은 CodeMotif와 함께 삭제했다.
-   이 페이지의 authored moment는 리본이 풀리는 것 하나다 — 그 밑에서 상시로 도는
-   앰비언트 모션은 서명이 아니라 소음이다. */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -250,4 +221,16 @@ body::before {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* 한 줄이 100자를 넘으면 눈이 다음 줄 첫 글자를 못 찾는다 — 실측에서 103자까지 늘어났다.
+   max-w를 명시한 요소는 건드리지 않는다. */
+main p:not([class*="max-w"]):not([class*="w-"]) {
+  max-width: 68ch;
+}
+
+/* 글자 크기 바닥. 캡션·라벨이 12px 아래로 내려가면 읽는 사람이 포기한다. */
+main :is(p, span, li, dt, dd, figcaption),
+footer :is(p, span, li) {
+  font-size: max(1em, 13px);
 }

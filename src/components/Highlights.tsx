@@ -62,7 +62,7 @@ export default function Highlights({
                     sizes="(min-width: 640px) 224px, 45vw"
                     className="w-full object-cover object-top"
                   />
-                  <figcaption className="px-2 py-1.5 text-[11px] leading-snug text-foreground-dim">
+                  <figcaption className="px-2 py-1.5 text-[13px] leading-snug text-foreground-dim">
                     {img.caption}
                   </figcaption>
                 </figure>
@@ -77,7 +77,7 @@ export default function Highlights({
           type="button"
 
           onClick={() => setShown((n) => n + STEP)}
-          className="font-label mt-6 w-full rounded-full border border-line py-3 text-xs text-foreground-dim  transition-colors hover:border-accent hover:text-accent"
+          className="label mt-6 w-full rounded-full border border-line py-3 text-[13px] text-foreground-dim  transition-colors hover:border-accent hover:text-accent"
         >
           + {remaining}개 더 보기
         </button>

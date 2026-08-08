@@ -5,7 +5,7 @@ import { profile } from "@/data/projects";
 
 export default function SkillsSection() {
   return (
-    <section className="border-b border-line px-6 py-16 md:px-12 md:py-24" id="about">
+    <section className="border-b border-line wrap py-20 md:py-28" id="about">
       {/* 12칼럼 그리드에서 gap은 11번 들어간다 — gap-16(64px)이면 간격만 704px이라
           768px(콘텐츠 폭 672px)에서는 트랙이 전부 0px로 붕괴하고 내용이 삐져나온다.
           여유가 생기는 lg부터 넓은 간격을 준다. */}
@@ -38,7 +38,7 @@ export default function SkillsSection() {
           </div>
 
           <div className="mt-8">
-            <p className="font-label text-[11px] text-foreground-dim ">
+            <p className="label">
               Awards
             </p>
             <ul className="mt-2 space-y-1.5 text-sm leading-snug text-foreground-dim">
@@ -52,7 +52,7 @@ export default function SkillsSection() {
           </div>
 
           <div className="mt-6">
-            <p className="font-label text-[11px] text-foreground-dim ">
+            <p className="label">
               Certifications
             </p>
             <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1.5 text-sm leading-snug text-foreground-dim">
@@ -69,7 +69,7 @@ export default function SkillsSection() {
         {/* min-w-0: grid 자식의 기본 min-width는 auto라 안쪽 내용이 트랙보다 넓어지면
             트랙을 밀어낸다 — 768px에서 스킬 바가 4px 삐져나오던 원인. */}
         <div className="min-w-0 md:col-span-7">
-          <p className="font-label text-[11px] text-foreground-dim ">
+          <p className="label">
             Stack — 어디에 썼는지
           </p>
           <ul className="mt-4 min-w-0">
@@ -83,7 +83,7 @@ export default function SkillsSection() {
                 className="flex min-w-0 flex-col gap-x-6 gap-y-1 border-t border-line py-3 sm:flex-row sm:items-baseline sm:justify-between"
               >
                 <span className="font-display leading-snug font-medium">{s.name}</span>
-                <span className="text-xs leading-snug text-foreground-dim sm:text-right">
+                <span className="text-[13px] leading-snug text-foreground-dim sm:text-right">
                   {s.usedIn.join(" · ")}
                 </span>
               </motion.li>
@@ -91,14 +91,14 @@ export default function SkillsSection() {
           </ul>
 
           <div className="mt-10">
-            <p className="font-label text-[11px] text-foreground-dim ">
+            <p className="label">
               AI — 매일 쓰는 도구
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {profile.aiTools.map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-accent/40 px-3 py-1 text-xs leading-snug text-accent"
+                  className="rounded-full border border-accent/40 px-3 py-1 text-[13px] leading-snug text-accent"
                 >
                   {t}
                 </span>
@@ -107,14 +107,14 @@ export default function SkillsSection() {
           </div>
 
           <div className="mt-8">
-            <p className="font-label text-[11px] text-foreground-dim ">
+            <p className="label">
               Tools
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {profile.tools.map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-line px-3 py-1 text-xs leading-snug text-foreground-dim"
+                  className="rounded-full border border-line px-3 py-1 text-[13px] leading-snug text-foreground-dim"
                 >
                   {t}
                 </span>

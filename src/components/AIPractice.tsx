@@ -6,7 +6,7 @@ import { aiPractice } from "@/data/projects";
 
 export default function AIPractice() {
   return (
-    <section className="border-b border-line px-6 py-16 md:px-12 md:py-24" id="ai">
+    <section className="border-b border-line wrap py-20 md:py-28" id="ai">
       {/* SkillsSection과 같은 이유로 md에서는 간격을 좁힌다 (12칼럼 × gap-16 = 704px). */}
       <div className="grid gap-8 md:grid-cols-12 lg:gap-16">
         <div className="md:col-span-5">
@@ -14,25 +14,29 @@ export default function AIPractice() {
             {aiPractice.heading}
           </h2>
 
-          <motion.blockquote
+          {/* blockquote가 아니라 원칙 목록이다. 인용 서식은 화자가 따로 있다는 뜻인데,
+              이 문장들은 본인이 본인 방식을 말하는 1인칭이다. */}
+          <motion.ul
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-10 border-l-2 border-accent pl-5"
+            className="mt-10"
           >
-            {aiPractice.assessment.lines.map((line) => (
-              <p key={line} className="mt-4 leading-relaxed text-pretty text-foreground-dim first:mt-0">
+            {aiPractice.principles.map((line) => (
+              <li
+                key={line}
+                className="border-l-2 border-accent py-2 pl-5 text-lg leading-snug font-semibold text-pretty"
+              >
                 {line}
-              </p>
+              </li>
             ))}
-            <p className="mt-4 leading-relaxed text-foreground-dim">
-              {aiPractice.assessment.boundary}
-            </p>
-            <footer className="font-label mt-6 text-xs text-foreground-dim ">
-              — {aiPractice.assessment.by}
-            </footer>
-          </motion.blockquote>
+          </motion.ul>
+
+          {/* 스스로 범위를 긋는 문장. 원칙과 같은 무게로 두면 방어처럼 읽히므로 한 단 낮춘다. */}
+          <p className="mt-7 max-w-[46ch] leading-relaxed text-pretty text-foreground-dim">
+            {aiPractice.boundary}
+          </p>
         </div>
 
         <div className="md:col-span-7">
@@ -63,7 +67,7 @@ export default function AIPractice() {
                     sizes="(min-width: 640px) 576px, calc(100vw - 3rem)"
                     className="w-full object-cover object-top"
                   />
-                  <figcaption className="px-2 py-1.5 text-[11px] leading-snug text-foreground-dim">
+                  <figcaption className="px-2 py-1.5 text-[13px] leading-snug text-foreground-dim">
                     {e.image.caption}
                   </figcaption>
                 </figure>
