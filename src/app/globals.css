@@ -6,15 +6,18 @@
 
 :root {
   --font-pretendard: "Pretendard";
-  /* 크림+오렌지는 Claude(Anthropic)의 브랜드 컬러와 겹친다 — 이 포트폴리오는
-     로봇·AI 과학관에서 시스템을 설계·운영하는 사람의 톤: 차갑고 정밀한 그레이 베이스에
-     RAIM(#8EA7E8)·Reservation(#C98BD8) 프로젝트 컬러를 잇는 코발트 블루 액센트. */
-  --background: #f4f5f8;
-  --background-elevated: #e7e9f0;
-  --foreground: #141821;
-  --foreground-dim: #5b6472;
-  --accent: #3452d6;
-  --line: rgba(20, 24, 33, 0.12);
+  /* 소장 이력 리본(provenance ribbon) 세계.
+     바탕은 아카이브 버프지, 글자는 문서 잉크, 커스터디 라인은 적색 실크 리본 하나.
+     결손·추정 구간은 미직(未織) 회색 실 — 장식이 아니라 "확정이 아님"을 뜻하는 문법이다.
+     대비 실측(vs --background): foreground 12.2:1 · foreground-dim 4.82:1 · accent 5.66:1 (전부 AA 통과).
+     --thread는 2.39:1이라 텍스트에 절대 쓰지 않는다 — 선·실 등 비텍스트 전용. */
+  --background: #ede7d9;
+  --background-elevated: #e3dccb;
+  --foreground: #2a2621;
+  --foreground-dim: #6b6459;
+  --accent: #b01b2e;
+  --thread: #9a968c;
+  --line: rgba(42, 38, 33, 0.16);
 }
 
 @theme inline {
@@ -23,10 +26,40 @@
   --color-foreground: var(--foreground);
   --color-foreground-dim: var(--foreground-dim);
   --color-accent: var(--accent);
+  --color-thread: var(--thread);
   --color-line: var(--line);
-  --font-display: var(--font-fraunces), var(--font-noto-serif-kr), serif;
+  --font-display: var(--font-caslon), var(--font-gowun-batang), serif;
   --font-sans: var(--font-pretendard), sans-serif;
+  /* 원장(ledger) 조판이라 날짜·라벨은 모노가 아니라 자간을 연 스몰캡 세리프로 간다. */
+  --font-label: var(--font-caslon), var(--font-gowun-batang), serif;
   --font-mono: var(--font-geist-mono), var(--font-pretendard), monospace;
+}
+
+/* 날짜·구간 라벨: 아카이브 원장의 스몰캡. 리본의 접힘마다 이 조판이 붙는다. */
+.font-label {
+  font-family: var(--font-label);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.14em;
+  font-feature-settings: "smcp" 1, "c2sc" 1;
+}
+
+/* 커스터디 문법 — 확정은 실선, 추정은 헤어라인, 미해결은 미직 회색 실. */
+.thread-known {
+  border-color: var(--accent);
+  border-left-width: 2px;
+  border-left-style: solid;
+}
+
+.thread-inferred {
+  border-color: var(--foreground-dim);
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+
+.thread-open {
+  border-color: var(--thread);
+  border-left-width: 1px;
+  border-left-style: dashed;
 }
 
 * {
@@ -46,12 +79,21 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   cursor: none;
+  /* 리본이 지나는 좌측 여백. 커스터디 라인은 조판된 영역 바깥을 흐르고,
+     본문·괘선은 절대 그 위로 넘어오지 않는다 — 원장의 제본 여백과 같은 역할. */
+  padding-left: 3.5rem;
   /* 한글 조판: 단어 중간에서 줄이 끊기지 않게 하고(keep-all),
      넘칠 때만 안전하게 꺾는다. 한글은 살짝 좁힌 자간이 정석. */
   word-break: keep-all;
   overflow-wrap: break-word;
   letter-spacing: -0.01em;
   line-height: 1.65;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-left: 6.5rem;
+  }
 }
 
 @media (pointer: coarse) {

@@ -50,21 +50,22 @@ export default async function ProjectPage({ params }: { params: Params }) {
         <Link
           href="/#projects"
           data-cursor-hover
-          className="link-underline font-mono text-xs tracking-[0.2em] text-foreground-dim uppercase"
+          className="link-underline font-label text-xs text-foreground-dim "
         >
           ← All projects
         </Link>
 
         <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <span className="font-mono text-sm text-foreground-dim">{project.no}</span>
+            <span className="font-label text-sm text-foreground-dim">{project.no}</span>
             <h1 className="font-display mt-2 text-4xl font-bold tracking-tight break-keep sm:text-6xl md:text-8xl">
               {project.name}
             </h1>
           </div>
+          {/* 테두리에만 프로젝트 색을 쓴다. 11px 글자에 파스텔을 얹으면 2.36:1까지 떨어진다. */}
           <span
-            className="font-mono w-fit rounded-full border px-4 py-1.5 text-[11px] tracking-[0.15em] uppercase"
-            style={{ borderColor: project.color, color: project.color }}
+            className="font-label w-fit rounded-full border px-4 py-1.5 text-[11px] text-foreground "
+            style={{ borderColor: project.color }}
           >
             {project.coreSkill}
           </span>
@@ -72,17 +73,17 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
         <p className="mt-6 max-w-2xl text-lg text-foreground-dim">{project.tagline}</p>
 
-        <dl className="mt-10 grid grid-cols-2 gap-6 font-mono text-xs text-foreground-dim md:grid-cols-4">
+        <dl className="mt-10 grid grid-cols-2 gap-6 text-xs text-foreground-dim md:grid-cols-4">
           <div>
-            <dt className="uppercase tracking-widest">Period</dt>
+            <dt className="font-label text-foreground-dim">Period</dt>
             <dd className="mt-1 text-foreground">{project.period}</dd>
           </div>
           <div>
-            <dt className="uppercase tracking-widest">Role</dt>
+            <dt className="font-label text-foreground-dim">Role</dt>
             <dd className="mt-1 text-foreground">{project.role}</dd>
           </div>
           <div className="col-span-2">
-            <dt className="uppercase tracking-widest">Cycle</dt>
+            <dt className="font-label text-foreground-dim">Cycle</dt>
             <dd className="mt-1 text-foreground">{project.phases.join(" → ")}</dd>
           </div>
         </dl>
@@ -91,7 +92,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
       <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
-            <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">Why</p>
+            <p className="font-label text-xs text-foreground-dim ">Why</p>
           </div>
           <div className="font-display text-2xl leading-snug font-medium md:col-span-8 md:text-3xl">
             {project.why.map((line) => (
@@ -106,7 +107,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
       <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
-            <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
+            <p className="font-label text-xs text-foreground-dim ">
               My Role in the Architecture
             </p>
           </div>
@@ -123,19 +124,19 @@ export default async function ProjectPage({ params }: { params: Params }) {
       <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
-            <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">Stack</p>
+            <p className="font-label text-xs text-foreground-dim ">Stack</p>
           </div>
           <div className="space-y-6 md:col-span-8">
             {project.stack.map((s) => (
               <div key={s.label} className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <span className="font-mono w-32 shrink-0 text-sm text-foreground-dim">
+                <span className="w-32 shrink-0 font-label text-sm text-foreground-dim">
                   {s.label}
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {s.items.map((item) => (
                     <span
                       key={item}
-                      className="font-mono rounded-full border border-line px-3 py-1 text-xs"
+                      className="rounded-full border border-line px-3 py-1 text-xs"
                     >
                       {item}
                     </span>
@@ -148,7 +149,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
       </section>
 
       <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
-        <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
+        <p className="font-label text-xs text-foreground-dim ">
           Highlights
         </p>
         <Highlights highlights={project.highlights} color={project.color} />
@@ -157,7 +158,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
       <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
-            <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
+            <p className="font-label text-xs text-foreground-dim ">
               Friction &amp; Resolution
             </p>
           </div>
@@ -174,7 +175,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
       <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
-            <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
+            <p className="font-label text-xs text-foreground-dim ">
               Result
             </p>
           </div>
@@ -190,7 +191,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
       <section className="px-6 py-14 md:px-12 md:py-20">
         <Link href={`/projects/${next.slug}`} data-cursor-hover className="group block">
-          <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
+          <p className="font-label text-xs text-foreground-dim ">
             Next project
           </p>
           <h2 className="font-display link-underline mt-4 inline-block text-3xl font-bold break-keep transition-transform duration-500 group-hover:translate-x-3 sm:text-5xl md:text-7xl">

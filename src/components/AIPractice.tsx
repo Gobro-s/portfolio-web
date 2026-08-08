@@ -10,7 +10,7 @@ export default function AIPractice() {
       {/* SkillsSection과 같은 이유로 md에서는 간격을 좁힌다 (12칼럼 × gap-16 = 704px). */}
       <div className="grid gap-8 md:grid-cols-12 lg:gap-16">
         <div className="md:col-span-5">
-          <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
+          <p className="font-label text-xs text-foreground-dim ">
             02 / {aiPractice.label}
           </p>
           <h2 className="font-display mt-6 text-3xl leading-snug font-bold md:text-4xl">
@@ -32,7 +32,7 @@ export default function AIPractice() {
             <p className="mt-4 leading-relaxed text-foreground-dim">
               {aiPractice.assessment.boundary}
             </p>
-            <footer className="font-mono mt-6 text-xs tracking-[0.15em] text-foreground-dim uppercase">
+            <footer className="font-label mt-6 text-xs text-foreground-dim ">
               — {aiPractice.assessment.by}
             </footer>
           </motion.blockquote>
@@ -66,7 +66,7 @@ export default function AIPractice() {
                     sizes="(min-width: 640px) 576px, calc(100vw - 3rem)"
                     className="w-full object-cover object-top"
                   />
-                  <figcaption className="px-2 py-1.5 font-mono text-[10px] leading-snug text-foreground-dim">
+                  <figcaption className="px-2 py-1.5 text-[11px] leading-snug text-foreground-dim">
                     {e.image.caption}
                   </figcaption>
                 </figure>

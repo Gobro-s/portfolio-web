@@ -11,18 +11,21 @@ export default function SkillsSection() {
           여유가 생기는 lg부터 넓은 간격을 준다. */}
       <div className="grid gap-8 md:grid-cols-12 lg:gap-16">
         <div className="min-w-0 md:col-span-5">
-          <p className="font-mono text-xs tracking-[0.3em] text-foreground-dim uppercase">
+          <p className="font-label text-xs text-foreground-dim ">
             01 / Profile
           </p>
-          <h2 className="font-display mt-6 text-2xl leading-relaxed font-bold break-keep md:text-3xl md:leading-snug">
+          {/* 한 문장이 접힐 때의 줄 간격(leading-snug)과 문장 사이 간격(space-y)을 분리한다.
+              둘이 같으면 "컴포넌트 구조화로 반복 / 작업을 줄입니다"처럼 접힌 자리가
+              문장이 끝난 자리처럼 읽힌다. */}
+          <h2 className="font-display mt-6 text-2xl font-bold break-keep md:text-3xl">
             {profile.bio.map((line) => (
-              <span key={line} className="block">
+              <span key={line} className="mb-5 block leading-snug last:mb-0 md:mb-6">
                 {line}
               </span>
             ))}
           </h2>
 
-          <div className="mt-10 space-y-3 font-mono text-sm text-foreground-dim">
+          <div className="mt-10 space-y-3 text-sm text-foreground-dim">
             {profile.experience.map((e) => (
               <div
                 key={e.label}
@@ -38,10 +41,10 @@ export default function SkillsSection() {
           </div>
 
           <div className="mt-8">
-            <p className="font-mono text-[10px] tracking-[0.2em] text-foreground-dim uppercase">
+            <p className="font-label text-[11px] text-foreground-dim ">
               Awards
             </p>
-            <ul className="mt-2 space-y-1 text-sm text-foreground-dim">
+            <ul className="mt-2 space-y-1.5 text-sm leading-snug text-foreground-dim">
               {profile.awards.map((a) => (
                 <li key={a} className="flex gap-2">
                   <span className="text-accent">＋</span>
@@ -52,10 +55,10 @@ export default function SkillsSection() {
           </div>
 
           <div className="mt-6">
-            <p className="font-mono text-[10px] tracking-[0.2em] text-foreground-dim uppercase">
+            <p className="font-label text-[11px] text-foreground-dim ">
               Certifications
             </p>
-            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-foreground-dim">
+            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1.5 text-sm leading-snug text-foreground-dim">
               {profile.certifications.map((c) => (
                 <li key={c} className="flex gap-2">
                   <span className="text-accent">·</span>
@@ -69,50 +72,57 @@ export default function SkillsSection() {
         {/* min-w-0: grid 자식의 기본 min-width는 auto라 안쪽 내용이 트랙보다 넓어지면
             트랙을 밀어낸다 — 768px에서 스킬 바가 4px 삐져나오던 원인. */}
         <div className="min-w-0 md:col-span-7">
-          <div className="grid min-w-0 gap-x-8 gap-y-6 sm:grid-cols-2">
+          <p className="font-label text-[11px] text-foreground-dim ">
+            Stack — 어디에 썼는지
+          </p>
+          <ul className="mt-4 min-w-0">
             {profile.skills.map((s, i) => (
-              <motion.div
+              <motion.li
                 key={s.name}
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.04 }}
-                className="min-w-0"
+                className="flex min-w-0 flex-col gap-x-6 gap-y-1 border-t border-line py-3 sm:flex-row sm:items-baseline sm:justify-between"
               >
-                <div className="mb-2 flex items-baseline justify-between">
-                  <span className="font-display font-medium">{s.name}</span>
-                  <span className="font-mono text-xs text-foreground-dim">{s.level}/5</span>
-                </div>
-                <div className="h-[3px] w-full bg-line">
-                  <div
-                    className="h-full bg-accent"
-                    style={{ width: `${(s.level / 5) * 100}%` }}
-                  />
-                </div>
-              </motion.div>
+                <span className="font-display leading-snug font-medium">{s.name}</span>
+                <span className="text-xs leading-snug text-foreground-dim sm:text-right">
+                  {s.usedIn.join(" · ")}
+                </span>
+              </motion.li>
             ))}
+          </ul>
+
+          <div className="mt-10">
+            <p className="font-label text-[11px] text-foreground-dim ">
+              AI — 매일 쓰는 도구
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {profile.aiTools.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-accent/40 px-3 py-1 text-xs leading-snug text-accent"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-12 flex flex-wrap gap-2">
-            {profile.tools.map((t) => (
-              <span
-                key={t}
-                className="font-mono rounded-full border border-line px-3 py-1 text-xs text-foreground-dim"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            {profile.softSkills.map((s) => (
-              <span
-                key={s}
-                className="font-mono rounded-full border border-accent/40 px-3 py-1 text-xs text-accent"
-              >
-                {s}
-              </span>
-            ))}
+          <div className="mt-8">
+            <p className="font-label text-[11px] text-foreground-dim ">
+              Tools
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {profile.tools.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-line px-3 py-1 text-xs leading-snug text-foreground-dim"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -33,14 +33,15 @@ export function AnimatedNumber({
     format(parseFloat(current.toFixed(precision))),
   );
 
-  if (reduced) return <span>{format(value)}</span>;
-
+  // 감소모션이라고 다른 트리를 그리면 안 된다 — useReducedMotion은 서버에서 null,
+  // 클라이언트에서 true라 트리가 갈리는 순간 hydration mismatch가 난다.
+  // 트리는 하나로 두고, 감소모션일 때는 세지 않고 값을 즉시 꽂는다(jump).
   return (
     <motion.span
       // 세로 여백만 준다. "-10%"처럼 한 값만 쓰면 좌우에도 10%씩 안쪽으로 들어가서,
       // 그리드 맨 왼쪽 칸에 있는 숫자는 관측 영역 밖에 걸려 영영 발화하지 않는다.
       viewport={{ once: true, margin: "-10% 0px" }}
-      onViewportEnter={() => spring.set(value)}
+      onViewportEnter={() => (reduced ? spring.jump(value) : spring.set(value))}
     >
       {display}
     </motion.span>

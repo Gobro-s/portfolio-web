@@ -19,7 +19,7 @@ const stats = [
     value: profile.certifications.length,
     unit: "개",
     label: "Certifications",
-    note: "데이터·문서·언어 자격",
+    note: "데이터·문서·언어·과학해설 자격",
   },
 ];
 
@@ -28,7 +28,7 @@ export default function StatsBand() {
     <dl className="mt-12 grid grid-cols-1 gap-x-8 gap-y-8 border-t border-line pt-8 sm:grid-cols-3">
       {stats.map((s) => (
         <div key={s.label}>
-          <dt className="font-mono text-[10px] tracking-[0.2em] text-foreground-dim uppercase">
+          <dt className="font-label text-[10px] text-foreground-dim ">
             {s.label}
           </dt>
           <dd className="font-display mt-2 text-4xl font-semibold tracking-tight tabular-nums md:text-5xl">

@@ -4,7 +4,7 @@ import StatsBand from "./StatsBand";
 export default function ConceptStrip() {
   return (
     <section className="border-b border-line px-6 py-16 md:px-12 md:py-20">
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[11px] tracking-[0.18em] text-foreground-dim uppercase sm:text-xs">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-label text-[11px] text-foreground-dim  sm:text-xs">
         {cycle.map((phase, i) => (
           <span key={phase} className="flex items-center gap-3">
             {i > 0 && <span aria-hidden>→</span>}

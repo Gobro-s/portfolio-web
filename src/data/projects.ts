@@ -122,9 +122,9 @@ const projectList: Project[] = [
       "모바일 대응도 메인·영상통화 등 핵심 화면에만 적용하는 데 그쳤습니다.",
     ],
     results: [
-      "SSAFY 특화 프로젝트 베스트 멤버 선정",
-      "SSAFY 공통 프로젝트 우수 프로젝트 선정",
-      "SSAFY 최우수 UCC 선정",
+      "SSAFY 공통 프로젝트 우수상 — 서울 7반 1위",
+      "SSAFY 우수 UCC 제작",
+      "SSAFY 특화 프로젝트 베스트 멤버 선정 (VODA·HARUMAN)",
     ],
     images: [
       { src: "/images/projects/voda-call.png", caption: "영상통화 화면 — 표정 인식(TTS·STT)과 통화 알림" },
@@ -139,7 +139,7 @@ const projectList: Project[] = [
     name: "Open The Door",
     tagline: "방탈출 카페 정보 제공 및 예약 플랫폼",
     period: "2023.10 – 2023.11",
-    role: "기획 · Front-End",
+    role: "기획 · 프론트엔드 리더(2인)",
     phases: ["기획", "개발"],
     coreSkill: "FRONTEND ARCHITECTURE",
     color: "#7FD8C6",
@@ -149,7 +149,7 @@ const projectList: Project[] = [
     ],
     architecture: [
       "백엔드(Java/MySQL/MongoDB)가 테마·예약·리뷰 데이터를 API로 제공하는 구조였습니다.",
-      "React Native 클라이언트 전체 — Atomic Design 컴포넌트, Recoil 상태 관리, 목록·지도·예약 플로우 — 를 설계했습니다.",
+      "프론트엔드는 2인이었고, 제가 리더로 React Native 클라이언트 아키텍처 — Atomic Design 컴포넌트, Recoil 상태 관리, 목록·지도·예약 플로우 — 를 설계했습니다.",
       "UI/UX 디자이너와 PM이 없는 팀이라 기획-와이어프레임-기능명세서-프로토타입 단계도 함께 리드했습니다.",
       "백엔드와 같은 화면을 보며 개발해, 기획과 다르게 나오는 완성본의 가능성을 미리 막았습니다.",
     ],
@@ -192,10 +192,10 @@ const projectList: Project[] = [
       {
         title: "리스트 성능 최적화",
         body: [
-          "인기 테마 목록에 FlatList를 적용해 화면에 보이는 콘텐츠만 렌더링했습니다.",
-          "이미지 로딩 전 스켈레톤 UI로 레이아웃이 임의로 바뀌는 문제를 막았습니다.",
+          "인기 테마 목록을 .map() 전체 렌더링에서 FlatList로 리팩터링해, 화면에 보이는 셀만 렌더링하도록 가상화했습니다.",
+          "이미지 영역을 고정 크기로 미리 확보하고 스켈레톤 UI를 띄워, 로딩 전후로 레이아웃이 밀리는 문제를 막았습니다.",
           "GIF가 다수 렌더링되는 화면이라 공통 컴포넌트로 반복 작업을 줄이며 로딩 부담을 관리했습니다.",
-          "목록 API는 10개 단위 페이지네이션으로 요청해 메모리·리소스 효율도 함께 챙겼습니다.",
+          "목록 API는 10개 단위 페이지네이션으로 요청해 메모리 효율을 확보했습니다.",
         ],
         images: [
           {
@@ -278,7 +278,7 @@ const projectList: Project[] = [
       "주니어 단계에서 Atomic Design·MVVM을 제대로 적용했는지 스스로도 확신이 없었습니다.",
       "부족한 부분은 추가 학습하고, 프로토타입 단계에서 개선점을 찾아 보완했습니다.",
     ],
-    results: ["SSAFY 자율 프로젝트 우수상 수상"],
+    results: ["SSAFY 자율 프로젝트 우수상 — 서울 3반 2위"],
     images: [
       { src: "/images/projects/open-the-door-main.png", caption: "메인 화면 — 테마 검색과 내 주변 지도" },
       { src: "/images/projects/open-the-door-popular.png", caption: "인기 테마 목록 — FlatList·스켈레톤 UI 적용" },
@@ -349,7 +349,7 @@ const projectList: Project[] = [
         body: [
           "월별 페이지에서 이전 도전·성공·실패 기록과 소비 이력을 조회할 수 있게 만들었습니다.",
           "금액대별 잔액 현황은 D3 버블 차트로 시각화해 경쟁 심리를 자극하는 절약 유도 페이지를 만들었습니다.",
-          "각 버블의 사용자는 무한스크롤로 불러와 메모리를 관리했습니다.",
+          "금액대별 사용자 그룹을 한 번에 받아, D3 force 시뮬레이션으로 버블 크기와 배치를 계산했습니다.",
         ],
         images: [
           { src: "/images/projects/haruman-stats.png", caption: "월별 도전 기록과 금액대별 잔액 버블 차트" },
@@ -443,8 +443,10 @@ const projectList: Project[] = [
       },
     ],
     challenges: [
-      "회원가입 기능을 배포한 직후 가입이 안 되는 문제가 발생해 급히 롤백했습니다.",
-      "원인은 메모리 누수 — 추적해 수정한 뒤 다시 빌드해 배포했습니다.",
+      "회원가입 기능을 배포한 직후, 가입이 되지 않는 문제가 발생했습니다.",
+      "직원들이 매일 쓰는 시스템이라 원인을 찾기 전에 먼저 되돌렸습니다 — 배포에서 롤백까지 34분이었습니다.",
+      "원인은 제 실수였습니다. 서버 없이 Firebase만으로 인증·권한을 처리하는 구조를 택했는데, 인증 규칙에 대한 이해가 부족한 상태에서 손을 댄 것이 가입 경로를 막았습니다.",
+      "고쳐서 다시 올리는 것보다, 쓰는 사람이 멈춰 있는 시간을 줄이는 것이 먼저라고 판단했습니다.",
     ],
     results: ["실제 근무 현장에 배포, 운영 중"],
     images: [
@@ -525,7 +527,7 @@ const projectList: Project[] = [
       "직원 요청으로 엑셀 통계 양식도 현장에 맞게 다시 만들었습니다.",
       "SQLite 단일 파일 DB로 충분했지만, 다기관으로 확장한다면 DB·인증 구조 개선이 필요합니다.",
     ],
-    results: ["2026년 4월부터 현재(7월)까지 실제 체험관 현장에서 운영 중"],
+    results: ["2026년 4월부터 실제 체험관 현장에서 운영 중"],
     images: [
       { src: "/images/projects/reservation-checkin.png", caption: "방문객 대기 등록 — 태블릿에서 전화번호·일행 인원 등록" },
       { src: "/images/projects/reservation-dashboard.png", caption: "직원 대시보드 — 대기열 관리와 SMS 호출" },
@@ -612,27 +614,34 @@ export const profile = {
     "빠른 디지털 전환에서 소외되는 계층의 입장을 놓치지 않으려 합니다.",
     "협업 속에서 최선의 답을 찾는 걸 좋아합니다.",
   ],
+  // 자가평가 레벨(n/5)은 검증할 방법이 없는 주장이라 폐기했다.
+  // 대신 "어느 스택이 어느 프로젝트에서 실제로 돌았는지"를 싣는다 — 상세 페이지가 곧 근거다.
   skills: [
-    { name: "React", level: 4 },
-    { name: "React Native", level: 4 },
-    { name: "Vue.js", level: 3 },
-    { name: "Django", level: 3 },
-    { name: "TypeScript", level: 3 },
-    { name: "JavaScript", level: 3 },
-    { name: "Python", level: 3 },
-    { name: "SQL", level: 3 },
-    { name: "Java", level: 1 },
+    { name: "React", usedIn: ["VODA", "HARUMAN", "Robotics Room Reservation"] },
+    { name: "React Native", usedIn: ["Open The Door"] },
+    { name: "Vue 3", usedIn: ["RAIM Schedule Manager"] },
+    { name: "TypeScript", usedIn: ["VODA", "Open The Door", "HARUMAN", "RAIM Schedule Manager"] },
+    { name: "Django REST Framework", usedIn: ["Robotics Room Reservation"] },
+    { name: "Firebase (Auth·Firestore)", usedIn: ["RAIM Schedule Manager"] },
+    { name: "Tailwind CSS", usedIn: ["RAIM Schedule Manager", "Robotics Room Reservation"] },
+    { name: "D3.js · Chart.js", usedIn: ["HARUMAN"] },
   ],
   tools: ["Jira", "Notion", "Git & GitLab", "Figma", "MS Office(Word·Excel·PPT·Access)"],
-  softSkills: ["꼼꼼함", "커뮤니케이션", "책임감"],
+  // 매일 쓰는 AI 도구. 특정 프로젝트에 귀속시키지 않는다 — 도구를 쓴 사실만 적고,
+  // 어떻게 위임하는지에 대한 주장은 aiPractice 섹션이 근거와 함께 따로 다룬다.
+  aiTools: ["Claude", "Claude Code", "ChatGPT", "Codex", "Gemini", "Perplexity"],
   experience: [
     { period: "2026.04 ~ 재직중", label: "서울로봇인공지능과학관" },
     { period: "2023.01 ~ 2023.12", label: "삼성 청년 SW 아카데미(SSAFY) 9기" },
   ],
   education: "대학교 에너지자원융합공학 졸업 (2022.02)",
+  // 수여기관은 삼성 청년 SW 아카데미(SSAFY)이지 삼성전자가 아니다.
+  // "반"을 빼면 기수 전체 1위로 읽혀 과장이 되므로 반드시 붙인다.
   awards: [
-    "SSAFY 자율 프로젝트 우수상 — Open The Door",
-    "SSAFY 공통 프로젝트 우수상 — VODA",
+    "SSAFY 공통 프로젝트 우수상 — 서울 7반 1위 (VODA)",
+    "SSAFY 자율 프로젝트 우수상 — 서울 3반 2위 (Open The Door)",
+    "SSAFY 우수 UCC 제작 (VODA)",
+    "SSAFY 특화 프로젝트 베스트 멤버 선정 (VODA·HARUMAN)",
   ],
   certifications: [
     "SQLD",
@@ -642,5 +651,6 @@ export const profile = {
     "KBS 한국어능력검정 3+",
     "한국사능력검정 2급",
     "Toeic Speaking Test - AL",
+    "과학해설사 (한국과학관협회)",
   ],
 };

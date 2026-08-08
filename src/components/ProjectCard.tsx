@@ -52,8 +52,8 @@ export default function ProjectCard({
 
         <div className="flex-1">
           <div className="flex flex-wrap items-center gap-4">
-            <span className="font-mono text-sm text-foreground-dim">{project.no}</span>
-            <span className="font-mono flex w-fit items-center gap-2 rounded-full border border-line px-3 py-1 text-[11px] tracking-[0.15em] text-foreground-dim uppercase">
+            <span className="font-label text-sm text-foreground-dim">{project.no}</span>
+            <span className="font-label flex w-fit items-center gap-2 rounded-full border border-line px-3 py-1 text-[11px] text-foreground-dim ">
               <span
                 className="inline-block h-2 w-2 rounded-full"
                 style={{ background: project.color }}
@@ -65,7 +65,7 @@ export default function ProjectCard({
             {project.name}
           </h3>
           <p className="mt-4 max-w-lg text-foreground-dim">{project.tagline}</p>
-          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-foreground-dim">
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-label text-xs text-foreground-dim">
             <span>{project.period}</span>
             <span aria-hidden>·</span>
             <span>{project.phases.join(" → ")}</span>
