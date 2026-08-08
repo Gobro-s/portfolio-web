@@ -8,18 +8,25 @@ import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "fr
  *
  * 여백에 그은 선이 아니라 폭을 가진 천이다. 문서 전체 높이를 타고 내려오면서
  * `[data-fold]`가 붙은 날짜 항목마다 접혀 본문 칼럼 쪽으로 건너간다.
- * 접힘의 굵기가 곧 문법이다 — 확정은 온폭, 추정은 반폭, 미해결은 실 한 올.
+ * 접힘의 굵기가 곧 문법이다 — 확정은 제비꼬리로 마감된 온폭의 천, 추정은 잘린 실 한 올.
  *
  * 스크롤이 리본을 풀어낸다. 아직 안 지난 구간은 미직(未織)의 회색 윤곽으로만 남고,
  * 지나온 구간에만 붉은 실크가 짜인다.
  */
 
-type FoldState = "known" | "inferred" | "open";
+type FoldState = "known" | "inferred";
 
 type Fold = { y: number; reach: number; state: FoldState };
 
-/** 실 굵기 = 문법. 이 숫자를 바꾸면 확정/추정/미해결의 시각적 차이가 바뀐다. */
-const GAUGE: Record<FoldState, number> = { known: 1, inferred: 0.5, open: 0.22 };
+/**
+ * 실 굵기 = 문법. 온폭과 반폭(1 : 0.5)은 1440에서 둘 다 그냥 "붉은 탭"으로 읽혔다 —
+ * 굵기 차이만으로는 구분이 안 선다. 추정은 천이 아니라 실 한 올로 내리고,
+ * 뻗는 거리도 줄여 형태 자체가 다르게 보이도록 한다.
+ */
+const GAUGE: Record<FoldState, number> = { known: 1, inferred: 0.16 };
+
+/** 확정만 제비꼬리로 마감한다. 추정은 잘린 실이라 끝을 맺지 않는다. */
+const REACH_SCALE: Record<FoldState, number> = { known: 1, inferred: 0.55 };
 
 /** 리본이 걸린 자리(제본 여백)와 폭. body의 padding-left와 짝을 이룬다. */
 const LAYOUT = {
@@ -50,9 +57,13 @@ function spinePath(x: number, band: number, sway: number, height: number) {
  * 접힘 하나. 몸통에서 천이 꺾여 나와 본문 쪽으로 뻗고, 끝은 리본 특유의 제비꼬리로 잘린다.
  * `reach`는 이 접힘이 가로로 건너갈 거리다.
  */
-function foldPath(x: number, band: number, y: number, reach: number, gauge: number) {
-  const w = (band * gauge) / 2;
-  const tip = x + reach;
+function foldPath(x: number, band: number, y: number, reach: number, state: FoldState) {
+  const w = (band * GAUGE[state]) / 2;
+  const tip = x + reach * REACH_SCALE[state];
+  if (state !== "known") {
+    // 추정 — 잘린 실. 제비꼬리도 없고 본문까지 닿지도 않는다.
+    return `M${x},${y - w} L${tip},${y - w} L${tip},${y + w} L${x},${y + w} Z`;
+  }
   const notch = Math.min(10, w * 1.4); // 제비꼬리 깊이
   return [
     `M${x},${y - w}`,
@@ -144,7 +155,7 @@ export default function Ribbon() {
           <clipPath id="ribbon-shape">
             <path d={body} />
             {folds.map((f, i) => (
-              <path key={i} d={foldPath(spine, band, f.y, f.reach, GAUGE[f.state])} />
+              <path key={i} d={foldPath(spine, band, f.y, f.reach, f.state)} />
             ))}
           </clipPath>
 
@@ -167,7 +178,7 @@ export default function Ribbon() {
         <g stroke="var(--thread)" strokeWidth="1" strokeDasharray="4 6" fill="none" opacity="0.7">
           <path d={body} />
           {folds.map((f, i) => (
-            <path key={i} d={foldPath(spine, band, f.y, f.reach, GAUGE[f.state])} />
+            <path key={i} d={foldPath(spine, band, f.y, f.reach, f.state)} />
           ))}
         </g>
 

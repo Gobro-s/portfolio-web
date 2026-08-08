@@ -75,8 +75,11 @@ export default function ProjectLedger() {
                 </div>
 
                 {/* 표본 — 대지에 끼운 도판. 주장 옆에 물건을 둔다. */}
+                {/* 표본 틀은 4:3으로 고정한다. 세로로 긴 폰 캡처를 원본 비율로 두면
+                    그 항목만 키가 커지고 본문 아래로 200px 가까운 빈 띠가 남는다 —
+                    행 높이를 이미지가 정하게 두면 안 된다. */}
                 <figure className="w-full shrink-0 md:w-72">
-                  <div className="relative shadow-[0_8px_18px_-10px_rgba(42,38,33,0.6)]">
+                  <div className="relative aspect-4/3 overflow-hidden shadow-[0_8px_18px_-10px_rgba(42,38,33,0.6)]">
                     <Image
                       src={p.images[0].src}
                       alt={p.images[0].caption}
@@ -86,7 +89,7 @@ export default function ProjectLedger() {
                       // 5장이 한 화면에 다 안 들어와도 eager로 받는다 — Lenis 스무스 스크롤이
                       // IntersectionObserver 판정을 흔들어 lazy면 계단식으로 뜨거나 안 뜬다.
                       loading="eager"
-                      className="block w-full"
+                      className="h-full w-full object-cover object-top"
                     />
                     <CornerTabs />
                   </div>
