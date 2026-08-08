@@ -15,10 +15,8 @@ const STEP = 4;
  */
 export default function Highlights({
   highlights,
-  color,
 }: {
   highlights: Project["highlights"];
-  color: string;
 }) {
   const [shown, setShown] = useState(INITIAL);
   const remaining = highlights.length - shown;
@@ -36,12 +34,9 @@ export default function Highlights({
           className="flex flex-col gap-6 border-t border-line py-8 sm:flex-row"
         >
           <div className="flex-1">
-            {/* 프로젝트 색을 제목 텍스트에 쓰면 파스텔이라 1.45~2.36:1까지 떨어진다.
-                접근성을 사례로 파는 사이트라 색은 왼쪽 규칙선으로 옮기고 글자는 foreground로 둔다. */}
-            <h3
-              className="font-display border-l-[3px] pl-3 text-xl leading-snug font-bold break-keep md:text-2xl"
-              style={{ borderColor: color }}
-            >
+            {/* 규칙선은 커스터디 색(accent) 하나로 간다. 프로젝트마다 다른 파스텔을 쓰면
+                버프지 위에서 1.45~2.36:1까지 떨어지고, 세계관의 색 문법도 깨진다. */}
+            <h3 className="font-display border-l-[3px] border-accent pl-3 text-xl leading-snug font-bold break-keep md:text-2xl">
               {h.title}
             </h3>
             <div className="mt-3 space-y-1.5 text-foreground-dim">
@@ -80,7 +75,7 @@ export default function Highlights({
       {remaining > 0 && (
         <button
           type="button"
-          data-cursor-hover
+
           onClick={() => setShown((n) => n + STEP)}
           className="font-label mt-6 w-full rounded-full border border-line py-3 text-xs text-foreground-dim  transition-colors hover:border-accent hover:text-accent"
         >

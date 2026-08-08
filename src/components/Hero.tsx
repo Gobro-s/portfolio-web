@@ -37,7 +37,8 @@ function Fold({
   children: React.ReactNode;
 }) {
   return (
-    <div className="thread-known pl-4">
+    // data-fold: 리본이 이 좌표에서 접혀 본문 칼럼으로 건너온다. 날짜는 그 접힘 위에 얹힌다.
+    <div data-fold data-fold-state="known" className="thread-known pl-4 md:pl-6">
       <p className="font-label text-xs text-accent">{date}</p>
       <div className="mt-1">{children}</div>
     </div>
@@ -49,7 +50,7 @@ export default function Hero() {
   const live = projects.filter((p) => p.inProduction);
 
   return (
-    <section className="grain relative min-h-svh border-b border-line px-6 pt-24 pb-8 md:px-12 md:pt-32 md:pb-10">
+    <section className="relative min-h-svh border-b border-line px-6 pt-24 pb-8 md:px-12 md:pt-32 md:pb-10">
       <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="flex flex-col justify-between lg:col-span-7 lg:min-h-[calc(100svh-14rem)]">
       <div className="relative z-10">
@@ -59,7 +60,7 @@ export default function Hero() {
         >
           고세훈 · Ko Sehoon
         </p>
-        <h1 className="font-display mt-10 text-[clamp(2.1rem,6.5vw,4.8rem)] leading-[1.15] font-bold tracking-[-0.03em] break-keep md:mt-14">
+        <h1 className="font-display font-display-lg mt-10 text-[clamp(2.1rem,6.5vw,4.8rem)] leading-[1.15] font-bold tracking-[-0.03em] break-keep md:mt-14">
           <RevealLine delay={0.15}>
             <span className="text-accent">요구</span>를 읽고,
           </RevealLine>
@@ -93,7 +94,6 @@ export default function Hero() {
               <li key={p.slug}>
                 <Link
                   href={`/projects/${p.slug}`}
-                  data-cursor-hover
                   className="link-underline font-display text-lg leading-snug font-bold break-keep md:text-xl"
                 >
                   {p.name}
@@ -108,17 +108,18 @@ export default function Hero() {
           </ul>
         </Fold>
 
-        <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3 border-t border-line pt-5">
-          <p className="font-label text-xs text-foreground-dim">
-            재직 · 서울로봇인공지능과학관
-          </p>
+        {/* 주 액션. 10px 스몰캡으로 괘선 밑에 두면 각주로 읽힌다 —
+            심사자가 찾아 헤매지 않을 크기로, 접힘 바로 다음 자리에 둔다. */}
+        <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3 border-t border-line pt-6">
           <a
             href="#projects"
-            data-cursor-hover
-            className="link-underline font-label ml-auto text-xs text-foreground"
+            className="link-underline font-display text-xl font-bold break-keep md:text-2xl"
           >
             이력 전체 보기 ↓
           </a>
+          <p className="font-label ml-auto text-xs text-foreground-dim">
+            재직 · 서울로봇인공지능과학관
+          </p>
         </div>
           </div>
         </div>

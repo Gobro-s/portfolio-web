@@ -1,13 +1,12 @@
 export type Project = {
   slug: string;
-  no: string;
+  no: string; // 정렬 키. 화면에는 절대 찍지 않는다 — 섹션 번호는 금지 요소다.
   name: string;
   tagline: string;
   period: string;
   role: string;
   phases: Phase[]; // 이 프로젝트에서 내가 커버한 사이클 단계
   coreSkill: string; // 이 프로젝트에서 돋보이는 핵심 역량 (한 줄 배지)
-  color: string; // 프로젝트 시그니처 컬러 (hex)
   why: string[]; // 짧고 균형 잡힌 줄 단위 — 문장마다 끊어서 강제 줄바꿈
   architecture: string[]; // 전체 시스템 구조 중 내가 맡은 부분, 문장 단위
   stack: { label: string; items: string[] }[];
@@ -36,7 +35,6 @@ const projectList: Project[] = [
     role: "기획 · 1인 Front-End",
     phases: ["기획", "개발"],
     coreSkill: "ACCESSIBILITY-FIRST UX",
-    color: "#F2C879",
     why: [
       "Web-RTC 기술을 활용한 서비스라는 주제에서 출발했습니다.",
       "빠른 디지털 전환 속에서도 소외되는 계층은 분명히 있다고 생각했습니다.",
@@ -142,7 +140,6 @@ const projectList: Project[] = [
     role: "기획 · 프론트엔드 리더(2인)",
     phases: ["기획", "개발"],
     coreSkill: "FRONTEND ARCHITECTURE",
-    color: "#7FD8C6",
     why: [
       "팀원 모두가 방탈출을 즐겼지만, 정보 제공과 예약이 한 번에 되는 서비스는 없었습니다.",
       "그래서 직접 만들었습니다.",
@@ -294,7 +291,6 @@ const projectList: Project[] = [
     role: "기획 · Front-End",
     phases: ["기획", "개발"],
     coreSkill: "PRODUCT × DATA VIZ",
-    color: "#E38B6C",
     why: [
       "핀테크 도메인에서, 타국 대비 부족한 경제 교육 문제를 풀고 싶었습니다.",
       "'만원의 행복'을 모티브로, 가계부 형태의 소비 습관 서비스를 기획했습니다.",
@@ -390,7 +386,6 @@ const projectList: Project[] = [
     role: "기획 · 1인 풀스택 (Claude 기반 바이브 코딩)",
     phases: ["발견", "기획", "개발", "적용·운영"],
     coreSkill: "AI-ASSISTED FULLSTACK",
-    color: "#8EA7E8",
     why: [
       "엑셀과 수기로 흩어져 있던 직원 일정·교육 신청 관리가 불편해 직접 만들었습니다.",
       "현장에서 필요한 기능만 담아 실제 운영에 바로 투입했습니다.",
@@ -464,7 +459,6 @@ const projectList: Project[] = [
     role: "기획 · 1인 풀스택 (Claude 기반 바이브 코딩)",
     phases: ["발견", "기획", "개발", "적용·운영"],
     coreSkill: "SYSTEM DESIGN & PRIVACY",
-    color: "#C98BD8",
     why: [
       "수기 대기 명단은 호출 누락, 개인정보 노출 문제도 있었습니다.",
       "하지만 진짜 문제는 자리가 났을 때 현장에 없으면 차례가 다음 사람에게 넘어가는 구조였습니다.",

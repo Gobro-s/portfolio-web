@@ -29,6 +29,7 @@
   --color-thread: var(--thread);
   --color-line: var(--line);
   --font-display: var(--font-caslon), var(--font-gowun-batang), serif;
+  --font-display-lg: var(--font-caslon-display), var(--font-gowun-batang), serif;
   --font-sans: var(--font-pretendard), sans-serif;
   /* 원장(ledger) 조판이라 날짜·라벨은 모노가 아니라 자간을 연 스몰캡 세리프로 간다. */
   --font-label: var(--font-caslon), var(--font-gowun-batang), serif;
@@ -43,23 +44,23 @@
   font-feature-settings: "smcp" 1, "c2sc" 1;
 }
 
-/* 커스터디 문법 — 확정은 실선, 추정은 헤어라인, 미해결은 미직 회색 실. */
+/* 커스터디 문법 — 확정은 실선, 추정은 헤어라인.
+   확정: 지금 현장에서 돌아가 직접 확인이 되는 것.
+   추정: 종료돼 저장소·산출물로만 남은 것.
+   3단(미해결)은 뺐다 — 콘텐츠에 해당하는 항목이 없는데 CSS만 두면 아무것도 구분 못 하는
+   문법이 되고, 진행 중인 일을 채워 넣는 건 사용자가 보류한 사안이다. */
+/* 반드시 border-left-color만 건드린다. border-color(4면)로 쓰면 이 클래스가
+   @layer 밖이라 Tailwind의 border-line 유틸리티를 이겨서, 원장 괘선까지 전부 붉어진다. */
 .thread-known {
-  border-color: var(--accent);
+  border-left-color: var(--accent);
   border-left-width: 2px;
   border-left-style: solid;
 }
 
 .thread-inferred {
-  border-color: var(--foreground-dim);
+  border-left-color: var(--foreground-dim);
   border-left-width: 1px;
   border-left-style: solid;
-}
-
-.thread-open {
-  border-color: var(--thread);
-  border-left-width: 1px;
-  border-left-style: dashed;
 }
 
 * {
@@ -78,9 +79,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  cursor: none;
-  /* 리본이 지나는 좌측 여백. 커스터디 라인은 조판된 영역 바깥을 흐르고,
-     본문·괘선은 절대 그 위로 넘어오지 않는다 — 원장의 제본 여백과 같은 역할. */
+  /* 리본이 걸리는 제본 여백. 리본은 여기 매여 있다가 날짜 항목마다 접혀
+     본문 칼럼으로 건너간다 — 여백에 갇힌 선이 아니다. */
   padding-left: 3.5rem;
   /* 한글 조판: 단어 중간에서 줄이 끊기지 않게 하고(keep-all),
      넘칠 때만 안전하게 꺾는다. 한글은 살짝 좁힌 자간이 정석. */
@@ -96,31 +96,9 @@ body {
   }
 }
 
-@media (pointer: coarse) {
-  body {
-    cursor: auto;
-  }
-
-  .custom-cursor {
-    display: none;
-  }
-}
-
 ::selection {
   background: var(--accent);
   color: var(--background);
-}
-
-a,
-button {
-  cursor: none;
-}
-
-@media (pointer: coarse) {
-  a,
-  button {
-    cursor: pointer;
-  }
 }
 
 a:focus-visible,
@@ -143,23 +121,45 @@ button:focus-visible,
   }
 }
 
+/* 큰 활자는 활자 자체를 바꾼다. 3rem 위로는 디스플레이 컷으로 넘긴다. */
+.font-display-lg {
+  font-family: var(--font-display-lg);
+  letter-spacing: -0.025em;
+}
+
 .font-mono {
   font-family: var(--font-mono);
 }
 
-/* 히어로/섹션 배경에 아주 옅은 그레인 텍스처 */
-.grain {
-  position: relative;
+/* 버프지. 섹션 장식이 아니라 페이지의 바닥면이라 body에 깐다.
+   두 겹인 이유: 잔결(등방성 고주파)만 깔면 종이가 아니라 노이즈로 읽히고,
+   길게 누운 발(이방성 저주파)이 있어야 손으로 뜬 종이의 발자국이 생긴다.
+   0.05로는 어떤 캡처에도 안 나왔다 — 재질은 보여야 재질이다. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 0.7' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.22'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
 }
 
-.grain::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* 스탬프 잉크. 확정된 것에만 찍힌다.
+   잉크는 절대 고르게 앉지 않으므로 난류 마스크로 가장자리를 갉아낸다 —
+   테두리가 매끈하면 도장이 아니라 배지가 된다. */
+.stamp {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  transform: rotate(-3.5deg);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='60'%3E%3Cfilter id='i'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.25' numOctaves='4' seed='3'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 -1.6 1.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23i)'/%3E%3C/svg%3E");
+  mask-size: 140px 60px;
+  mask-mode: alpha;
 }
 
 /* 프로젝트 카드 hover 시 언더라인 리빌 - Dennis Snellenberg 스타일 마이크로 인터랙션 */
@@ -225,71 +225,9 @@ button:focus-visible,
   animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* 코드 모티프: 터미널 타이핑 루프 — 전부 CSS라 항상 재생을 보장한다. */
-@keyframes reveal-x {
-  0%,
-  8% {
-    clip-path: inset(0 100% 0 0);
-  }
-  40%,
-  92% {
-    clip-path: inset(0 0 0 0);
-  }
-  100% {
-    clip-path: inset(0 100% 0 0);
-  }
-}
-
-@keyframes fade-line {
-  0%,
-  45% {
-    opacity: 0;
-  }
-  55%,
-  85% {
-    opacity: 1;
-  }
-  95%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes blink-caret {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-@keyframes float-y {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-reveal-x {
-  animation: reveal-x 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
-
-.animate-fade-line {
-  animation: fade-line 7s ease infinite;
-}
-
-.animate-blink-caret {
-  animation: blink-caret 1s step-end infinite;
-}
-
-.animate-float-y {
-  animation: float-y 4.5s ease-in-out infinite;
-}
+/* 무한 루프 4종(reveal-x·fade-line·blink-caret·float-y)은 CodeMotif와 함께 삭제했다.
+   이 페이지의 authored moment는 리본이 풀리는 것 하나다 — 그 밑에서 상시로 도는
+   앰비언트 모션은 서명이 아니라 소음이다. */
 
 @media (prefers-reduced-motion: reduce) {
   *,

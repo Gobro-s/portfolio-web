@@ -43,13 +43,9 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
   return (
     <main>
-      <section
-        className="grain relative border-b border-line px-6 pt-24 pb-14 md:px-12 md:pt-32 md:pb-20"
-        style={{ background: `linear-gradient(180deg, ${project.color}14, transparent 60%)` }}
-      >
+      <section className="relative border-b border-line px-6 pt-24 pb-14 md:px-12 md:pt-32 md:pb-20">
         <Link
           href="/#projects"
-          data-cursor-hover
           className="link-underline font-label text-xs text-foreground-dim "
         >
           ← All projects
@@ -57,16 +53,13 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
         <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <span className="font-label text-sm text-foreground-dim">{project.no}</span>
-            <h1 className="font-display mt-2 text-4xl font-bold tracking-tight break-keep sm:text-6xl md:text-8xl">
+            <h1 className="font-display font-display-lg text-4xl font-bold tracking-tight break-keep sm:text-6xl md:text-8xl">
               {project.name}
             </h1>
           </div>
-          {/* 테두리에만 프로젝트 색을 쓴다. 11px 글자에 파스텔을 얹으면 2.36:1까지 떨어진다. */}
-          <span
-            className="font-label w-fit rounded-full border px-4 py-1.5 text-[11px] text-foreground "
-            style={{ borderColor: project.color }}
-          >
+          {/* 분류는 잉크로 적는다. 리디자인 전 정체성의 파스텔 5종은 버프지 위에서
+              1.4:1까지 떨어져 PRODUCT.md의 AA 제약을 깼다 — 색이 아니라 괘선이 구분한다. */}
+          <span className="font-label w-fit border-l-2 border-accent pl-3 text-xs text-foreground">
             {project.coreSkill}
           </span>
         </div>
@@ -152,7 +145,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         <p className="font-label text-xs text-foreground-dim ">
           Highlights
         </p>
-        <Highlights highlights={project.highlights} color={project.color} />
+        <Highlights highlights={project.highlights} />
       </section>
 
       <section className="border-b border-line px-6 py-14 md:px-12 md:py-20">
@@ -190,7 +183,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
       </section>
 
       <section className="px-6 py-14 md:px-12 md:py-20">
-        <Link href={`/projects/${next.slug}`} data-cursor-hover className="group block">
+        <Link href={`/projects/${next.slug}`} className="group block">
           <p className="font-label text-xs text-foreground-dim ">
             Next project
           </p>

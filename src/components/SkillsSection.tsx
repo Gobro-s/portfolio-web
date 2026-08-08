@@ -11,13 +11,10 @@ export default function SkillsSection() {
           여유가 생기는 lg부터 넓은 간격을 준다. */}
       <div className="grid gap-8 md:grid-cols-12 lg:gap-16">
         <div className="min-w-0 md:col-span-5">
-          <p className="font-label text-xs text-foreground-dim ">
-            01 / Profile
-          </p>
           {/* 한 문장이 접힐 때의 줄 간격(leading-snug)과 문장 사이 간격(space-y)을 분리한다.
               둘이 같으면 "컴포넌트 구조화로 반복 / 작업을 줄입니다"처럼 접힌 자리가
               문장이 끝난 자리처럼 읽힌다. */}
-          <h2 className="font-display mt-6 text-2xl font-bold break-keep md:text-3xl">
+          <h2 className="font-display text-2xl font-bold break-keep md:text-3xl">
             {profile.bio.map((line) => (
               <span key={line} className="mb-5 block leading-snug last:mb-0 md:mb-6">
                 {line}

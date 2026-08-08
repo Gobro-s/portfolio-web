@@ -22,7 +22,7 @@ export default function ArrowLink({
   return (
     <a
       href={href}
-      data-cursor-hover
+
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={cn(
         "group relative inline-flex items-center",

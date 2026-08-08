@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import ConceptStrip from "@/components/ConceptStrip";
 import SkillsSection from "@/components/SkillsSection";
 import AIPractice from "@/components/AIPractice";
-import ProjectsGrid from "@/components/ProjectsGrid";
+import ProjectLedger from "@/components/ProjectLedger";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
       <ConceptStrip />
       <SkillsSection />
       <AIPractice />
-      <ProjectsGrid />
+      <ProjectLedger />
       <Footer />
     </main>
   );
