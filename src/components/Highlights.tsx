@@ -56,7 +56,8 @@ export default function Highlights({
                 >
                   <Image
                     src={img.src}
-                    alt={img.caption}
+                    // 캡션이 바로 아래에 같은 문장으로 있다 — 중복 낭독을 막으려 비운다.
+                    alt=""
                     width={480}
                     height={360}
                     sizes="(min-width: 640px) 224px, 45vw"

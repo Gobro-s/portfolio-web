@@ -86,7 +86,8 @@ export default function ProjectLedger() {
                 >
                   <Image
                     src={p.images[0].src}
-                    alt={p.images[0].caption}
+                    // 링크에 aria-label이 있고 캡션이 아래에 붙는다. alt까지 채우면 세 번 읽힌다.
+                    alt=""
                     width={640}
                     height={480}
                     sizes="(min-width: 1024px) 38vw, 90vw"

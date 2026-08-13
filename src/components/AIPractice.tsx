@@ -62,7 +62,9 @@ export default function AIPractice() {
                 <figure className="mt-4 max-w-xl overflow-hidden rounded-lg border border-line shadow-sm">
                   <Image
                     src={e.image.src}
-                    alt={e.image.caption}
+                    // figcaption이 바로 아래에서 같은 문장을 말한다. alt에 또 넣으면
+                    // 스크린 리더가 두 번 읽는다 — 캡션이 설명을 맡고 alt는 비운다.
+                    alt=""
                     width={640}
                     height={420}
                     sizes="(min-width: 640px) 576px, calc(100vw - 3rem)"
