@@ -106,7 +106,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           </div>
           <div className="space-y-2 text-lg text-foreground-dim md:col-span-8">
             {project.architecture.map((line) => (
-              <p key={line} className="text-pretty leading-relaxed">
+              <p key={line} className="text-pretty">
                 {line}
               </p>
             ))}
@@ -157,7 +157,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           </div>
           <div className="space-y-2 text-lg text-foreground-dim md:col-span-8">
             {project.challenges.map((line) => (
-              <p key={line} className="text-pretty leading-relaxed">
+              <p key={line} className="text-pretty">
                 {line}
               </p>
             ))}

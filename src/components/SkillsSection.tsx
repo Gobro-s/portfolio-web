@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { profile } from "@/data/projects";
@@ -41,7 +41,7 @@ export default function SkillsSection() {
             <p className="label">
               Awards
             </p>
-            <ul className="mt-2 space-y-1.5 text-sm leading-snug text-foreground-dim">
+            <ul className="mt-2 space-y-1.5 text-sm text-foreground-dim">
               {profile.awards.map((a) => (
                 <li key={a} className="flex gap-2">
                   <span className="text-accent">＋</span>
@@ -55,7 +55,7 @@ export default function SkillsSection() {
             <p className="label">
               Certifications
             </p>
-            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1.5 text-sm leading-snug text-foreground-dim">
+            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-foreground-dim">
               {profile.certifications.map((c) => (
                 <li key={c} className="flex gap-2">
                   <span className="text-accent">·</span>
@@ -84,7 +84,7 @@ export default function SkillsSection() {
               >
                 <span className="font-display leading-snug font-medium">{s.name}</span>
                 <span className="text-[13px] leading-snug text-foreground-dim sm:text-right">
-                  {s.usedIn.join(" · ")}
+                  {s.usedIn.join(" · ")}
                 </span>
               </motion.li>
             ))}

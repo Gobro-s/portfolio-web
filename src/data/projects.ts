@@ -1,3 +1,9 @@
+﻿/** 기술 스택 한 줄. 이름 안의 공백은 nbsp로 묶어 "Django REST / Framework"처럼
+ *  제품명이 쪼개지는 것을 막고, 구분점도 앞 이름에 붙여 "· Firebase"처럼
+ *  점이 줄머리에 떨어지지 않게 한다. 줄은 구분점 뒤에서만 바뀐다. */
+export function stackLine(names: string[]) {
+  return names.map((n) => n.replaceAll(" ", "\u00A0")).join("\u00A0\u00B7 ");
+}
 export type Project = {
   slug: string;
   no: string; // 정렬 키. 화면에는 절대 찍지 않는다 — 섹션 번호는 금지 요소다.

@@ -1,6 +1,6 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
-import { profile, projects } from "@/data/projects";
+import { profile, projects, stackLine } from "@/data/projects";
 
 /** 행 단위 마스크 리빌: 줄이 아래에서 떠오르며 한 번만 재생된다. CSS 애니메이션이라
  * 마운트 시 항상 재생을 보장한다 (JS 애니메이션 라이브러리의 rAF 경합에 영향받지 않음). */
@@ -37,12 +37,14 @@ export default function Hero() {
           </RevealLine>
         </h1>
 
+        {/* 부정("아니었습니다")에서 주장으로 문맥이 바뀌는 자리라 줄을 바꾼다.
+            같은 줄에 이어 붙이면 굵은 글씨가 앞 문장 꼬리에서 시작해 두 줄에 어중간하게 걸린다. */}
         <p
-          className="animate-fade-up mt-8 max-w-[46ch] text-lg leading-relaxed text-pretty text-foreground-dim md:text-xl"
+          className="animate-fade-up mt-8 max-w-[46ch] text-lg text-pretty text-foreground-dim md:text-xl"
           style={{ animationDelay: "0.5s" }}
         >
-          기획서를 받아 구현하는 자리가 아니었습니다.{" "}
-          <strong className="font-semibold text-foreground">
+          기획서를 받아 구현하는 자리가 아니었습니다.
+          <strong className="mt-2 block font-semibold text-balance text-foreground">
             문제를 발견한 사람이 그대로 만들고, 배포하고, 지금도 고쳐 쓰고 있습니다.
           </strong>
         </p>
@@ -62,7 +64,8 @@ export default function Hero() {
                 >
                   {p.name}
                 </Link>
-                <p className="mt-1.5 text-[15px] leading-snug text-foreground-dim">{p.tagline}</p>
+                {/* balance가 없으면 "…현장 대기열 / 시스템"처럼 마지막 한 단어만 떨어진다. */}
+                <p className="mt-1.5 text-[15px] text-balance text-foreground-dim">{p.tagline}</p>
                 <p className="label mt-2">{p.period}</p>
               </li>
             ))}
@@ -76,7 +79,7 @@ export default function Hero() {
           <a href="#projects" className="link-underline font-display text-lg font-bold">
             프로젝트 5건 · 왜 만들었는지부터 →
           </a>
-          <p className="font-mono text-[13px] text-foreground-mute">{core.join(" · ")}</p>
+          <p className="font-mono text-[13px] text-foreground-mute">{stackLine(core)}</p>
         </div>
       </div>
 
@@ -93,7 +96,7 @@ export default function Hero() {
             className="w-full"
           />
         </div>
-        <figcaption className="mt-4 max-w-[46ch] text-[15px] leading-relaxed text-foreground-dim">
+        <figcaption className="mt-4 max-w-[46ch] text-[15px] text-pretty text-foreground-dim">
           <strong className="font-semibold text-foreground">체험실 대기열 시스템의 직원 대시보드.</strong>{" "}
           기획·개발·배포·운영을 혼자 진행했고, 서울로봇인공지능과학관 현장에서 매일 사용됩니다.
         </figcaption>

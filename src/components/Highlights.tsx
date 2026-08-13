@@ -36,12 +36,12 @@ export default function Highlights({
           <div className="flex-1">
             {/* 규칙선은 커스터디 색(accent) 하나로 간다. 프로젝트마다 다른 파스텔을 쓰면
                 버프지 위에서 1.45~2.36:1까지 떨어지고, 세계관의 색 문법도 깨진다. */}
-            <h3 className="font-display border-l-[3px] border-accent pl-3 text-xl leading-snug font-bold break-keep md:text-2xl">
+            <h3 className="font-display border-l-[3px] border-accent pl-3 text-xl leading-snug font-bold break-keep text-balance md:text-2xl">
               {h.title}
             </h3>
             <div className="mt-3 space-y-1.5 text-foreground-dim">
               {h.body.map((line) => (
-                <p key={line} className="text-pretty leading-relaxed">
+                <p key={line} className="text-pretty">
                   {line}
                 </p>
               ))}
@@ -62,7 +62,7 @@ export default function Highlights({
                     sizes="(min-width: 640px) 224px, 45vw"
                     className="w-full object-cover object-top"
                   />
-                  <figcaption className="px-2 py-1.5 text-[13px] leading-snug text-foreground-dim">
+                  <figcaption className="px-2 py-1.5 text-[13px] text-foreground-dim">
                     {img.caption}
                   </figcaption>
                 </figure>

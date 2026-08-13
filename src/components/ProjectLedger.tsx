@@ -1,6 +1,6 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
-import { projects } from "@/data/projects";
+import { projects, stackLine } from "@/data/projects";
 
 /**
  * 프로젝트 목록. 카드 그리드가 아니라 항목 나열이다 — 카드는 테두리·그림자·배경이
@@ -55,7 +55,7 @@ export default function ProjectLedger() {
 
                 <div className="mt-8 border-l-2 border-accent pl-5">
                   <p className="label text-accent">왜 만들었나</p>
-                  <p className="mt-2.5 max-w-[52ch] text-lg leading-snug font-semibold text-balance">
+                  <p className="mt-2.5 max-w-[52ch] text-lg font-semibold text-balance">
                     {keyReason(p.why)}
                   </p>
                   {restOfReason(p.why).map((line) => (
@@ -64,9 +64,8 @@ export default function ProjectLedger() {
                     </p>
                   ))}
                 </div>
-
-                <p className="mt-7 font-mono text-[13px] leading-relaxed text-foreground-mute">
-                  {p.stack.flatMap((g) => g.items).join(" · ")}
+                <p className="mt-7 font-mono text-[13px] text-foreground-mute">
+                  {stackLine(p.stack.flatMap((g) => g.items))}
                 </p>
 
                 {/* 상세 페이지 입구. 이름에만 링크를 걸어두면 링크가 있는 줄도 모른다 —
@@ -97,7 +96,7 @@ export default function ProjectLedger() {
                     className="w-full transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                   />
                 </Link>
-                <figcaption className="mt-3 text-sm leading-snug text-foreground-mute">
+                <figcaption className="mt-3 text-sm text-pretty text-foreground-mute">
                   {p.images[0].caption}
                 </figcaption>
               </figure>

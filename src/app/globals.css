@@ -99,6 +99,17 @@ button:focus-visible,
   outline-offset: 3px;
 }
 
+/* 본문 줄 간격은 한 값으로 고정한다. 요소마다 leading-*을 따로 붙이면
+   같은 화면에 1.375·1.625·1.7이 섞여 리듬이 깨진다 — 실측에서 3종이 나왔다.
+   표제(.font-display)와 라벨(.label)만 자기 값을 갖는다. */
+p,
+li,
+dt,
+dd,
+figcaption {
+  line-height: 1.65;
+}
+
 .font-display {
   font-family: var(--font-display);
   letter-spacing: -0.035em;
