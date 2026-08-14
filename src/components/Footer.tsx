@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ArrowLink from "./ui/arrow-link";
 
 export default function Footer() {
@@ -34,9 +35,16 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <p className="label">
-          © {new Date().getFullYear()} Ko Sehoon — Built with Next.js
-        </p>
+        <div className="flex flex-col gap-3 md:items-end">
+          {/* /field는 기술영업 지원용이라 랜딩의 흐름에 끼워 넣지 않는다. 다만 어디에서도
+              닿을 수 없는 페이지는 숨긴 페이지로 읽히므로, 조용한 자리에 하나 둔다. */}
+          <Link href="/field" className="link-underline label">
+            현장 사업 — 기업·기관 협업 →
+          </Link>
+          <p className="label">
+            © {new Date().getFullYear()} Ko Sehoon — Built with Next.js
+          </p>
+        </div>
       </div>
     </footer>
   );
