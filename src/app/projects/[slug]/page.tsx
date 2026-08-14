@@ -150,11 +150,18 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </div>
       </section>
 
+      {/* 다른 섹션과 같은 4/8 그리드에 넣는다. 여기만 본문이 라벨과 같은 x에서 시작해서
+          페이지에 본문 단이 두 개 생겼다 — 한 페이지 안에서 글이 시작하는 자리가
+          섹션마다 다르면 읽는 쪽은 그걸 편집 실수로 읽는다. */}
       <section className="border-b border-line wrap py-16 md:py-20">
-        <p className="label">
-          Highlights
-        </p>
-        <Highlights highlights={project.highlights} />
+        <div className="grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <p className="label">Highlights</p>
+          </div>
+          <div className="md:col-span-8">
+            <Highlights highlights={project.highlights} />
+          </div>
+        </div>
       </section>
 
       <section className="border-b border-line wrap py-16 md:py-20">
