@@ -5,8 +5,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
 
-const INITIAL = 4;
+export const INITIAL = 4;
 const STEP = 4;
+
+/** 상세 이미지가 차지하는 슬롯 크기. PrefetchDetailImages가 같은 값으로 미리 받아둬야
+ *  브라우저가 srcset에서 같은 후보를 골라 캐시가 실제로 맞는다 — 여기서만 고친다. */
+export const HIGHLIGHT_IMAGE_SIZES = "(min-width: 640px) 224px, 45vw";
 
 /**
  * 케이스 스터디의 Highlights는 프로젝트당 최대 11장의 이미지를 끌고 온다.
@@ -62,7 +66,7 @@ export default function Highlights({
                     alt=""
                     width={480}
                     height={360}
-                    sizes="(min-width: 640px) 224px, 45vw"
+                    sizes={HIGHLIGHT_IMAGE_SIZES}
                     // 홈 카드 덱과 같은 이유로 eager다(커밋 88da47e) — Lenis 스무스 스크롤이
                     // IntersectionObserver 판정을 흔들어 lazy면 계단식으로 뜨거나 안 뜬다.
                     // 상세 한 장이 10~19KB라 미리 받아도 무게가 없다.

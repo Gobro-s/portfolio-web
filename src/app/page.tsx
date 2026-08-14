@@ -4,6 +4,7 @@ import SkillsSection from "@/components/SkillsSection";
 import AIPractice from "@/components/AIPractice";
 import ProjectLedger from "@/components/ProjectLedger";
 import Footer from "@/components/Footer";
+import PrefetchDetailImages from "@/components/PrefetchDetailImages";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <AIPractice />
       <ProjectLedger />
       <Footer />
+      <PrefetchDetailImages />
     </main>
   );
 }

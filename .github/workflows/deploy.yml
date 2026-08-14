@@ -31,6 +31,9 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: /portfolio-web
           NEXT_PUBLIC_SITE_URL: https://gobro-s.github.io/portfolio-web
+      # 잘라낸 폰트 CSS가 실제로 나간 한글을 전부 덮는지. 빠지면 그 글자만 시스템 폰트로
+      # 떨어지는데 화면에서 알아채기 어렵다 — 배포 전에 여기서 막는다.
+      - run: npm run check:fonts
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

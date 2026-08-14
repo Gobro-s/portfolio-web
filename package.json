@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "images": "node scripts/generate-image-variants.mjs",
-    "prebuild": "npm run images"
+    "fonts": "node scripts/trim-font-css.mjs",
+    "check:fonts": "node scripts/check-font-coverage.mjs",
+    "predev": "npm run fonts",
+    "prebuild": "npm run images && npm run fonts"
   },
   "dependencies": {
     "clsx": "^2.1.1",

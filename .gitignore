@@ -20,6 +20,9 @@
 # 빌드 시 scripts/generate-image-variants.mjs가 원본 PNG에서 다시 만든다
 /public/images/projects/r/
 
+# 빌드 시 scripts/trim-font-css.mjs가 pretendard-all.css에서 다시 만든다
+/src/fonts/pretendard-dynamic-subset.css
+
 # production
 /build
 
