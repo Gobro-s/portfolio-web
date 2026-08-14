@@ -39,7 +39,9 @@ export default function Highlights({
             <h3 className="font-display border-l-[3px] border-accent pl-3 text-xl leading-snug font-bold break-keep text-balance md:text-2xl">
               {h.title}
             </h3>
-            <div className="mt-3 space-y-1.5 text-foreground-dim">
+            {/* 17px · 1.65 = 줄 사이 약 11px → 문단 사이 16px.
+                1.5(6px)는 줄 사이보다 좁아 문장 경계가 안 보였다. */}
+            <div className="mt-3 space-y-4 text-foreground-dim">
               {h.body.map((line) => (
                 <p key={line} className="text-pretty">
                   {line}
@@ -61,6 +63,10 @@ export default function Highlights({
                     width={480}
                     height={360}
                     sizes="(min-width: 640px) 224px, 45vw"
+                    // 홈 카드 덱과 같은 이유로 eager다(커밋 88da47e) — Lenis 스무스 스크롤이
+                    // IntersectionObserver 판정을 흔들어 lazy면 계단식으로 뜨거나 안 뜬다.
+                    // 상세 한 장이 10~19KB라 미리 받아도 무게가 없다.
+                    loading="eager"
                     className="w-full object-cover object-top"
                   />
                   <figcaption className="px-2 py-1.5 text-[13px] text-foreground-dim">

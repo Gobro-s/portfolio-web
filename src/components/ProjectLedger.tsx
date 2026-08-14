@@ -59,7 +59,8 @@ export default function ProjectLedger() {
                     {keyReason(p.why)}
                   </p>
                   {restOfReason(p.why).map((line) => (
-                    <p key={line} className="mt-2 max-w-[54ch] text-[15px] text-pretty text-foreground-dim">
+                    // 15px · 1.65 = 줄 사이 약 9.75px → 문단 사이 14px
+                    <p key={line} className="mt-3.5 max-w-[54ch] text-[15px] text-pretty text-foreground-dim">
                       {line}
                     </p>
                   ))}

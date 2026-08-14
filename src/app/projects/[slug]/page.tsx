@@ -87,9 +87,13 @@ export default async function ProjectPage({ params }: { params: Params }) {
           <div className="md:col-span-4">
             <p className="label">Why</p>
           </div>
-          <div className="font-display text-2xl leading-snug font-medium md:col-span-8 md:text-3xl">
+          {/* 문단 사이 간격은 문단 안 줄 간격보다 넓어야 한다 — 좁으면 문장이 끝난 자리보다
+              줄이 넘어간 자리가 더 벌어져 어디서 끊어 읽을지가 안 보인다.
+              30px · 줄높이 1.65 = 줄 사이 약 19.5px이므로 문단 사이는 28px.
+              leading-snug은 지웠다: 자식이 전부 <p>라 globals.css의 1.65가 이기고 있었다(죽은 값). */}
+          <div className="font-display space-y-7 text-2xl font-medium md:col-span-8 md:text-3xl">
             {project.why.map((line) => (
-              <p key={line} className="text-pretty">
+              <p key={line} className="text-balance">
                 {line}
               </p>
             ))}
@@ -104,7 +108,8 @@ export default async function ProjectPage({ params }: { params: Params }) {
               My Role in the Architecture
             </p>
           </div>
-          <div className="space-y-2 text-lg text-foreground-dim md:col-span-8">
+          {/* 18px · 1.65 = 줄 사이 약 11.7px → 문단 사이 16px */}
+          <div className="space-y-4 text-lg text-foreground-dim md:col-span-8">
             {project.architecture.map((line) => (
               <p key={line} className="text-pretty">
                 {line}
@@ -155,7 +160,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
               Friction &amp; Resolution
             </p>
           </div>
-          <div className="space-y-2 text-lg text-foreground-dim md:col-span-8">
+          <div className="space-y-4 text-lg text-foreground-dim md:col-span-8">
             {project.challenges.map((line) => (
               <p key={line} className="text-pretty">
                 {line}
@@ -172,7 +177,8 @@ export default async function ProjectPage({ params }: { params: Params }) {
               Result
             </p>
           </div>
-          <ul className="md:col-span-8 space-y-2">
+          {/* 24px · 1.65 = 줄 사이 약 15.6px → 항목 사이 24px */}
+          <ul className="md:col-span-8 space-y-6">
             {project.results.map((r) => (
               <li key={r} className="font-display text-xl md:text-2xl">
                 {r}
