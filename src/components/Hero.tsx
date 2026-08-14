@@ -40,7 +40,7 @@ export default function Hero() {
         {/* 부정("아니었습니다")에서 주장으로 문맥이 바뀌는 자리라 줄을 바꾼다.
             같은 줄에 이어 붙이면 굵은 글씨가 앞 문장 꼬리에서 시작해 두 줄에 어중간하게 걸린다. */}
         <p
-          className="animate-fade-up mt-8 max-w-[46ch] text-lg text-pretty text-foreground-dim md:text-xl"
+          className="animate-fade-up mt-8 text-lg text-pretty text-foreground-dim md:text-xl"
           style={{ animationDelay: "0.5s" }}
         >
           기획서를 받아 구현하는 자리가 아니었습니다.
@@ -96,7 +96,7 @@ export default function Hero() {
             className="w-full"
           />
         </div>
-        <figcaption className="mt-4 max-w-[46ch] text-[15px] text-pretty text-foreground-dim">
+        <figcaption className="mt-4 text-[15px] text-pretty text-foreground-dim">
           <strong className="font-semibold text-foreground">체험실 대기열 시스템의 직원 대시보드.</strong>{" "}
           기획·개발·배포·운영을 혼자 진행했고, 서울로봇인공지능과학관 현장에서 매일 사용됩니다.
         </figcaption>

@@ -14,7 +14,7 @@ export default function ConceptStrip() {
         <span className="text-accent">재활용</span>
         <span aria-hidden>↩</span>
       </div>
-      <p className="mt-8 max-w-3xl text-xl font-bold tracking-tight break-keep text-balance md:text-3xl">
+      <p className="mt-8 max-w-(--measure-lead) text-xl font-bold tracking-tight break-keep text-balance md:text-3xl">
         한 번 검증된 구조는 버리지 않습니다.
         <span className="mt-1 block font-medium text-foreground-dim">
           컴포넌트도, 배운 것도 — 다음 현장에서 더 빠르게 완성됩니다.

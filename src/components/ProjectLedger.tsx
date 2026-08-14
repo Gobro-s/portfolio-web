@@ -26,7 +26,7 @@ export default function ProjectLedger() {
       <h2 className="font-display text-3xl font-extrabold text-balance md:text-4xl">
         프로젝트마다, 다른 근육을 썼습니다.
       </h2>
-      <p className="mt-4 max-w-[54ch] text-pretty text-foreground-dim">
+      <p className="mt-4 text-pretty text-foreground-dim">
         각 항목은 무엇을 만들었는지보다 <strong className="font-semibold text-foreground">왜 만들었는지</strong>
         를 먼저 답합니다. 기능 목록은 상세 페이지에 있습니다.
       </p>
@@ -51,16 +51,16 @@ export default function ProjectLedger() {
                     {p.name}
                   </Link>
                 </h3>
-                <p className="mt-3 max-w-[48ch] text-lg text-pretty text-foreground-dim">{p.tagline}</p>
+                <p className="mt-3 text-lg text-pretty text-foreground-dim">{p.tagline}</p>
 
                 <div className="mt-8 border-l-2 border-accent pl-5">
                   <p className="label text-accent">왜 만들었나</p>
-                  <p className="mt-2.5 max-w-[52ch] text-lg font-semibold text-balance">
+                  <p className="mt-2.5 text-lg font-semibold text-balance">
                     {keyReason(p.why)}
                   </p>
                   {restOfReason(p.why).map((line) => (
                     // 15px · 1.65 = 줄 사이 약 9.75px → 문단 사이 14px
-                    <p key={line} className="mt-3.5 max-w-[54ch] text-[15px] text-pretty text-foreground-dim">
+                    <p key={line} className="mt-3.5 text-[15px] text-pretty text-foreground-dim">
                       {line}
                     </p>
                   ))}

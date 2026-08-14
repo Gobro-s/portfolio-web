@@ -35,7 +35,7 @@ export default function AIPractice() {
           </motion.ul>
 
           {/* 스스로 범위를 긋는 문장. 원칙과 같은 무게로 두면 방어처럼 읽히므로 한 단 낮춘다. */}
-          <p className="mt-7 max-w-[46ch] text-pretty text-foreground-dim">
+          <p className="mt-7 text-pretty text-foreground-dim">
             {aiPractice.boundary}
           </p>
         </div>
@@ -51,15 +51,16 @@ export default function AIPractice() {
               className="border-t border-line py-6"
             >
               <h3 className="font-display text-lg font-bold md:text-xl">{e.title}</h3>
-              <div className="mt-2 max-w-xl text-foreground-dim">
+              <div className="mt-2 text-foreground-dim">
                 {e.body.map((line) => (
                   <p key={line} className="text-pretty">
                     {line}
                   </p>
                 ))}
               </div>
+              {/* 이미지 오른쪽 끝을 본문 끝과 같은 자리에 맞춘다 — 어긋나면 단이 두 개로 보인다. */}
               {e.image && (
-                <figure className="mt-4 max-w-xl overflow-hidden rounded-lg border border-line shadow-sm">
+                <figure className="mt-4 max-w-(--measure) overflow-hidden rounded-lg border border-line shadow-sm">
                   <Image
                     src={e.image.src}
                     // figcaption이 바로 아래에서 같은 문장을 말한다. alt에 또 넣으면

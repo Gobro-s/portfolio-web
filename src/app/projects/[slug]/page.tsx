@@ -64,7 +64,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           </span>
         </div>
 
-        <p className="mt-6 max-w-2xl text-lg text-foreground-dim">{project.tagline}</p>
+        <p className="mt-6 text-lg text-foreground-dim">{project.tagline}</p>
 
         <dl className="mt-10 grid grid-cols-2 gap-6 text-[13px] text-foreground-dim md:grid-cols-4">
           <div>
@@ -91,9 +91,13 @@ export default async function ProjectPage({ params }: { params: Params }) {
               줄이 넘어간 자리가 더 벌어져 어디서 끊어 읽을지가 안 보인다.
               30px · 줄높이 1.65 = 줄 사이 약 19.5px이므로 문단 사이는 28px.
               leading-snug은 지웠다: 자식이 전부 <p>라 globals.css의 1.65가 이기고 있었다(죽은 값). */}
+          {/* text-balance를 뺐다. 균형 잡기는 줄 수가 적은 문단을 컨테이너보다 훨씬 좁게 그린다 —
+              "그래서 직접 만들었습니다." 같은 한 줄짜리와 세 줄짜리가 나란히 서면
+              오른쪽 끝이 문단마다 다른 자리에 생겨 이 섹션이 제일 들쭉날쭉해 보였다.
+              폭은 --measure-lead가 잡고, 마지막 줄 고아 단어만 text-pretty로 막는다. */}
           <div className="font-display space-y-7 text-2xl font-medium md:col-span-8 md:text-3xl">
             {project.why.map((line) => (
-              <p key={line} className="text-balance">
+              <p key={line} className="max-w-(--measure-lead) text-pretty">
                 {line}
               </p>
             ))}
@@ -178,7 +182,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             </p>
           </div>
           {/* 24px · 1.65 = 줄 사이 약 15.6px → 항목 사이 24px */}
-          <ul className="md:col-span-8 space-y-6">
+          <ul className="md:col-span-8 max-w-(--measure-lead) space-y-6">
             {project.results.map((r) => (
               <li key={r} className="font-display text-xl md:text-2xl">
                 {r}
