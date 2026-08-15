@@ -22,7 +22,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   useEffect(() => {
     // 터치 기기에서는 네이티브 스크롤이 항상 낫다: OS 관성 그대로,
     // 스와이프 한 번에 내려가는 양도 시스템 기본을 따른다.
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    // reduced-motion도 여기서 걸러야 한다 — globals.css의 감소 블록은 animation·transition만
+    // 잡고, Lenis는 rAF로 스크롤 위치를 직접 보간하므로 CSS로는 꺼지지 않는다.
+    if (window.matchMedia("(pointer: coarse), (prefers-reduced-motion: reduce)").matches) return;
 
     const lenis = new Lenis({
       duration: 1.1,

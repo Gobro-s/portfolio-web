@@ -71,8 +71,11 @@ export default function ProjectLedger() {
 
                 {/* 상세 페이지 입구. 이름에만 링크를 걸어두면 링크가 있는 줄도 모른다 —
                     구조·문제해결·결과가 전부 그 안에 있으므로 진입점이 눈에 보여야 한다. */}
+                {/* 다섯 항목이 같은 글자를 쓰므로 스크린리더의 링크 목록에서는 전부 같은 이름이 된다.
+                    보이는 글자는 그대로 두고 접근 이름에만 프로젝트명을 붙인다. */}
                 <Link
                   href={`/projects/${p.slug}`}
+                  aria-label={`${p.name} 케이스 스터디 — 구조 · 문제 해결 · 결과`}
                   className="link-underline font-display mt-7 inline-block text-lg font-bold text-accent"
                 >
                   케이스 스터디 — 구조 · 문제 해결 · 결과 →
