@@ -28,7 +28,7 @@ export default function Footer() {
               <ArrowLink
                 href="https://github.com/Gobro-s"
                 external
-                className="label mt-1 text-sm text-foreground"
+                className="label mt-1 text-foreground"
               >
                 github.com/Gobro-s
               </ArrowLink>

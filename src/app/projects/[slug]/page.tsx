@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           </div>
           {/* 분류는 잉크로 적는다. 리디자인 전 정체성의 파스텔 5종은 버프지 위에서
               1.4:1까지 떨어져 PRODUCT.md의 AA 제약을 깼다 — 색이 아니라 괘선이 구분한다. */}
-          <span className="label w-fit border-l-2 border-accent pl-3 text-[13px] text-foreground">
+          <span className="label w-fit border-l border-line pl-3 text-[13px] text-foreground">
             {project.coreSkill}
           </span>
         </div>

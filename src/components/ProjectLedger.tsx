@@ -53,7 +53,7 @@ export default function ProjectLedger() {
                 </h3>
                 <p className="mt-3 text-lg text-pretty text-foreground-dim">{p.tagline}</p>
 
-                <div className="mt-8 border-l-2 border-accent pl-5">
+                <div className="mt-8 border-l border-line pl-5">
                   <p className="label text-accent">왜 만들었나</p>
                   <p className="mt-2.5 text-lg font-semibold text-balance">
                     {keyReason(p.why)}
@@ -101,7 +101,7 @@ export default function ProjectLedger() {
                     className="w-full transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                   />
                 </Link>
-                <figcaption className="mt-3 text-sm text-pretty text-foreground-mute">
+                <figcaption className="mt-3 text-[15px] text-pretty text-foreground-mute">
                   {p.images[0].caption}
                 </figcaption>
               </figure>

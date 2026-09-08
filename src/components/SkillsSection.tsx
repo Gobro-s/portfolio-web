@@ -22,7 +22,7 @@ export default function SkillsSection() {
             ))}
           </h2>
 
-          <div className="mt-10 space-y-3 text-sm text-foreground-dim">
+          <div className="mt-10 space-y-3 text-[15px] text-foreground-dim">
             {profile.experience.map((e) => (
               <div
                 key={e.label}
@@ -41,7 +41,7 @@ export default function SkillsSection() {
             <p className="label">
               Awards
             </p>
-            <ul className="mt-2 space-y-1.5 text-sm text-foreground-dim">
+            <ul className="mt-2 space-y-1.5 text-[15px] text-foreground-dim">
               {profile.awards.map((a) => (
                 <li key={a} className="flex gap-2">
                   <span className="text-accent">＋</span>
@@ -55,7 +55,7 @@ export default function SkillsSection() {
             <p className="label">
               Certifications
             </p>
-            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-foreground-dim">
+            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1.5 text-[15px] text-foreground-dim">
               {profile.certifications.map((c) => (
                 <li key={c} className="flex gap-2">
                   <span className="text-accent">·</span>

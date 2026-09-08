@@ -27,7 +27,7 @@ export default function AIPractice() {
             {aiPractice.principles.map((line) => (
               <li
                 key={line}
-                className="border-l-2 border-accent py-2 pl-5 text-lg font-semibold text-balance"
+                className="border-l border-line py-2 pl-5 text-lg font-semibold text-balance"
               >
                 {line}
               </li>

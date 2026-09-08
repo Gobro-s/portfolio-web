@@ -38,11 +38,12 @@ export default function Highlights({
           className="flex flex-col gap-6 border-t border-line py-8 sm:flex-row"
         >
           <div className="flex-1">
-            {/* 규칙선은 커스터디 색(accent) 하나로 간다. 프로젝트마다 다른 파스텔을 쓰면
-                버프지 위에서 1.45~2.36:1까지 떨어지고, 세계관의 색 문법도 깨진다. */}
+            {/* 규칙선은 1px --line 하나다(DESIGN.md §5). 굵은 accent 세로선은 AI가 만든 화면의
+                표식이라 걷어냈다 — 왼쪽 정렬선이 만드는 정돈감은 들여쓰기가 그대로 준다.
+                프로젝트별 파스텔도 쓰지 않는다. 버프지 위에서 1.45~2.36:1까지 떨어진다. */}
             {/* 제목도 본문과 같은 폭으로 묶는다. 안 묶으면 이미지가 있는 항목과 없는 항목에서
                 제목의 오른쪽 끝이 항목마다 튀고, 제목만 아래 본문보다 훨씬 넓어진다. */}
-            <h3 className="font-display max-w-(--measure) border-l-[3px] border-accent pl-3 text-xl leading-snug font-bold break-keep text-balance md:text-2xl">
+            <h3 className="font-display max-w-(--measure) border-l border-line pl-3 text-xl leading-snug font-bold break-keep text-balance md:text-2xl">
               {h.title}
             </h3>
             {/* 17px · 1.65 = 줄 사이 약 11px → 문단 사이 16px.

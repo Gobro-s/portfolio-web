@@ -51,7 +51,7 @@ export default function FieldPage() {
 
         {/* 고객사 이름이 세 개 붙어 있으면 영업 실적으로 읽힌다. 그 오해를 페이지 맨 앞에서 끊는다 —
             뒤에서 물어보게 두면 숨긴 것이 되고, 먼저 꺼내면 그게 신뢰가 된다. */}
-        <p className="mt-10 border-l-2 border-accent py-1 pl-5 text-[15px] text-pretty text-foreground-dim">
+        <p className="mt-10 border-l border-line py-1 pl-5 text-[15px] text-pretty text-foreground-dim">
           {fieldWork.boundary}
         </p>
       </section>
