@@ -467,7 +467,7 @@ const projectList: Project[] = [
     inProduction: true,
     name: "Robotics Room Reservation",
     tagline: "기다림을 관람 시간으로 바꾼 체험실 현장 대기열 시스템",
-    period: "2026.04 ~ 진행중",
+    period: "2026.05 ~ 진행중",
     role: "기획 · 1인 풀스택 (Claude 기반 바이브 코딩)",
     phases: ["발견", "기획", "개발", "적용·운영"],
     coreSkill: "SYSTEM DESIGN & PRIVACY",
@@ -476,7 +476,7 @@ const projectList: Project[] = [
       "하지만 진짜 문제는 자리가 났을 때 현장에 없으면 차례가 다음 사람에게 넘어가는 구조였습니다.",
       "관람객은 과학관을 둘러보지 못한 채, 언제 올지 모르는 차례를 체험실 앞에 앉아 기다려야만 했습니다.",
       "대기 중엔 자유롭게 전시를 관람하다가, 차례가 오면 SMS로 호출받아 돌아오는 구조로 바꾸기 위해 만들었습니다.",
-      "2026년 4월부터 운영하며 현장 요구에 맞춰 계속 개선하고 있습니다.",
+      "2026년 5월 말부터 운영하며 현장 요구에 맞춰 계속 개선하고 있습니다.",
     ],
     architecture: [
       "React 프론트엔드부터 Django REST 백엔드, APScheduler 스케줄러, SMS 연동, 내부망 배포까지 시스템 전체를 혼자 설계·구현했습니다.",
@@ -533,7 +533,7 @@ const projectList: Project[] = [
       "직원 요청으로 엑셀 통계 양식도 현장에 맞게 다시 만들었습니다.",
       "SQLite 단일 파일 DB로 충분했지만, 다기관으로 확장한다면 DB·인증 구조 개선이 필요합니다.",
     ],
-    results: ["2026년 4월부터 실제 체험관 현장에서 운영 중"],
+    results: ["2026년 5월 말부터 실제 체험관 현장에서 운영 중"],
     images: [
       { src: "/images/projects/reservation-checkin.png", caption: "방문객 대기 등록 — 태블릿에서 전화번호·일행 인원 등록" },
       { src: "/images/projects/reservation-dashboard.png", caption: "직원 대시보드 — 대기열 관리와 SMS 호출" },
@@ -568,7 +568,7 @@ export const aiPractice = {
     {
       title: "실운영 시스템 2개",
       body: [
-        "RAIM(2주 기획→배포), Robotics Room Reservation(2026.04~ 운영 중). 둘 다 혼자 맡았습니다.",
+        "RAIM(2주 기획→배포), Robotics Room Reservation(2026.05~ 운영 중). 둘 다 혼자 맡았습니다.",
         "속도는 AI로 냈고, 권한 가드·키 관리·개인정보 파기는 직접 검증하고 올렸습니다.",
       ],
     },
@@ -747,7 +747,7 @@ export const fieldWork = {
   // 이 페이지가 개발 포트폴리오와 만나는 지점. 두 축이 따로 노는 게 아니라는 근거다.
   bridge: {
     heading: "그리고 그 현장의 문제를, 코드로도 풀었습니다.",
-    body: "체험실을 운영하면서 본 대기 줄 문제를 대기열 시스템으로 만들어 2026년 4월부터 현장에서 쓰고 있습니다. 현장을 아는 사람이 만들었기 때문에 나올 수 있었던 물건입니다.",
+    body: "체험실을 운영하면서 본 대기 줄 문제를 대기열 시스템으로 만들어 2026년 5월 말부터 현장에서 쓰고 있습니다. 현장을 아는 사람이 만들었기 때문에 나올 수 있었던 물건입니다.",
     slugs: ["robotics-reservation", "raim"],
   },
 };
